@@ -52,7 +52,7 @@ if (!function_exists('uploader')) {
             }
         }
         if (!$file_name) {
-            $file_name = Carbon::now()->toDateTimeString();
+            $file_name = Carbon::now()->toDateTimeString() . rand(1000, 9999);
             $file_name = Str::slug($file_name);
             $file_name .= "." . $source->getClientOriginalExtension();
         } else {

@@ -180,7 +180,7 @@ export default {
             if (this.single_data) {
                 this.form_fields.forEach((field, index) => {
                     Object.entries(this.single_data).forEach((value) => {
-                        if (field.name == value[0]) {
+                        if (field.name == value[0] && value[0] != "images") {
                             this.form_fields[index].value = value[1];
                         }
                         if (
@@ -196,27 +196,28 @@ export default {
                                 this.child_parent_id.push(item.id);
                             });
                         }
+                        if (field.name == "images" && value[0] == "images") {
+                            let data = [];
+                            value[1].forEach((image) => {
+                                data.push(image);
+                            });
+                            this.form_fields[index].images_list = data;
+                        }
                     });
                 });
 
-                Object.entries(this.single_data).forEach((value) => {
-                    if (value[0] == "categories") {
-                        value[1].forEach((item) => {
-                            this.set_categories(item);
-                        });
-                    }
+                this.single_data?.categories.forEach((item) => {
+                    this.set_categories(item);
                 });
 
-                Object.entries(this.single_data).forEach((value) => {
-                    if (value[0] == "tags") {
-                        let tagData = value[1].split(",");
-                        tagData.pop();
+                if (this.single_data.tags) {
+                    let tagData = this.single_data.tags?.split(",");
+                    tagData.pop();
 
-                        tagData.forEach((item) => {
-                            this.set_tags(item);
-                        });
-                    }
-                });
+                    tagData.forEach((item) => {
+                        this.set_tags(item);
+                    });
+                }
             }
         } else {
             this.form_fields.forEach((item) => {

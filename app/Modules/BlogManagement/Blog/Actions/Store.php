@@ -14,16 +14,11 @@ class Store
     public static function execute(Validation $request)
     {
         try {
+ 
+            $requestData = $request->validated();
             $blog_category_id = json_decode($request->blog_category_id);
             $reqtags = json_decode($request->tags);
             $tags = null;
-
-            $imageName = 'dummy.png';
-            if ($request->hasFile('thumbnail_image')) {
-                $image = $request->file('thumbnail_image');
-                $currentDate = now()->format('Y/m');
-                $imageName = Storage::disk('public')->put("uploads/blog/{$currentDate}", $image);
-            }
 
             if ($reqtags && count($reqtags)) {
                 foreach ($reqtags as $item) {
@@ -31,15 +26,27 @@ class Store
                 }
             }
 
+            if ($request->hasFile('thumbnail_image')) {
+                $image = $request->file('thumbnail_image');
+                $currentDate = now()->format('Y/m');
+                $requestData['thumbnail_image'] = Storage::disk('public')->put("uploads/blog/{$currentDate}", $image);
+            }
 
-            if ($blog = self::$model::query()->create(array_merge(
-                $request->validated(),
-                [
-                    "thumbnail_image" => $imageName,
-                    "tags" => $tags,
-                    "creator" => auth()->id(),
-                ]
-            ))) {
+
+
+            if ($request->hasFile('images')) {
+                foreach ($request->images as $key => $image) {
+                    $currentDate = now()->format('Y/m');
+                    $url = uploader($image, "uploads/blog/{$currentDate}");
+                    $requestData['images'][] = $url;
+                }
+            }
+
+
+            $requestData['tags'] = $tags;
+            $requestData['creator'] = auth()->id();
+
+            if ($blog = self::$model::query()->create($requestData)) {
                 if ($blog_category_id && count($blog_category_id)) {
                     $blog->categories()->attach($blog_category_id);
                 }

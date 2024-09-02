@@ -23,7 +23,7 @@ return new class extends Migration
             $table->string('meta_description')->nullable();
             $table->string('meta_keywords')->nullable();
             $table->string('thumbnail_image')->nullable();
-            $table->json('image')->nullable();
+            $table->json('images')->nullable();
             $table->string('blog_type')->nullable();
             $table->string('url')->nullable();
             $table->string('slug', 250)->nullable();

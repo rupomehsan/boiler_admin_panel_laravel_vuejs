@@ -88,6 +88,7 @@ export default [
         label: "Upload multiple images",
         type: "file",
         colum: "col-md-6",
+        value: "",
         images_list: [],
         multiple: true,
     },

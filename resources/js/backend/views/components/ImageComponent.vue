@@ -12,7 +12,7 @@
         />
         <template v-if="multiple">
             <div  class="uploaded_image_preview my-2 d-flex gap-1 flex-wrap">
-
+             {{ component_images }}
                 <template
                     v-for="(image, index) in component_images"
                     :key="image"

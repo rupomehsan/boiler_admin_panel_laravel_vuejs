@@ -74,11 +74,12 @@
             </select>
         </div>
         <div v-if="type === 'file'" class="mt-1 mb-3">
+            {{ images_list }}
             <image-component
                 :name="name"
                 :multiple="multiple"
                 :accept="`.jpg,.jpeg,.png`"
-                :images="images_list"
+                :images="multiple ? images_list : value"
             ></image-component>
         </div>
     </div>

@@ -12,6 +12,9 @@ class Model extends EloquentModel
 
     protected $table = "blogs";
     protected $guarded = [];
+    protected $casts = [
+        'images' => 'array'
+    ];
 
 
     protected static function booted()
