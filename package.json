@@ -1,0 +1,24 @@
+{
+    "private": true,
+    "type": "module",
+    "scripts": {
+        "dev": "vite",
+        "build": "vite build",
+        "reload": "php artisan db:wipe && php artisan migrate && php artisan migrate --path=app/Modules/*/* && php artisan migrate --path=app/Modules/*/*/*  && php artisan db:seed && php artisan passport:install"
+    },
+    "devDependencies": {
+        "@popperjs/core": "^2.11.6",
+        "@vitejs/plugin-vue": "^4.0.0",
+        "axios": "^1.1.2",
+        "bootstrap": "^5.2.3",
+        "laravel-vite-plugin": "^0.8.0",
+        "sass": "^1.56.1",
+        "vite": "^4.0.0",
+        "vue": "^3.2.37"
+    },
+    "dependencies": {
+        "moment": "^2.30.1",
+        "pinia": "^2.1.6",
+        "vue-router": "^4.2.5"
+    }
+}
