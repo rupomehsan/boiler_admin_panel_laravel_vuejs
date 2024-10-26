@@ -37,7 +37,7 @@ class ModelingDirectory extends Command
 
 
 
-        $baseDirectory = app_path("Modules/");
+        $baseDirectory = app_path("Modules/Management/");
         $format_dir = explode('/', $moduleName);
         $module_dir = null;
 
@@ -64,7 +64,32 @@ class ModelingDirectory extends Command
             File::makeDirectory($actionsDirectory);
         }
 
-        $actionFiles = ['All.php', 'BulkActions.php', 'Store.php', 'Show.php', 'Update.php', 'Delete.php',  'Validation.php', 'Seeder.php'];
+        $actionFiles = [
+
+            'GetAllData.php',
+            'BulkActions.php',
+            'StoreData.php',
+            'GetSingleData.php',
+            'UpdateData.php',
+            'DestroyData.php',
+            'RestoreData.php',
+            'SoftDelete.php',
+            'ImportData.php',
+
+            'DataStoreValidation.php',
+            'GetAllDataValidation.php',
+            'BulkActionsValidation.php',
+
+            'Controller.php',
+
+            'Model.php',
+            'create_' . $table . '_table.php',
+            'Seeder.php',
+
+            'Route.php',
+            'Api.http',
+
+        ];
 
         if ($module_dir != null) {
             $module_name = $module_dir . '/' . $moduleName;
@@ -86,45 +111,94 @@ class ModelingDirectory extends Command
         if (!File::isDirectory($DatabaseDirectory)) {
             File::makeDirectory($DatabaseDirectory);
         }
+        $ControllerDirectory = $baseDirectory . $moduleName . '/Controller';
+        if (!File::isDirectory($ControllerDirectory)) {
+            File::makeDirectory($ControllerDirectory);
+        }
+        $OthersDirectory = $baseDirectory . $moduleName . '/Others';
+        if (!File::isDirectory($OthersDirectory)) {
+            File::makeDirectory($OthersDirectory);
+        }
+        $RoutesDirectory = $baseDirectory . $moduleName . '/Routes';
+        if (!File::isDirectory($RoutesDirectory)) {
+            File::makeDirectory($RoutesDirectory);
+        }
+        $SeederDirectory = $baseDirectory . $moduleName . '/Seeder';
+        if (!File::isDirectory($SeederDirectory)) {
+            File::makeDirectory($SeederDirectory);
+        }
 
         // dd($module_name);
         foreach ($actionFiles as $file) {
-            if ($file == 'All.php') {
-                File::put($actionsDirectory . '/' . $file, all($module_name));
+            if ($file == 'GetAllData.php') {
+                File::put($actionsDirectory . '/' . $file, GetAllData($module_name));
+            }
+            if ($file == 'StoreData.php') {
+                File::put($actionsDirectory . '/' . $file, StoreData($module_name));
+            }
+            if ($file == 'GetSingleData.php') {
+                File::put($actionsDirectory . '/' . $file, GetSingleData($module_name));
+            }
+            if ($file == 'UpdateData.php') {
+                File::put($actionsDirectory . '/' . $file, UpdateData($module_name));
+            }
+            if ($file == 'DestroyData.php') {
+                File::put($actionsDirectory . '/' . $file, DestroyData($module_name));
             }
             if ($file == 'BulkActions.php') {
-                File::put($actionsDirectory . '/' . $file, bulkActions($module_name));
+                File::put($actionsDirectory . '/' . $file, BulkActions($module_name));
             }
-            if ($file == 'Store.php') {
-                File::put($actionsDirectory . '/' . $file, store($module_name));
+            if ($file == 'SoftDelete.php') {
+                File::put($actionsDirectory . '/' . $file, SoftDelete($module_name));
             }
-            if ($file == 'Show.php') {
-                File::put($actionsDirectory . '/' . $file, show($module_name));
+            if ($file == 'ImportData.php') {
+                File::put($actionsDirectory . '/' . $file, ImportData($module_name, $fields));
             }
-            if ($file == 'Update.php') {
-                File::put($actionsDirectory . '/' . $file, update($module_name));
+            if ($file == 'RestoreData.php') {
+                File::put($actionsDirectory . '/' . $file, RestoreData($module_name));
             }
-            if ($file == 'Delete.php') {
-                File::put($actionsDirectory . '/' . $file, delete($module_name));
+
+
+            if ($file == 'DataStoreValidation.php') {
+                File::put($ValidationDirectory . '/' . $file, DataStoreValidation($module_name, $fields));
             }
-            if ($file == 'Validation.php') {
-                File::put($ValidationDirectory . '/' . $file, validation($module_name, $fields));
+            if ($file == 'GetAllDataValidation.php') {
+                File::put($ValidationDirectory . '/' . $file, GetAllDataValidation($module_name, $fields));
+            }
+            if ($file == 'BulkActionsValidation.php') {
+                File::put($ValidationDirectory . '/' . $file, BulkActionsValidation($module_name, $fields));
+            }
+
+
+            if ($file == 'Controller.php') {
+                File::put($ControllerDirectory . '/' . $file, Controller($module_name, $fields));
+            }
+
+            if ($file == 'Model.php') {
+                File::put($ModelDirectory . '/' . $file, Model($module_name, $fields));
+            }
+            if ($file == 'Database.php') {
+                File::put($DatabaseDirectory . '/' . $file, Migration($module_name, $fields));
+            }
+
+
+            if ($file == 'Route.php') {
+                File::put($RoutesDirectory . '/' . $file, Route($module_name, $fields));
+            }
+            if ($file == 'Api.php') {
+                File::put($OthersDirectory . '/' . $file, Api($module_name, $fields));
+            }
+            if ($file == 'Seeder.php') {
+                File::put($SeederDirectory . '/' . $file, Seeder($module_name, $moduleName, $fields));
             }
         }
-
-        File::put($baseDirectory . $moduleName . '/Controller.php', controller($module_name));
-        File::put($baseDirectory . $moduleName . '/Models/Model.php', model($module_name, $moduleName));
-        File::put($baseDirectory . $moduleName . '/Database/create_' . $table . '_table.php', migration($module_name, $fields));
-        File::put($baseDirectory . $moduleName . '/Route.php', routeContent($module_name, $moduleName));
-        File::put($baseDirectory . $moduleName . '/api.http', api($moduleName));
-        File::put($baseDirectory . $moduleName . '/Database/Seeder.php', seeder($module_name, $moduleName, $fields));
 
 
 
         if ($withVue) {
 
-            $role = 'admin';
-            $vueDirectory = resource_path("js/backend/views/pages/{$role}/management/");
+            $role = 'SuperAdmin';
+            $vueDirectory = resource_path("js/backend/{$role}/Views/Pages/");
             $vue_format_dir = explode('/', $ViewModuleName);
             $vue_module_dir = null;
 
@@ -152,7 +226,7 @@ class ModelingDirectory extends Command
 
             // dd($module_name);
 
-            File::put($vueDirectory  . $ViewModuleName . '/All.vue', viewAll($ViewModuleName,$fields));
+            File::put($vueDirectory  . $ViewModuleName . '/All.vue', viewAll($ViewModuleName, $fields));
             File::put($vueDirectory  . $ViewModuleName . '/Form.vue', viewForm($ViewModuleName));
 
             $setupActionFiles = ['form_fields.js',  'index.js', 'Layout.vue', 'routes.js', 'store.js'];

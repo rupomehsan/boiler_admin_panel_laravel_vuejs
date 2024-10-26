@@ -1,28 +1,38 @@
 <?php
 
-use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Route;
-use Illuminate\Support\Str;
 /*
 |--------------------------------------------------------------------------
-| Web Routes
+| frontend Routes
 |--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider and all of them will
-| be assigned to the "web" middleware group. Make something great!
 |
 */
 
-Route::get('/', function () {
-    return redirect()->route('login');
-});
-Route::get('/home', function () {
-    return view('home');
-});
+require_once __DIR__ . '/frontend.php';
 
 
+/*
+|--------------------------------------------------------------------------
+| Admin Routes
+|--------------------------------------------------------------------------
+|
+*/
 
 
-Route::get('/admin', [App\Http\Controllers\HomeController::class, 'index'])->name('admin.dashboard');
-Auth::routes();
+require_once __DIR__ . '/backend.php';
+
+/*
+|--------------------------------------------------------------------------
+| Test Routes
+|--------------------------------------------------------------------------
+|
+*/
+
+require_once __DIR__ . '/test.php';
+/*
+|--------------------------------------------------------------------------
+| Test Routes
+|--------------------------------------------------------------------------
+|
+*/
+
+require_once __DIR__ . '/App/Modules/Route/WebRoute.php';

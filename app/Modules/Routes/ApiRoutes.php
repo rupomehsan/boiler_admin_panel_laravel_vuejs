@@ -1,13 +1,9 @@
 <?php
 
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Route;
-
 /*
 |--------------------------------------------------------------------------
-| API Routes
+| Test Module
 |--------------------------------------------------------------------------
 */
 
-
-require_once __DIR__ . '/App/Modules/Route/ApiRoute.php';
+include_once  base_path("app/Modules/Management/Test/Route.php");

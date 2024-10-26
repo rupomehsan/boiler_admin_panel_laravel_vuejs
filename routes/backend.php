@@ -1,13 +1,15 @@
 <?php
 
-use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
-
+use Illuminate\Support\Str;
 /*
 |--------------------------------------------------------------------------
-| API Routes
+| Admin Routes
 |--------------------------------------------------------------------------
+|
 */
 
 
-require_once __DIR__ . '/App/Modules/Route/ApiRoute.php';
+Route::get('/admin', [App\Http\Controllers\HomeController::class, 'index'])->name('admin.dashboard');
+

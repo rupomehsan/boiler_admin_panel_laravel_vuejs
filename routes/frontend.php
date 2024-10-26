@@ -1,13 +1,16 @@
 <?php
 
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+
+
 
 /*
 |--------------------------------------------------------------------------
-| API Routes
+| frontend Routes
 |--------------------------------------------------------------------------
+|
 */
 
-
-require_once __DIR__ . '/App/Modules/Route/ApiRoute.php';
+Route::get('/', function () {
+    return redirect()->route('login');
+});
