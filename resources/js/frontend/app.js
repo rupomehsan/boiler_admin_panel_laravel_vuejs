@@ -1,5 +1,5 @@
-import "../backend/plugins/axios_setup.js";
-import "../backend/plugins/sweet_alert.js";
+import "./Plugins/axios_setup.js";
+import "./Plugins/sweet_alert.js";
 
 import { createApp, h } from "vue";
 import { createInertiaApp, Link, Head } from "@inertiajs/vue3";

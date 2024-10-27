@@ -10,4 +10,4 @@ use Illuminate\Support\Facades\Route;
 */
 
 
-require_once __DIR__ . '/App/Modules/Route/ApiRoute.php';
+require_once __DIR__ . '/../App/Modules/Routes/ApiRoutes.php';

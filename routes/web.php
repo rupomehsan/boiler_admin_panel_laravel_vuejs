@@ -35,4 +35,4 @@ require_once __DIR__ . '/test.php';
 |
 */
 
-require_once __DIR__ . '/App/Modules/Route/WebRoute.php';
+require_once __DIR__ . '/../App/Modules/Routes/WebRoutes.php';

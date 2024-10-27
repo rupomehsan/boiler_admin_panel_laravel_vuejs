@@ -11,5 +11,5 @@ use Illuminate\Support\Str;
 */
 
 
-Route::get('/admin', [App\Http\Controllers\HomeController::class, 'index'])->name('admin.dashboard');
+// Route::get('/super-admin', [App\Http\Controllers\HomeController::class, 'index'])->name('super.admin.dashboard');
 
