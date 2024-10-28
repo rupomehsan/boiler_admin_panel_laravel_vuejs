@@ -1,6 +1,8 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Modules\Controllers\Backend;
+
+use App\Http\Controllers\Controller;
 
 use Illuminate\Http\Request;
 
@@ -21,7 +23,7 @@ class BackendController extends Controller
      *
      * @return \Illuminate\Contracts\Support\Renderable
      */
-    public function index()
+    public function SuperAdminPanel()
     {
         return view('backend.superadmin-dashboard');
     }

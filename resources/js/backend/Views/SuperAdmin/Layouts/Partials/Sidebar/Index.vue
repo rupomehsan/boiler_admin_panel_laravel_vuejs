@@ -43,13 +43,13 @@
 
 <script>
 import { mapActions } from 'pinia'
-import { auth_store } from '../../../../store/auth_store';
-import SideBarDropDownMenus from '.../Sidebar/Sidebar/SideBarDropDownMenus.vue';
-import SideBarSingleMenu from '.../Sidebar/Sidebar/SideBarSingleMenu.vue';
+
+import SideBarDropDownMenus from './SideBarDropDownMenus.vue';
+import SideBarSingleMenu from './SideBarSingleMenu.vue';
 export default {
     components: { SideBarDropDownMenus, SideBarSingleMenu },
     methods: {
-        ...mapActions(auth_store, ['log_out']),
+
         logout_submit: function () {
             let confirm = window.confirm('logout');
             if (confirm) {

@@ -1,6 +1,6 @@
 import "./Plugins/axios_setup.js";
 import "./Plugins/sweet_alert.js";
-
+import '@fortawesome/fontawesome-free/css/all.min.css';
 import { createApp, h } from "vue";
 import { createInertiaApp, Link, Head } from "@inertiajs/vue3";
 import { createPinia } from "pinia";

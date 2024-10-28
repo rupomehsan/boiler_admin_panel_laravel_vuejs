@@ -7,7 +7,7 @@
 |
 */
 
-require_once __DIR__ . '/frontend.php';
+require_once __DIR__ . '/../App/Modules/Routes/FrontendRoutes.php';
 
 
 /*
@@ -18,7 +18,7 @@ require_once __DIR__ . '/frontend.php';
 */
 
 
-require_once __DIR__ . '/backend.php';
+require_once __DIR__ . '/../App/Modules/Routes/BackendRoutes.php';
 
 /*
 |--------------------------------------------------------------------------
@@ -35,4 +35,4 @@ require_once __DIR__ . '/test.php';
 |
 */
 
-require_once __DIR__ . '/../App/Modules/Routes/WebRoutes.php';
+

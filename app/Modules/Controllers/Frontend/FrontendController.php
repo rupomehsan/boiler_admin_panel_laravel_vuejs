@@ -1,4 +1,5 @@
 <?php
+
 namespace App\Modules\Controllers\Frontend;
 
 use App\Http\Controllers\Controller;
@@ -8,8 +9,12 @@ use Inertia\Inertia;
 class FrontendController extends Controller
 {
 
-    public function login()
+    public function HomePage()
     {
-        Inertia::render('Login.Index');
+        return Inertia::render('HomePage/Index', [
+            'event' => [
+                'title' => 'Login Page',
+            ]
+        ]);
     }
 }

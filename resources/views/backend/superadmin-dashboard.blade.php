@@ -29,7 +29,7 @@
     <link href="{{ asset('backend/assets/css/app-style.css') }}" rel="stylesheet" />
     <link rel="stylesheet" href="{{ asset('backend/assets/plugins/summernote/dist/summernote-bs4.css') }}" />
     <!-- latest jquery-->
-    <script src="/plugins/sweet_alert.js" defer></script>
+    <script src="/plugins/js/sweet_alert.js" defer></script>
     <script src="/backend/assets/js/jquery.min.js"></script>
     <script src="{{ asset('backend/assets/plugins/summernote/dist/summernote-bs4.min.js') }}"></script>
     <script src="{{ asset('backend/assets/plugins/inputtags/js/bootstrap-tagsinput.js') }}"></script>
