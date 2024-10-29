@@ -26,9 +26,11 @@ if (!function_exists('Seeder')) {
 
 
 
+
+
         $content = <<<"EOD"
         <?php
-        namespace App\\Modules\\{$moduleName}\\Database;
+        namespace App\\Modules\\Management\\{$moduleName}\\Seeder;
 
         use Illuminate\Database\Seeder as SeederClass;
 
@@ -36,9 +38,9 @@ if (!function_exists('Seeder')) {
         {
             /**
              * Run the database seeds.
-             php artisan db:seed --class="\App\\Modules\\{$moduleName}\\Database\\Seeder"
+             php artisan db:seed --class="\App\\Modules\\Management\\{$moduleName}\\Seeder\\Seeder"
              */
-            static \$model = \App\\Modules\\{$moduleName}\\Models\\Model::class;
+            static \$model = \App\\Modules\\Management\\{$moduleName}\\Models\\Model::class;
             public function run(): void
             {
 

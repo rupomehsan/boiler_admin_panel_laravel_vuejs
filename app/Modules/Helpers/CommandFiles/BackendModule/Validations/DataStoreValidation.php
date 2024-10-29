@@ -30,14 +30,14 @@ if (!function_exists('DataStoreValidation')) {
         $content = <<<"EOD"
             <?php
 
-            namespace App\\Modules\\{$moduleName}\\Validations;
+            namespace App\\Modules\\Management\\{$moduleName}\\Validations;
 
             use Illuminate\Contracts\Validation\Validator;
             use Illuminate\Foundation\Http\FormRequest;
             use Illuminate\Http\Exceptions\HttpResponseException;
             use Illuminate\Validation\Rule;
 
-            class Validation extends FormRequest
+            class DataStoreValidation extends FormRequest
             {
                 /**
                  * Determine if the  is authorized to make this request.

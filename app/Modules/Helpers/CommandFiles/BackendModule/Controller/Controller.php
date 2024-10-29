@@ -18,20 +18,19 @@ if (!function_exists('Controller')) {
         $content = <<<"EOD"
         <?php
 
-        namespace App\\Modules\\{$moduleName};
-
-        use App\\Modules\\{$moduleName}\\Actions\All;
-        use App\\Modules\\{$moduleName}\\Actions\Destroy;
-        use App\\Modules\\{$moduleName}\\Actions\Show;
-        use App\\Modules\\{$moduleName}\\Actions\Store;
-        use App\\Modules\\{$moduleName}\\Actions\Update;
-        use App\\Modules\\{$moduleName}\\Actions\SoftDelete;
-        use App\\Modules\\{$moduleName}\\Actions\Restore;
-        use App\\Modules\\{$moduleName}\\Actions\Import;
-        use App\\Modules\\{$moduleName}\\Validations\\BulkActionsValidation;
-        use App\\Modules\\{$moduleName}\\Validations\\GetAllValidation;
-        use App\\Modules\\{$moduleName}\\Validations\\Validation;
-        use App\\Modules\\{$moduleName}\\Actions\BulkActions;
+        namespace App\\Modules\\Management\\{$moduleName}\\Controller;
+        use App\\Modules\\Management\\{$moduleName}\\Actions\GetAllData;
+        use App\\Modules\\Management\\{$moduleName}\\Actions\DestroyData;
+        use App\\Modules\\Management\\{$moduleName}\\Actions\GetSingleData;
+        use App\\Modules\\Management\\{$moduleName}\\Actions\StoreData;
+        use App\\Modules\\Management\\{$moduleName}\\Actions\UpdateData;
+        use App\\Modules\\Management\\{$moduleName}\\Actions\SoftDelete;
+        use App\\Modules\\Management\\{$moduleName}\\Actions\RestoreData;
+        use App\\Modules\\Management\\{$moduleName}\\Actions\ImportData;
+        use App\\Modules\\Management\\{$moduleName}\\Validations\\BulkActionsValidation;
+        use App\\Modules\\Management\\{$moduleName}\\Validations\\GetAllValidation;
+        use App\\Modules\\Management\\{$moduleName}\\Validations\\DataStoreValidation;
+        use App\\Modules\\Management\\{$moduleName}\\Actions\BulkActions;
         use App\Http\Controllers\Controller as ControllersController;
 
 
@@ -40,25 +39,25 @@ if (!function_exists('Controller')) {
 
             public function index(GetAllValidation \$request)
             {
-                \$data = All::execute(\$request);
+                \$data = GetAllData::execute(\$request);
                 return \$data;
             }
 
-            public function store(Validation \$request)
+            public function store(DataStoreValidation \$request)
             {
-                \$data = Store::execute(\$request);
+                \$data = StoreData::execute(\$request);
                 return \$data;
             }
 
             public function show(\$slug)
             {
-                \$data = Show::execute(\$slug);
+                \$data = GetSingleData::execute(\$slug);
                 return \$data;
             }
 
-            public function update(Validation \$request, \$slug)
+            public function update(DataStoreValidation \$request, \$slug)
             {
-                \$data = Update::execute(\$request, \$slug);
+                \$data = UpdateData::execute(\$request, \$slug);
                 return \$data;
             }
 
@@ -69,17 +68,17 @@ if (!function_exists('Controller')) {
             }
             public function destroy(\$slug)
             {
-                \$data = Destroy::execute(\$slug);
+                \$data = DestroyData::execute(\$slug);
                 return \$data;
             }
             public function restore()
             {
-                \$data = Restore::execute();
+                \$data = RestoreData::execute();
                 return \$data;
             }
             public function import()
             {
-                \$data = Import::execute();
+                \$data = ImportData::execute();
                 return \$data;
             }
             public function bulkAction(BulkActionsValidation \$request)

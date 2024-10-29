@@ -6,6 +6,7 @@ if (!function_exists('Migration')) {
     function Migration($moduleName, $fields)
     {
 
+
         $table_name = '';
         $formated_module = explode('/', $moduleName);
 
@@ -35,7 +36,7 @@ if (!function_exists('Migration')) {
         return new class extends Migration
         {
             /**
-             php artisan migrate --path='\App\\Modules\\{$moduleName}\\Database\\create_{$table_name}_table.php'
+             php artisan migrate --path='\App\\Modules\\Management\\{$moduleName}\\Database\\create_{$table_name}_table.php'
              * Run the migrations.
              */
             public function up(): void

@@ -2,8 +2,8 @@
 
 use Illuminate\Support\Str;
 
-if (!function_exists('Route')) {
-    function Route($moduleName, $class_name)
+if (!function_exists('RouteContent')) {
+    function RouteContent($moduleName, $class_name)
     {
 
         $formated_module = explode('/', $moduleName);
@@ -22,7 +22,7 @@ if (!function_exists('Route')) {
         $content = <<<"EOD"
             <?php
 
-            use App\\Modules\\{$moduleName}\\Controller;
+            use App\\Modules\\Management\\{$moduleName}\\Controller\\Controller;
             use Illuminate\Support\Facades\Route;
 
             Route::prefix('v1')->group(function () {

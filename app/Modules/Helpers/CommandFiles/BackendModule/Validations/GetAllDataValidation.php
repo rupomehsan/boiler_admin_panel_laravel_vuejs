@@ -22,7 +22,7 @@ if (!function_exists('GetAllDataValidation')) {
         $content = <<<"EOD"
             <?php
 
-            namespace App\\Modules\\{$moduleName}\\Validations;
+            namespace App\\Modules\\Management\\{$moduleName}\\Validations;
 
             use Illuminate\Contracts\Validation\Validator;
             use Illuminate\Foundation\Http\FormRequest;

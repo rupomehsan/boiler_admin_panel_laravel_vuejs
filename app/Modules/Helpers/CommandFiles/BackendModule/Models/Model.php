@@ -6,6 +6,7 @@ if (!function_exists('Model')) {
     function Model($moduleName, $class_name)
     {
 
+
         $formated_module = explode('/', $moduleName);
 
         if (count($formated_module) > 1) {
@@ -23,7 +24,7 @@ if (!function_exists('Model')) {
         $content = <<<"EOD"
             <?php
 
-            namespace App\\Modules\\{$moduleName}\\Models;
+            namespace App\\Modules\\Management\\{$moduleName}\\Models;
 
             use Illuminate\Database\Eloquent\Model as EloquentModel;
             use Illuminate\Support\Str;

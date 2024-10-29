@@ -72,6 +72,8 @@ class ModelingDirectory extends Command
             File::makeDirectory($actionsDirectory);
         }
 
+        $migrationtable ='create_' . $table . '_table.php';
+
         $actionFiles = [
 
             'GetAllData.php',
@@ -91,7 +93,7 @@ class ModelingDirectory extends Command
             'Controller.php',
 
             'Model.php',
-            'create_' . $table . '_table.php',
+            $migrationtable,
             'Seeder.php',
 
             'Route.php',
@@ -190,18 +192,18 @@ class ModelingDirectory extends Command
             }
 
             if ($file == 'Model.php') {
-                File::put($ModelDirectory . '/' . $file, Model($module_name, $fields));
+                File::put($ModelDirectory . '/' . $file, Model($module_name, $moduleName));
             }
-            if ($file == 'Database.php') {
+            if ($file == $migrationtable ) {
                 File::put($DatabaseDirectory . '/' . $file, Migration($module_name, $fields));
             }
 
 
             if ($file == 'Route.php') {
-                File::put($RoutesDirectory . '/' . $file, Route($module_name, $fields));
+                File::put($RoutesDirectory . '/' . $file, RouteContent($module_name, $moduleName));
             }
-            if ($file == 'Api.php') {
-                File::put($OthersDirectory . '/' . $file, ApiDocumentation($module_name, $fields));
+            if ($file == 'Api.http') {
+                File::put($OthersDirectory . '/' . $file, ApiDocumentation($moduleName));
             }
             if ($file == 'Seeder.php') {
                 File::put($SeederDirectory . '/' . $file, Seeder($module_name, $moduleName, $fields));
@@ -213,8 +215,6 @@ class ModelingDirectory extends Command
 
 
         if ($withVue) {
-
-          
 
             $role = 'SuperAdmin';
             $vueDirectory = resource_path("js/backend/{$role}/Views/Pages/");
