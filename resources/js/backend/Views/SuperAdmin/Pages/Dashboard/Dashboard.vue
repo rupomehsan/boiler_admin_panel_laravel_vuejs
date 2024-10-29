@@ -1,8 +1,6 @@
 <template>
     <div class="container-fluid">
-
         <!--Start Dashboard Content-->
-
         <div class="card mt-3">
             <div class="card-content">
                 <div class="row row-group m-0">
@@ -150,12 +148,8 @@
                 </div>
             </div>
         </div>
-
-
-
         <!--End Row-->
         <div class="row">
-
             <div class="col-12 col-lg-12">
                 <div class="card">
                     <div class="card-header">Contact Message
@@ -259,7 +253,6 @@
         <!--start overlay-->
         <div class="overlay"></div>
         <!--end overlay-->
-
     </div>
     <!-- End container-fluid-->
 </template>

@@ -9,7 +9,7 @@ import "../../plugins/moment_setup.js";
 import { createApp } from "vue";
 import { createRouter, createWebHashHistory } from "vue-router";
 import { createPinia } from "pinia";
-import App from "./Layouts/App.vue";
+import App from "./App.vue";
 // common components
 // common components
 import CommonInput from "../../GlobalComponents/FormComponents/CommonInput.vue";
@@ -25,7 +25,9 @@ const router = createRouter({
         {
             path: "/",
             component: App,
-            children: [Routes],
+            children: [
+                Routes
+            ],
         },
     ],
 });

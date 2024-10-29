@@ -18,21 +18,21 @@
             </li>
             <!-- <li class="menu-label">Blog Management</li> -->
             <side-bar-drop-down-menus :icon="`fa fa-plus`" :menu_title="`Blog Management`" :menus="[
-                {
-                    route_name: `AllCategory`,
-                    title: `Blog Category`,
-                },
-                {
-                    route_name: `AllBlog`,
-                    title: `Blogs`,
-                },
+                // {
+                //     route_name: `AllCategory`,
+                //     title: `Blog Category`,
+                // },
+                // {
+                //     route_name: `AllBlog`,
+                //     title: `Blogs`,
+                // },
             ]" />
 
             <side-bar-drop-down-menus :icon="`fa fa-plus`" :menu_title="`User Management`" :menus="[
-                {
-                    route_name: `AllUser`,
-                    title: `Users`,
-                },
+                // {
+                //     route_name: `AllUser`,
+                //     title: `Users`,
+                // },
 
             ]" />
 

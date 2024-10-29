@@ -1,8 +1,17 @@
 //blog management routes
-import dashboard_routes from "../Pages/Dashboard/Setup/Routes.js";
+import Dashboard from "../Pages/Dashboard/Dashboard.vue";
+import Layout from "../Layouts/Partials/Layout.vue";
 
 const routes = {
-    dashboard_routes,
+    path: '',
+    component: Layout,
+    children: [
+        {
+            path: 'dashboard',
+            component: Dashboard,
+            name: 'adminDashboard',
+        },
+    ],
 };
 
 export default routes;
