@@ -31,9 +31,9 @@
 
         <script>
         import { mapActions, mapState } from 'pinia'
-        import { test_module_setup_store } from './setup/store';
-        import setup from "./setup";
-        import form_fields from "./setup/form_fields";
+        import { test_module_setup_store } from '../Store/store';
+        import setup from "../setup";
+        import form_fields from "../setup/form_fields";
 
         export default {
             data: () => ({

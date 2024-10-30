@@ -33,7 +33,7 @@
                                 <tr>
                                     <th class="w-10"><input type="checkbox" v-model="parent_item"
                                     @click="toggleParentCheckbox"></th>
-                                    <th class="text-start">SL</th><th>  first name </th> 
+                                    <th class="text-start">SL</th><th>  first name </th>
                                         <th>status</th>
                                         <th class="text-end">Action</th>
                                     </tr>
@@ -44,7 +44,7 @@
                                            <input @click="toggleChildCheckbox(item.id)"
                                           :checked="child_items.includes(item.id)" type="checkbox">
                                         </td>
-                                        <td class="text-start">{{ index + 1 }}</td><th> {{ item.first_name}} </th> 
+                                        <td class="text-start">{{ index + 1 }}</td><th> {{ item.first_name}} </th>
                                             <td>{{ item.status }}</td>
                                             <td style="width: 100px;">
                                                 <div class="d-flex justify-content-between gap-2">
@@ -89,8 +89,8 @@
 
             <script>
             import { mapActions, mapState } from 'pinia'
-            import { test_module_setup_store } from './setup/store';
-            import setup from "./setup";
+            import { test_module_setup_store } from '.../setup/store';
+            import setup from ".../setup";
             export default {
                 data: () => ({
                     route_prefix: '',

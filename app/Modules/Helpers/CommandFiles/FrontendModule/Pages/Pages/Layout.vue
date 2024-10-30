@@ -3,7 +3,7 @@
 </template>
 
 <script>
-import setup from ".";
+import setup from "../setup";
 
 let page_title = setup.page_title;
 export default {

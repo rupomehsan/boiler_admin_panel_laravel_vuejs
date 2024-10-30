@@ -50,7 +50,7 @@ export const test_module_setup_store = defineStore("test_module_setup_store", {
             }
         },
         bulk_action: async function (action, data) {
-            let response = await axios.post(`${this.api}bulk-action`, { action, data })
+            let response = await axios.post(`${this.api}/bulk-action`, { action, data })
             if (response.data.status === "success") {
                 window.s_alert(response.data.message);
                 this.all();

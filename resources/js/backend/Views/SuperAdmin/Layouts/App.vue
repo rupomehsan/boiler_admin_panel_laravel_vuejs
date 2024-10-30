@@ -16,9 +16,9 @@
 </template>
 
 <script>
-import TopHeader from "./Layouts/Partials/Header/Index.vue";
-import SideBar from "./Layouts/Partials/Sidebar/Index.vue";
-import Footer from "./Layouts/Partials/Footer/Index.vue";
+import TopHeader from "../Layouts/Partials/Header/Index.vue";
+import SideBar from "../Layouts/Partials/Sidebar/Index.vue";
+import Footer from "../Layouts/Partials/Footer/Index.vue";
 export default {
     components: { TopHeader, SideBar, Footer },
     // created: function () {

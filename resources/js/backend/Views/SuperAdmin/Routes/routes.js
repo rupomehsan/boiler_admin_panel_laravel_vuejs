@@ -1,6 +1,8 @@
-//blog management routes
-import Dashboard from "../Pages/Dashboard/Dashboard.vue";
-import Layout from "../Layouts/Partials/Layout.vue";
+//app layout
+import Layout from "../Layouts/Layout.vue";
+//Dashboard
+import Dashboard from "../Management/Dashboard/Dashboard.vue";
+// routes
 
 const routes = {
     path: '',

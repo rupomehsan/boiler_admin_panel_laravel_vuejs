@@ -217,7 +217,7 @@ class ModelingDirectory extends Command
         if ($withVue) {
 
             $role = 'SuperAdmin';
-            $vueDirectory = resource_path("js/backend/{$role}/Views/Pages/");
+            $vueDirectory = resource_path("js/backend/Views/{$role}/Pages/");
             $vue_format_dir = explode('/', $ViewModuleName);
             $vue_module_dir = null;
 
