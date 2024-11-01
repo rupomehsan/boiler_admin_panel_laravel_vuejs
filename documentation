@@ -9,8 +9,3 @@ php artisan ui vue --auth
 npm install  && npm run dev
 
 
--------------
-all country details api
-https://restcountries.com/v3.1/all
-single country details
-https://restcountries.com/v3.1/name/Bangladesh

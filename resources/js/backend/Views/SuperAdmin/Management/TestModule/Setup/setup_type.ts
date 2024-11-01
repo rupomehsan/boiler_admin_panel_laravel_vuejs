@@ -4,8 +4,8 @@ export default interface RouteConfig {
     prefix: string;
     module_name: string;
     route_prefix: string;
-    route_path: string;
     store_prefix: string;
+    route_path: string;
 
     api_host: string;
     api_version: string;

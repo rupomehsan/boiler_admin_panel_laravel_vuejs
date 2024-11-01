@@ -17,11 +17,11 @@
                 </router-link>
             </li>
             <!-- <li class="menu-label">Blog Management</li> -->
-            <side-bar-drop-down-menus :icon="`fa fa-plus`" :menu_title="`Blog Management`" :menus="[
-                // {
-                //     route_name: `AllCategory`,
-                //     title: `Blog Category`,
-                // },
+            <side-bar-drop-down-menus :icon="`fa fa-plus`" :menu_title="`User Management`" :menus="[
+                {
+                    route_name: `Alluser-managements`,
+                    title: `Users`,
+                },
                 // {
                 //     route_name: `AllBlog`,
                 //     title: `Blogs`,
