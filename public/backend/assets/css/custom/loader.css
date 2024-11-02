@@ -1,0 +1,58 @@
+.loader {
+    height: 100vh;
+    width: 100vw;
+    position: fixed;
+    display: grid;
+    justify-content: center;
+    align-items: center;
+    z-index: 99999;
+    top: 0;
+    left: 0;
+    background-color: rgba(0, 0, 0, .5);
+    backdrop-filter: blur(5px);
+    opacity: 0;
+    visibility: hidden;
+
+    &.active {
+        visibility: visible;
+        opacity: 1;
+    }
+
+    .loader_body {
+        min-height: 250px;
+        min-width: 320px;
+        background-color: gray;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        border-radius: 5px;
+        box-shadow: 0px 0px 10px rgba(0, 0, 0, .3);
+        position: relative;
+
+        .progress {
+            position: absolute;
+            width: 100%;
+            height: 4px;
+            left: 0;
+            bottom: 0;
+            background-color: purple;
+        }
+
+        .load_amount {
+            display: flex;
+            gap: 3px;
+            border: 1px solid white;
+            height: 80px;
+            width: 80px;
+            justify-content: center;
+            align-items: center;
+            border-radius: 50%;
+
+            h5,
+            h4 {
+                color: white;
+                margin-bottom: 0;
+            }
+        }
+    }
+}

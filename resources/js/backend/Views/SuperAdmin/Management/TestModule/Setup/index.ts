@@ -1,7 +1,7 @@
 import app_config from "../../../../../../backend/Config/app_config";
 import setup_type from "./setup_type";
 
-const prefix: string = "Banner";
+const prefix: string = "Users ";
 
 const setup: setup_type = {
     prefix,

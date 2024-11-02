@@ -1,0 +1,42 @@
+#sidebar-wrapper .metismenu a .parent-icon {
+    img {
+        height: 40px;
+        border-radius: 4px;
+        background: white;
+        padding: 2px;
+        box-sizing: border-box;
+    }
+}
+
+#sidebar-wrapper .metismenu a {
+    padding: 0;
+    border: 0;
+}
+
+#sidebar-wrapper .metismenu {
+    gap: 15px;
+    overflow-y: auto;
+    max-height: calc(100vh - 63px);
+}
+
+/* width */
+::-webkit-scrollbar {
+    width: 5px;
+    height: 10px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+    background: #0000001f;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+    background: #162635;
+    border-radius: 25px;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+    background: #3c6992;
+}

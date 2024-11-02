@@ -12,7 +12,7 @@ const routes = {
     component: Layout,
     children: [
         {
-            path: "",
+            path: "all",
             name: "All" + route_prefix,
             component: All,
         },
@@ -22,7 +22,7 @@ const routes = {
             component: Form,
         },
         {
-            path: ":id",
+            path: "details/:id",
             name: "Details" + route_prefix,
             component: Details,
         },

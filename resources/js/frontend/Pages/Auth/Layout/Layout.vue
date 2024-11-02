@@ -25,7 +25,7 @@ export default {
 
 #authentication .background {
     width: 430px;
-    height: 500px;
+    height: calc(100vh - 200px);
     position: absolute;
     transform: translate(-50%, -50%);
     left: 50%;

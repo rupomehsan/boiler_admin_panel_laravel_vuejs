@@ -1,0 +1,68 @@
+
+.cursor-pointer,
+.cursor_pointer{
+    cursor: pointer;
+}
+
+.filter_item{
+    margin-bottom: 20px;
+}
+
+.off_canvas {
+    position: fixed;
+    height: 100svh;
+    min-width: 300px;
+    top: 0;
+    z-index: 10;
+    border: 1px solid var(--gray);
+    z-index: 99999;
+    right: -100vw;
+    transition-duration: .3s;
+}
+
+.off_canvas.active{
+    right: 0;
+}
+
+.off_canvas.quick_view {
+    min-width: 500px;
+}
+
+.off_canvas .off_canvas_body {
+    background-color: var(--dark);
+    height: 100%;
+}
+
+.off_canvas .off_canvas_body .header {
+    min-height: 50px;
+    padding: 10px;
+    border-bottom: 1px solid var(--gray);
+    line-height: 29px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.off_canvas .off_canvas_body .header .heading_text {
+    font-size: 18px;
+}
+
+.off_canvas .off_canvas_body .header .close_button {
+    border: 0;
+    background-color: transparent;
+    color: red;
+    cursor: pointer;
+}
+
+.off_canvas .off_canvas_body .data_content {
+    height: calc(100svh - 52px);
+    padding: 10px;
+    overflow-y: auto;
+}
+
+.off_canvas .off_canvas_body .data_content .label {
+    margin-bottom: 15px;
+}
+
+.off_canvas .off_canvas_body .data_content .input_item {
+    width: 100%;
+}

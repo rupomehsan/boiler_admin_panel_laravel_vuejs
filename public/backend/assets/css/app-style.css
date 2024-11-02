@@ -6530,9 +6530,13 @@ table.grid td {
 }
 
 .content-wrapper {
-    margin-left: 113px;
+    margin-left: 125px;
 }
 
 #wrapper.toggled:not(.sidebar-hovered) .content-wrapper {
     margin-left: 35px;
+}
+
+.card-body {
+    border-bottom: 1px solid rgba(255, 255, 255, 0.12);
 }

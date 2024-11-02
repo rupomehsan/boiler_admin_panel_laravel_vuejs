@@ -26,6 +26,7 @@
     <!-- Metismenu CSS-->
     <link href="{{ asset('backend/assets/plugins/metismenu/css/metisMenu.min.css') }}" rel="stylesheet" />
     <!-- Custom Style-->
+    <link href="{{ asset('backend/assets/css/custom/custom.css') }}" rel="stylesheet" />
     <link href="{{ asset('backend/assets/css/app-style.css') }}" rel="stylesheet" />
     <link rel="stylesheet" href="{{ asset('backend/assets/plugins/summernote/dist/summernote-bs4.css') }}" />
     <!-- latest jquery-->

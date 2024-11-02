@@ -1,0 +1,46 @@
+.analytic_compare_card {
+    /* display: flex; */
+    /* justify-content: space-between; */
+    position: relative;
+    padding-right: 40px !important;
+    gap: 10px;
+    align-items: center;
+    align-content: center;
+    display: grid;
+    grid-template-columns: 40px 1fr 20px;
+
+    .analytics_arrow img {
+        width: 30px;
+    }
+
+    .mid_text {
+        line-height: 25px;
+        text-align: left;
+        white-space: nowrap;
+        max-width: 115px;
+    }
+
+    .chart_donat {
+        position: relative;
+
+        .chart_donat_chart {
+            position: absolute;
+            right: -54px;
+            border-radius: 50%;
+            background: #36404a;
+            padding: 3px;
+            border: 1px solid white;
+            top: -105px;
+        }
+
+        .text_percentage {
+            position: absolute;
+            /* top: 53%; */
+            /* left: 50%; */
+            /* transform: translate(-50%, -50%); */
+            z-index: 9;
+            top: -70px;
+            left: 12px;
+        }
+    }
+}

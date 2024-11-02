@@ -1,0 +1,19 @@
+.file_manager_input_el {
+    .file_manager_images_render {
+        img {
+            height: 50px;
+            width: 50px;
+            object-fit: cover;
+            object-position: center;
+            margin: 4px;
+            padding: 4px;
+            background: white;
+        }
+    }
+}
+
+.file_manager_select_file {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 5px;
+}

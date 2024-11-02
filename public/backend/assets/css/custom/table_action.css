@@ -1,0 +1,143 @@
+.table_responsive {
+    --brand_white: white;
+    --brand_dark: #343a40;
+    --brand_color2: #232b33;
+
+    overflow: auto;
+    height: 100%;
+
+    table {
+        width: 100%;
+
+        td,
+        th {
+            vertical-align: middle;
+            text-align: center;
+            font-size: 14px;
+            color: var(--brand_white);
+            padding: 5px 10px;
+            text-wrap: nowrap;
+        }
+
+        thead {
+            position: sticky;
+            top: 0;
+            left: 0;
+            z-index: 8;
+
+            tr {
+                background-color: #343a4094;
+
+                th,
+                td {
+                    text-transform: capitalize;
+                    padding: 10px 10px;
+                    user-select: none;
+                }
+            }
+        }
+
+        tbody {
+            tr {
+                border-bottom-width: 1px;
+                position: relative;
+
+                &:hover,
+                &.active {
+                    background: #20252adb;
+                }
+
+                &.active {
+                    border-style: solid;
+                    border-top-width: 0px;
+                    border-left-width: 4px;
+                    border-right-width: 0px;
+                    border-bottom-width: 39px;
+                    border-left-color: var(--brand_white);
+                    border-bottom-color: var(--brand_color2);
+
+                    td {
+                        height: 65px;
+
+                        &:nth-child(1) {
+                            .table_action_btns {
+                                display: block;
+                            }
+
+                            .icon {
+                                /* border: 1px solid var(--brand_white); */
+
+                                &::after {
+                                    content: "\f068";
+                                }
+                            }
+                        }
+                    }
+                }
+
+            }
+
+            td {
+
+                &:nth-child(1),
+                &:nth-child(2) {
+                    width: 20px;
+                }
+
+                &:nth-child(1) {
+                    padding: 0;
+                    .icon {
+                        cursor: pointer;
+                        position: relative;
+                        border: 1px solid var(--brand_white2);
+                        height: 40px;
+                        width: 40px;
+                        border-radius: 0%;
+                        line-height: 40px;
+
+                        &::after {
+                            content: "\f085";
+                            font-family: 'FontAwesome';
+                            position: absolute;
+                            top: 50%;
+                            left: 50%;
+                            transform: translate(-50%, -50%);
+                            font-weight: bold;
+                        }
+                    }
+
+                    .table_action_btns {
+                        position: absolute;
+                        top: 42px;
+                        right: 0px;
+                        padding: 5px 10px;
+                        border-left: 4px solid var(--brand_white);
+                        width: calc(100% + 7px);
+                        display: none;
+                        /* bottom: 0; */
+                        z-index: 9;
+                        height: 42px;
+                        background-color: var(--brand_dark);
+
+                        ul {
+                            display: flex;
+                            gap: 10px;
+
+                            li {
+                                a {
+                                    background-color: transparent;
+                                    padding: 5px 10px;
+                                    border-radius: 3px;
+
+                                    &:hover {
+                                        background-color: rgba(128, 128, 128, 0.123);
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

@@ -6,7 +6,7 @@
                 <img src="/backend/assets/images/logo-icon.png" class="logo-icon" alt="logo icon">
                 <h5 class="logo-text">Admin Panel</h5>
             </router-link>
-            <div class="close-btn"><i class="zmdi zmdi-close"></i></div>
+            <div class="close-btn"><i class="zmdi zmdi-close" @click="toggle_menu"></i></div>
         </div>
 
         <ul class="metismenu" id="menu">
@@ -22,19 +22,21 @@
                     route_name: `Alluser-managements`,
                     title: `Users`,
                 },
+                {
+                    route_name: `Alluser-managements`,
+                    title: `Users`,
+                },
+                {
+                    route_name: `Alluser-managements`,
+                    title: `Users`,
+                },
                 // {
                 //     route_name: `AllBlog`,
                 //     title: `Blogs`,
                 // },
             ]" />
 
-            <side-bar-drop-down-menus :icon="`fa fa-plus`" :menu_title="`User Management`" :menus="[
-                // {
-                //     route_name: `AllUser`,
-                //     title: `Users`,
-                // },
 
-            ]" />
 
 
         </ul>
@@ -55,7 +57,10 @@ export default {
             if (confirm) {
                 this.log_out();
             }
-        }
+        },
+        toggle_menu: function () {
+            document.getElementById("wrapper").classList.toggle("toggled");
+        },
     }
 }
 </script>
