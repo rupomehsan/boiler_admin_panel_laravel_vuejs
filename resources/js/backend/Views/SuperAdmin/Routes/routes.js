@@ -3,7 +3,7 @@ import Layout from "../Layouts/Layout.vue";
 //Dashboard
 import Dashboard from "../Management/Dashboard/Dashboard.vue";
 // routes
-import user_management_routes from "../Management/TestModule/Setup/routes";
+import user_management_routes from "../Management/TestModule/setup/routes.js";
 
 const routes = {
     path: '',

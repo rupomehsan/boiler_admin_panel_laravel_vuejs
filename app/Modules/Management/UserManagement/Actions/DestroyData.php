@@ -9,6 +9,7 @@ class DestroyData
     public static function execute($slug)
     {
         try {
+
             if (!$data=self::$model::where('slug', $slug)->first()) {
                 return messageResponse('Data not found...',$data, 404, 'error');
             }

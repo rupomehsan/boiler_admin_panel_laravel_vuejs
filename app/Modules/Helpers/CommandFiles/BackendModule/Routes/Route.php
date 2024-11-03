@@ -32,7 +32,7 @@ if (!function_exists('RouteContent')) {
                     Route::post('store', [Controller::class,'store']);
                     Route::post('update/{slug}', [Controller::class,'update']);
                     Route::post('soft-delete', [Controller::class,'softDelete']);
-                    Route::delete('destroy/{slug}', [Controller::class,'destroy']);
+                    Route::post('destroy/{slug}', [Controller::class,'destroy']);
                     Route::post('restore', [Controller::class,'restore']);
                     Route::post('import', [Controller::class,'import']);
                     Route::post('bulk-action', [Controller::class, 'bulkAction']);

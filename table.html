@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Responsive Table with Data Cards</title>
+    <style>
+        .custom_table {
+            display: inline-block;
+            border: 1px solid #ccc;
+            width: 100%;
+        }
+
+        .custom_table_head,
+        .custom_table_row {
+            display: flex;
+            border-bottom: 1px solid #ccc;
+        }
+
+        .custom_table_head .custom_table_item {
+            font-weight: bold;
+        }
+
+        .custom_table_item {
+            padding: 8px 12px;
+            border-right: 1px solid #ccc;
+            white-space: nowrap;
+            /* Prevents content wrapping */
+        }
+
+        .custom_table_row:last-child .custom_table_item {
+            border-bottom: none;
+        }
+
+        .custom_table_row .custom_table_item:last-child,
+        .custom_table_head .custom_table_item:last-child {
+            border-right: none;
+        }
+
+        .heading {
+            display: none;
+        }
+
+        /* Responsive styles for devices below 992px */
+        @media (max-width: 992px) {
+            .heading {
+                display: block;
+            }
+
+            .custom_table_head {
+                display: none;
+                /* Hide the table header */
+            }
+
+            .custom_table_row {
+                display: block;
+                border: 1px solid #ccc;
+                margin-bottom: 10px;
+                padding: 10px;
+            }
+
+            .custom_table_row .heading {
+                font-weight: bold;
+                margin-bottom: 8px;
+                font-size: 1.1em;
+            }
+
+            .custom_table_item {
+                display: block;
+                border: none;
+                padding: 5px 0;
+                font-size: 0.95em;
+                position: relative;
+            }
+
+            .custom_table_item::before {
+                content: attr(data-label);
+                font-weight: bold;
+                margin-right: 10px;
+                color: #555;
+                display: inline-block;
+                width: 100px;
+                /* Label width */
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="custom_table">
+        <div class="custom_table_head">
+            <div class="custom_table_item">Heading 1</div>
+            <div class="custom_table_item">Heading 2</div>
+            <div class="custom_table_item">Heading 3</div>
+        </div>
+        <div class="custom_table_body">
+            <div class="custom_table_row">
+                <div class="heading">
+                    Row 1 Heading
+                </div>
+                <div class="custom_table_item">
+                    Row 1, Cell 1
+                </div>
+                <div class="custom_table_item">
+                    Row 1, Cell 2
+                    Row 1, Cell 2
+                    Row 1, Cell 2
+                    Row 1, Cell 2
+                </div>
+                <div class="custom_table_item">
+                    Row 1, Cell 3
+                </div>
+            </div>
+            <div class="custom_table_row">
+                <div class="heading">Row 2 Heading</div>
+                <div class="custom_table_item">
+                    Row 2, Cell 1
+                </div>
+                <div class="custom_table_item">
+                    Row 2, Cell 2
+                </div>
+                <div class="custom_table_item">
+                    Row 2, Cell 3
+                </div>
+            </div>
+            <div class="custom_table_row">
+                <div class="heading">
+                    Row 3 Heading
+                </div>
+                <div class="custom_table_item">
+                    Row 3, Cell 1
+                </div>
+                <div class="custom_table_item">
+                    Row 3, Cell 2
+                </div>
+                <div class="custom_table_item">
+                    <div>
+                        Row 3, Cell 3
+                        Row 3, Cell 3
+                        Row 3, Cell 3
+                        Row 3, Cell 3
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Function to set column widths based on maximum content width in each column
+        function setColumnWidths() {
+            const headers = document.querySelectorAll('.custom_table_head .custom_table_item');
+            const rows = document.querySelectorAll('.custom_table_row');
+
+            // Get the number of columns
+            const columnCount = headers.length;
+            const maxWidths = new Array(columnCount).fill(0);
+
+            // Calculate max width for each column based on headers and rows
+            headers.forEach((header, index) => {
+                maxWidths[index] = header.scrollWidth;
+            });
+
+            rows.forEach(row => {
+                row.querySelectorAll('.custom_table_item').forEach((item, index) => {
+                    const contentWidth = item.scrollWidth;
+                    if (contentWidth > maxWidths[index]) {
+                        maxWidths[index] = contentWidth;
+                    }
+                });
+            });
+
+            // Apply the max width to each header and each cell in the corresponding column
+            headers.forEach((header, index) => {
+                header.style.width = `${maxWidths[index]}px`;
+            });
+
+            rows.forEach(row => {
+                row.querySelectorAll('.custom_table_item').forEach((item, index) => {
+                    item.style.width = `${maxWidths[index]}px`;
+                });
+            });
+        }
+
+        // Function to add responsive labels
+        function setResponsiveLabels() {
+            const headers = Array.from(document.querySelectorAll('.custom_table_head .custom_table_item'))
+                .map(header => header.textContent);
+
+            document.querySelectorAll('.custom_table_row').forEach(row => {
+                row.querySelectorAll('.custom_table_item').forEach((item, index) => {
+                    item.setAttribute('data-label', headers[index]);
+                });
+            });
+        }
+
+        // Run both functions on DOMContentLoaded to set widths and labels for all cells
+        window.addEventListener('DOMContentLoaded', () => {
+            setColumnWidths();
+            setResponsiveLabels();
+        });
+    </script>
+
+</body>
+
+</html>

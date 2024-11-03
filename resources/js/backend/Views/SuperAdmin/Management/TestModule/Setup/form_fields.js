@@ -1,8 +1,20 @@
 export default [
-	{
-		name: "first_name",
-		label: "Enter your first name",
-		type: "text",
-		value: "",
-	},
+    {
+        name: "name",
+        label: "Enter your name",
+        type: "text",
+        value: "",
+    },
+    {
+        name: "email",
+        label: "Enter your email",
+        type: "text",
+        value: "",
+    },
+    {
+        name: "phone",
+        label: "Enter your phone",
+        type: "text",
+        value: "",
+    },
 ];

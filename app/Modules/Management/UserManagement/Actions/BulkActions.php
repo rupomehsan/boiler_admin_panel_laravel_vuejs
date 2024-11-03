@@ -9,6 +9,7 @@ class BulkActions
     public static function execute()
     {
         try {
+        
             if (request()->input('action') == 'active') {
                 if (request()->input('ids') && count(request()->input('ids'))) {
                     $ids = request()->input('ids');

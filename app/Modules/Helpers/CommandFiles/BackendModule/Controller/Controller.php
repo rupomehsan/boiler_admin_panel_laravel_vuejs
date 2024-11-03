@@ -28,7 +28,6 @@ if (!function_exists('Controller')) {
         use App\\Modules\\Management\\{$moduleName}\\Actions\RestoreData;
         use App\\Modules\\Management\\{$moduleName}\\Actions\ImportData;
         use App\\Modules\\Management\\{$moduleName}\\Validations\\BulkActionsValidation;
-        use App\\Modules\\Management\\{$moduleName}\\Validations\\GetAllValidation;
         use App\\Modules\\Management\\{$moduleName}\\Validations\\DataStoreValidation;
         use App\\Modules\\Management\\{$moduleName}\\Actions\BulkActions;
         use App\Http\Controllers\Controller as ControllersController;
@@ -37,9 +36,9 @@ if (!function_exists('Controller')) {
         class Controller extends ControllersController
         {
 
-            public function index(GetAllValidation \$request)
-            {
-                \$data = GetAllData::execute(\$request);
+            public function index( ){
+
+                \$data = GetAllData::execute();
                 return \$data;
             }
 

@@ -1,0 +1,4 @@
+if ($request->hasFile('image')) {
+    $image = $request->file('image');
+    $requestData['image'] = uploader($image, 'uploads/folder_name');
+}

@@ -87,3 +87,21 @@ if (!function_exists('ApiDocumentation')) {
         return $content;
     }
 }
+
+
+if (!function_exists('Documentation')) {
+    function Documentation()
+    {
+
+        $content = <<<"EOD"
+
+        if (\$request->hasFile('image')) {
+            \$image = \$request->file('image');
+            \$requestData['image'] = uploader(\$image, 'uploads/folder_name');
+        }
+
+        EOD;
+
+        return $content;
+    }
+}

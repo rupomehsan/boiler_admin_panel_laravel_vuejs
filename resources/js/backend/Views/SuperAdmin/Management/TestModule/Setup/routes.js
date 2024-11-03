@@ -1,8 +1,8 @@
 import setup from ".";
-import All from "../Pages/All.vue";
-import Form from "../Pages/Form.vue";
-import Details from "../Pages/Details.vue";
-import Layout from "../Pages/Layout.vue";
+import All from "../pages/All.vue";
+import Form from "../pages/Form.vue";
+import Details from "../pages/Details.vue";
+import Layout from "../pages/Layout.vue";
 
 let route_prefix = setup.route_prefix;
 let route_path = setup.route_path;

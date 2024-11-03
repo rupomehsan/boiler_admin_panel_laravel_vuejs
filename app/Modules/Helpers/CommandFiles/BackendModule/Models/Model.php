@@ -54,6 +54,11 @@ if (!function_exists('Model')) {
                 {
                     return \$q->where('status', 'active');
                 }
+
+                 public function scopeInactive(\$q)
+                {
+                    return \$q->where('status', 'inactive');
+                }
             }
             EOD;
 

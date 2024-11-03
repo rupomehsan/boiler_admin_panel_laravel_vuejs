@@ -6,7 +6,8 @@ import all from "./async_actions/all";
 import create from "./async_actions/create";
 import details from "./async_actions/details";
 import update from "./async_actions/update";
-import deactive from "./async_actions/deactive";
+import soft_delete from "./async_actions/soft_delete";
+import update_status from "./async_actions/update_status";
 import restore from "./async_actions/restore";
 import destroy from "./async_actions/destroy";
 import bulk_action from "./async_actions/bulk_action";
@@ -21,7 +22,7 @@ import set_show_details_canvas from "./actions/set_show_details_canvas";
 import set_show_filter_canvas from "./actions/set_show_filter_canvas";
 import set_status from "./actions/set_status";
 import clear_selected from "./actions/clear_selected";
-import setup from "../Setup";
+import setup from "../setup";
 
 export const store = defineStore(setup.store_prefix, {
     state: () => initialState,
@@ -32,7 +33,8 @@ export const store = defineStore(setup.store_prefix, {
         create: create,
         update: update,
         details: details,
-        deactive: deactive,
+        update_status: update_status,
+        soft_delete: soft_delete,
         restore: restore,
         destroy: destroy,
         bulk_action: bulk_action,

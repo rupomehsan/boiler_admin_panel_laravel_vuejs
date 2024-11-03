@@ -13,6 +13,10 @@ class ImportData
                  self::$model::create([
                     "name" => $row['name'],
 
+                    "email" => $row['email'],
+
+                    "phone" => $row['phone'],
+
                 ]);
             }
             return messageResponse('Item Successfully updated', [], 200, 'success');

@@ -87,7 +87,6 @@ class ModelingDirectory extends Command
             'ImportData.php',
 
             'DataStoreValidation.php',
-            'GetAllDataValidation.php',
             'BulkActionsValidation.php',
 
             'Controller.php',
@@ -98,6 +97,7 @@ class ModelingDirectory extends Command
 
             'Route.php',
             'Api.http',
+            'Doc.txt',
 
         ];
 
@@ -179,9 +179,7 @@ class ModelingDirectory extends Command
             if ($file == 'DataStoreValidation.php') {
                 File::put($ValidationDirectory . '/' . $file, DataStoreValidation($module_name, $fields));
             }
-            if ($file == 'GetAllDataValidation.php') {
-                File::put($ValidationDirectory . '/' . $file, GetAllDataValidation($module_name, $fields));
-            }
+
             if ($file == 'BulkActionsValidation.php') {
                 File::put($ValidationDirectory . '/' . $file, BulkActionsValidation($module_name, $fields));
             }
@@ -204,6 +202,9 @@ class ModelingDirectory extends Command
             }
             if ($file == 'Api.http') {
                 File::put($OthersDirectory . '/' . $file, ApiDocumentation($moduleName));
+            }
+            if ($file == 'Doc.http') {
+                File::put($OthersDirectory . '/' . $file, Documentation());
             }
             if ($file == 'Seeder.php') {
                 File::put($SeederDirectory . '/' . $file, Seeder($module_name, $moduleName, $fields));

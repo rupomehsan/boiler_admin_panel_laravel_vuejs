@@ -1,4 +1,5 @@
 <?php
+
 namespace App\Modules\Management\UserManagement\Seeder;
 
 use Illuminate\Database\Seeder as SeederClass;
@@ -15,8 +16,10 @@ class Seeder extends SeederClass
 
         self::$model::truncate();
         for ($i = 1; $i < 100; $i++) {
-        self::$model::create([
-            'name' => facker()->name,
+            self::$model::create([
+                'name' => facker()->name,
+                'email' => facker()->name,
+                'phone' => rand(1111111111, 9999999999),
             ]);
         }
     }

@@ -1,5 +1,5 @@
 import axios from "axios";
-import setup from "../../Setup";
+import setup from "../../setup";
 import { mapWritableState } from "pinia";
 import { store } from "..";
 

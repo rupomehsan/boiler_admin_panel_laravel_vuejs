@@ -1,16 +1,17 @@
 <?php
 
 namespace App\Modules\Management\UserManagement\Controller;
+
 use App\Modules\Management\UserManagement\Actions\GetAllData;
 use App\Modules\Management\UserManagement\Actions\DestroyData;
 use App\Modules\Management\UserManagement\Actions\GetSingleData;
 use App\Modules\Management\UserManagement\Actions\StoreData;
 use App\Modules\Management\UserManagement\Actions\UpdateData;
+use App\Modules\Management\UserManagement\Actions\UpdateStatus;
 use App\Modules\Management\UserManagement\Actions\SoftDelete;
 use App\Modules\Management\UserManagement\Actions\RestoreData;
 use App\Modules\Management\UserManagement\Actions\ImportData;
 use App\Modules\Management\UserManagement\Validations\BulkActionsValidation;
-use App\Modules\Management\UserManagement\Validations\GetAllValidation;
 use App\Modules\Management\UserManagement\Validations\DataStoreValidation;
 use App\Modules\Management\UserManagement\Actions\BulkActions;
 use App\Http\Controllers\Controller as ControllersController;
@@ -19,9 +20,11 @@ use App\Http\Controllers\Controller as ControllersController;
 class Controller extends ControllersController
 {
 
-    public function index(GetAllValidation $request)
+
+    public function index()
     {
-        $data = GetAllData::execute($request);
+
+        $data = GetAllData::execute();
         return $data;
     }
 
@@ -43,7 +46,12 @@ class Controller extends ControllersController
         return $data;
     }
 
-    public function softDelete()
+    public function updateStatus()
+    {
+        $data = UpdateStatus::execute();
+        return $data;
+    }
+    public function SoftDelete()
     {
         $data = SoftDelete::execute();
         return $data;
@@ -68,5 +76,4 @@ class Controller extends ControllersController
         $data = BulkActions::execute($request);
         return $data;
     }
-
 }

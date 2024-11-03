@@ -1,5 +1,5 @@
 import axios from "axios";
-import setup from "../../Setup";
+import setup from "../../setup";
 
 async function execute(event){
     let form = event.target;
