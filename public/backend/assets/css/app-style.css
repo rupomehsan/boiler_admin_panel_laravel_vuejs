@@ -3083,6 +3083,7 @@ label {
     border: 1px solid #e5eaef7a;
     background-color: rgba(255, 255, 255, 0.2);
     color: #fff !important;
+    height: calc(1.5em + .75rem + 7px);
 }
 
 .form-control:focus {

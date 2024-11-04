@@ -4,10 +4,10 @@ import { store } from "..";
 import fetchDataAndUpdateCache from "../helpers/http";
 
 import setup from "../../setup";
-const {api_host, api_version, api_end_point} = setup;
+const { api_host, api_version, api_end_point } = setup;
 
 let execute = async () => {
-    let state = mapWritableState(store,[
+    let state = mapWritableState(store, [
         'url',
         'page',
         'paginate',
@@ -55,15 +55,17 @@ let execute = async () => {
         full_url.searchParams.set(param, qparams.params[param]);
     }
 
-    state.select_fields.get().forEach(function(el, index){
+    state.select_fields.get().forEach(function (el, index) {
         full_url.searchParams.set(`selected_fields[${index}]`, el);
         full_url.searchParams.set(`fields[${index}]`, el);
     });
 
     let index = 0;
+
+
     for (let param in state.filter_criteria.get()) {
         let value = state.filter_criteria.get()[param];
-        if(value){
+        if (value) {
             full_url.searchParams.set(`filter_criterias[${index}][key]`, param);
             full_url.searchParams.set(`filter_criterias[${index}][value]`, value);
             index++;

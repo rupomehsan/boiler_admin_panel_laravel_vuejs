@@ -1,39 +1,43 @@
 import CsvBuilder from "./filify";
 import setup from "../setup";
 import { mapActions, mapState, mapWritableState } from "pinia";
-import { store } from "../setup/store";
+import { store } from "../store";
 
 let store_prefix = setup.store_prefix;
 
 async function export_all_csv() {
+
     let cconfirm = await window.s_confirm("export all");
-    let state = mapWritableState(store, [
-        'all',
-    ]);
 
     if (!cconfirm) return;
 
-    let col = Object.keys(state.all.get().data[0]);
-    var export_csv = new CsvBuilder(
-        `${store_prefix}_list.csv`
-    ).setColumns(col);
     window.start_loader();
-
+    let export_csv;
     let last_page = 1;
+    let url = new URL(`${setup.api_host}/${setup.api_version}/${setup.api_end_point}`);
+    url.searchParams.set('page', 1);
+    url.searchParams.set('paginate', 10);
 
     for (let index = 1; index <= last_page; index++) {
-        let url = new URL(`${setup.api_host}/${setup.api_version}/${setup.api_end_point}`);
-        url.searchParams.set('page', index);
-        url.searchParams.set('paginate', 10);
 
         let response = await axios.get(url.href);
         last_page = response.data.data.last_page;
+        // Get columns from the keys of the first item in the data array
+        const firstRow = response.data.data.data[0];
+        let except_columns = ['deleted_at', 'created_at', 'updated_at'];
+        const columns = firstRow
+            ? Object.keys(firstRow).filter(key => !except_columns.includes(key))
+            : [];
 
-        let values = response.data.data.data.map((i) =>
-            Object.values(i)
+        export_csv = new CsvBuilder(`${store_prefix}_list.csv`).setColumns(columns);
+
+        let values = response.data.data.data.map((item) =>
+            Object.keys(item)
+                .filter(key => !except_columns.includes(key))
+                .map(key => item[key])
         );
-        export_csv.addRows(values);
 
+        export_csv.addRows(values);
         let progress = Math.round((100 * index) / last_page);
         window.update_loader(progress);
     }

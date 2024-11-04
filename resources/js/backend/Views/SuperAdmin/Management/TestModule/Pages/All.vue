@@ -176,8 +176,21 @@
                                 </a>
                             </div>
                             <div class="mr-2 mb-2">
-                                <a href="" class="btn action_btn btn-sm btn-primary d-flex align-items-center">
+                                <a href="" @click.prevent="() => export_all_csv()"
+                                    class="btn action_btn btn-sm btn-primary d-flex align-items-center">
                                     <i class="fa fa-print mr-2"></i> Export All
+                                </a>
+                            </div>
+                            <div class="mr-2 mb-2" v-if="this.selected?.length">
+                                <a href="" @click.prevent="export_selected_csv(selected)"
+                                    class="btn action_btn btn-sm btn-secondary d-flex align-items-center">
+                                    <i class="fa fa-sign-out mr-2"></i> Export ({{ this.selected?.length }})
+                                </a>
+                            </div>
+                            <div class="mr-2 mb-2">
+                                <a href="" @click.prevent="import_csv_modal_show = true"
+                                    class="btn action_btn btn-sm btn-secondary d-flex align-items-center">
+                                    <i class="fa fa-download mr-2"></i> Import
                                 </a>
                             </div>
                             <div class="mr-2 mb-2">
@@ -201,11 +214,7 @@
                                     ({{ trased_data_count }})
                                 </a>
                             </div>
-                            <div class="mr-2 mb-2" v-if="this.selected?.length">
-                                <a href="" class="btn action_btn btn-sm btn-secondary d-flex align-items-center">
-                                    <i class="fa fa-sign-out mr-2"></i> Export ({{ this.selected?.length }})
-                                </a>
-                            </div>
+
                             <div class="mr-2 mb-2" v-if="this.selected?.length">
                                 <select class="form-control" style="width: 100px;height: 30px;font-size: 12px"
                                     @change="bulkActions">
@@ -279,36 +288,42 @@
                 </div>
                 <div class="data_content">
                     <div class="filter_item">
-                        <label for="start_date">Start Date</label><label for="start_date"
-                            class="text-capitalize d-block date_custom_control"><input type="date" id="start_date"
-                                name="start_date" class="form-control" /></label>
+                        <label for="start_date">Start Date</label>
+                        <label for="start_date" class="text-capitalize d-block date_custom_control">
+                            <input v-model="start_date" type="date" id="start_date" name="start_date"
+                                class="form-control">
+                            <!-- <div class="form-control preview"></div> -->
+                        </label>
                     </div>
                     <div class="filter_item">
-                        <label for="end_date">End Date</label><label for="end_date"
-                            class="text-capitalize d-block date_custom_control"><input type="date" id="end_date"
-                                name="end_date" class="form-control" /></label>
+                        <label for="end_date">End Date</label>
+                        <label for="end_date" class="text-capitalize d-block date_custom_control">
+                            <input v-model="end_date" type="date" id="end_date" name="end_date" class="form-control">
+                            <!-- <div class="form-control preview"></div> -->
+                        </label>
                     </div>
                     <div class="filter_item">
                         <label for="sort_by_col">Sort By Col</label><label for="sort_by_col"
-                            class="text-capitalize d-block date_custom_control"><select class="form-control">
-                                <option>id</option>
-                                <option>user_code</option>
-                                <option>name</option>
-                                <option>email</option>
-                                <option>phone_number</option>
-                                <option>created_at</option>
-                                <option>status</option>
-                            </select></label>
+                            class="text-capitalize d-block date_custom_control">
+                            <select v-model="sort_by_col" class="form-control">
+                                <option v-for="col in sort_by_cols" :key="col">
+                                    {{ col }}
+                                </option>
+                            </select>
+                        </label>
                     </div>
                     <div class="filter_item">
                         <label for="sort_by_col">Sort Type</label><label for="sort_by_col"
-                            class="text-capitalize d-block date_custom_control"><select class="form-control">
-                                <option>ASC</option>
-                                <option>DESC</option>
-                            </select></label>
+                            class="text-capitalize d-block date_custom_control">
+                            <select v-model="sort_type" class="form-control">
+                                <option v-for="col in ['ASC', 'DESC']" :key="col">
+                                    {{ col }}
+                                </option>
+                            </select>
+                        </label>
                     </div>
                     <div class="filter_item">
-                        <button type="button" class="btn btn-sm btn-outline-info">
+                        <button @click.prevent="get_all();" type="button" class="btn btn-sm btn-outline-info">
                             Submit
                         </button>
                     </div>
@@ -316,28 +331,69 @@
             </div>
             <div class="off_canvas_overlay"></div>
         </div>
+        <div class="modal fade " :class="`${import_csv_modal_show ? 'show d-block' : 'd-none'}`" id="primarymodal"
+            aria-modal="true">
+            <div class="modal-dialog modal-dialog-centered">
+                <form @submit.prevent="FileUploadHandler">
+                    <div class="modal-content border-primary">
+                        <div class="modal-header bg-primary">
+                            <h5 class="modal-title text-white">Import {{ setup.prefix }} </h5>
+                            <button @click="import_csv_modal_show = false" type="button" class="close text-white"
+                                data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">×</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            <div class="">
+                                <label for="">Upload file</label>
+                                <input type="file" name="file" class="form-control " required>
+                            </div>
+                            <p class="mt-3">Please check the sample CSV file below to ensure compatibility with the demo
+                                data
+                                import.</p>
+                            <a href="" @click.prevent="export_demo_csv" class="btn btn-sm btn-primary">Download Demo
+                                CSV</a>
+                        </div>
+                        <div class="modal-footer">
+                            <button @click="import_csv_modal_show = false" type="button" class="btn btn-light"
+                                data-dismiss="modal"><i class="fa fa-times"></i>
+                                Close</button>
+                            <button type="submit" class="btn btn-primary"><i class="fa fa-download"></i> Import</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
     </div>
 </template>
 
 <script>
 /** plugins */
 import { mapActions, mapWritableState } from "pinia";
-import { store as data_store } from "../store";
 import setup from "../setup";
-
+import { store as data_store } from "../store";
+import export_all_csv from "../helpers/export_all_csv"
+import export_selected_csv from "../helpers/export_selected_csv"
+import export_demo_csv from "../helpers/export_demo_csv"
+import axios from 'axios';
 
 export default {
 
     data: () => ({
         setup,
         is_trashed_data: false,
+        import_csv_modal_show: false,
+        filePath: 'resources/js/backend/Views/SuperAdmin/Management/TestModule/helpers/demo.csv',
+
 
     }),
     created: async function () {
         await this.get_all();
     },
     methods: {
-
+        export_all_csv,
+        export_selected_csv,
+        export_demo_csv,
         ...mapActions(data_store, [
             'set_show_filter_canvas',
             'get_all',
@@ -352,6 +408,8 @@ export default {
             'set_paginate',
             'bulk_action',
             'clear_selected',
+            'import_data',
+            'set_filter_criteria',
         ]),
 
         active_row(event) {
@@ -369,7 +427,6 @@ export default {
             if (con) {
                 this.set_item(item);
                 this.set_only_latest_data(true);
-
                 let response = await this.update_status();
                 if (response.data.status === "success") {
                     await this.get_all();
@@ -497,7 +554,26 @@ export default {
 
             }
 
+        },
+
+
+
+        FileUploadHandler: async function ($event) {
+            let response = await this.import_data($event);
+            if (response.data.status === "success") {
+                await this.get_all();
+                window.s_alert(response.data.message);
+                this.set_only_latest_data(true);
+                this.import_csv_modal_show = false
+            } else {
+                window.s_warning(response.data?.message);
+            }
+
         }
+
+
+
+
 
 
     },
@@ -511,6 +587,11 @@ export default {
             'status',
             'selected',
             'paginate',
+            'sort_type',
+            'sort_by_cols',
+            'sort_by_col',
+            'start_date',
+            'end_date',
         ]),
         isAllSelected() {
             return (
@@ -528,6 +609,26 @@ export default {
             },
             immediate: true
         },
+
+        start_date: {
+            handler: function (v) {
+                let data = {
+                    "start_date": v,
+                }
+                this.set_filter_criteria(data);
+            },
+            deep: true,
+        },
+        end_date: {
+            handler: function (v) {
+                let data = {
+                    "end_date": v,
+                }
+                this.set_filter_criteria(data);
+            },
+            deep: true,
+        }
+
     }
 
 };

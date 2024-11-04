@@ -2,6 +2,11 @@
 
 namespace App\Modules\Management\UserManagement\Actions;
 
+use App\Modules\Management\UserManagement\Others\Jobs\UserImportJob;
+use Illuminate\Support\Facades\Artisan;
+use Illuminate\Support\Facades\Bus;
+use Maatwebsite\Excel\Facades\Excel;
+
 class ImportData
 {
     static $model = \App\Modules\Management\UserManagement\Models\Model::class;
@@ -9,19 +14,26 @@ class ImportData
     public static function execute()
     {
         try {
-            foreach (request()->data as $row) {
-                 self::$model::create([
-                    "name" => $row['name'],
-
-                    "email" => $row['email'],
-
-                    "phone" => $row['phone'],
-
-                ]);
+            // dd(request()->all());
+            if (!request()->hasFile('file')) {
+                return messageResponse('Plase select a file', [], 404, 'error');
             }
+
+            $path = request()->file->store('temp');
+            $data = Excel::toArray([], storage_path('app/' . $path));
+            $chunks = array_chunk($data[0], 10);
+            $header = [];
+            $batch = Bus::batch([])->dispatch();
+            foreach ($chunks as $key => $chunk) {
+                if ($key === 0) {
+                    $header = array_shift($chunk); // Set the header and remove it from data
+                }
+                $batch->add(new UserImportJob($chunk, $header));
+            }
+            
             return messageResponse('Item Successfully updated', [], 200, 'success');
         } catch (\Exception $e) {
-            return messageResponse($e->getMessage(),[], 500, 'server_error');
+            return messageResponse($e->getMessage(), [], 500, 'server_error');
         }
     }
 }

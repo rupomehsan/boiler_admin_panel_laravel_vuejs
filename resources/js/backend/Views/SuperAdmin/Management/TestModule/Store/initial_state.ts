@@ -1,4 +1,4 @@
-import {anyObject} from '../../../../../../../../common_types/object'
+import { anyObject } from '../../../../../../../../common_types/object'
 import setup from '../setup';
 export const initialState = {
     /** loading status */
@@ -17,6 +17,8 @@ export const initialState = {
     sort_by_cols: setup.sort_by_cols,
     sort_by_col: 'id',
     sort_type: 'DESC',
+    start_date: '',
+    end_date: '',
 
     filter_criteria: {} as anyObject,
     all_data_count: 0, // total data in database

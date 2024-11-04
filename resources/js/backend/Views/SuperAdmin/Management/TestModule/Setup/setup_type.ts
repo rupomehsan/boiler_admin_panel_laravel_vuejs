@@ -14,6 +14,7 @@ export default interface RouteConfig {
     select_fields: string[];
     sort_by_cols: string[];
 
+
     layout_title: string;
 
     page_title: string,

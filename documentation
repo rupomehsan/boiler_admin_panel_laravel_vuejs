@@ -8,4 +8,5 @@ php artisan ui vue --auth
 
 npm install  && npm run dev
 
-
+-------------------------------
+composer require maatwebsite/excel:^3.1
