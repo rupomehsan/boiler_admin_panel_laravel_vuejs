@@ -9,6 +9,7 @@ class GetAllData
     public static function execute()
     {
         try {
+
             $pageLimit = request()->input('limit') ?? 10;
             $orderByColumn = request()->input('sort_by_col') ?? 'id';
             $orderByType = request()->input('sort_type') ?? 'desc';
@@ -21,13 +22,12 @@ class GetAllData
 
             $data = self::$model::query();
 
-
             if (request()->has('search') && request()->input('search')) {
                 $searchKey = request()->input('search');
                 $data = $data->where(function ($q) use ($searchKey) {
-                    $q->where('title', $searchKey);
-                    $q->orWhere('title', 'like', '%' . $searchKey . '%');
-                    $q->orWhere('description', 'like', '%' . $searchKey . '%');
+                    $q->where('name', $searchKey);
+                    $q->orWhere('name', 'like', '%' . $searchKey . '%');
+                    $q->orWhere('email', 'like', '%' . $searchKey . '%');
                 });
             }
 
@@ -54,7 +54,6 @@ class GetAllData
                     ->orderBy($orderByColumn, $orderByType)
                     ->get();
             } else if ($status == 'trased') {
-
                 $data = $data
                     ->with($with)
                     ->select($fields)
@@ -70,12 +69,14 @@ class GetAllData
                     ->orderBy($orderByColumn, $orderByType)
                     ->paginate($pageLimit);
             }
+
             return entityResponse([
                 ...$data->toArray(),
                 "active_data_count" => self::$model::active()->count(),
                 "inactive_data_count" => self::$model::inactive()->count(),
                 "trased_data_count" => self::$model::trased()->count(),
             ]);
+
         } catch (\Exception $e) {
             return messageResponse($e->getMessage(), [], 500, 'server_error');
         }

@@ -12,7 +12,7 @@
 
                             <!-- Search Input -->
                             <div class="col-12 col-md-6 mb-2 mb-md-0">
-                                <input class="form-control" placeholder="Search" />
+                                <input class="form-control" @keyup="(e) => set_search_key(e)" placeholder="Search" />
                             </div>
 
                             <!-- Sorting Button -->
@@ -126,7 +126,6 @@
 
                         <nav aria-label="" class="d-flex gap-2 align-items-center" style="gap: 10px;">
                             <ul class="pagination my-2" style="font-size: 11px;">
-
                                 <template v-for="(link, index) in all?.links" :key="index">
                                     <li class="page-item" :class="{ active: link.active }">
                                         <a class="page-link" :class="(
@@ -221,7 +220,9 @@
                                     <option disabled selected>Select action</option>
                                     <option value="inactive">Inactive</option>
                                     <option value="active">Action</option>
-                                    <option value="delete">Delete</option>
+                                    <option value="soft_delete">Soft Delete</option>
+                                    <option value="restore">Restore</option>
+                                    <option value="destroy">Destroy</option>
                                 </select>
                             </div>
                         </div>
@@ -375,7 +376,7 @@ import { store as data_store } from "../store";
 import export_all_csv from "../helpers/export_all_csv"
 import export_selected_csv from "../helpers/export_selected_csv"
 import export_demo_csv from "../helpers/export_demo_csv"
-import axios from 'axios';
+import debounce from '../helpers/debounce';
 
 export default {
 
@@ -395,21 +396,21 @@ export default {
         export_selected_csv,
         export_demo_csv,
         ...mapActions(data_store, [
-            'set_show_filter_canvas',
             'get_all',
             `restore`,
             `soft_delete`,
             `update_status`,
-            `set_only_latest_data`,
-            `set_item`,
-            'set_status',
             'destroy',
-            'set_page',
-            'set_paginate',
             'bulk_action',
             'clear_selected',
             'import_data',
+            'set_show_filter_canvas',
+            `set_only_latest_data`,
+            `set_item`,
             'set_filter_criteria',
+            'set_page',
+            'set_status',
+            'set_paginate',
         ]),
 
         active_row(event) {
@@ -489,8 +490,8 @@ export default {
         change_status: function (status = 'active') {
             if (status == 'trased') {
                 this.is_trashed_data = true;
-                console.log("dd", this.is_trashed_data);
-
+            } else {
+                this.is_trashed_data = false
             }
             this.set_only_latest_data(true);
             this.set_status(status);
@@ -569,10 +570,18 @@ export default {
                 window.s_warning(response.data?.message);
             }
 
-        }
+        },
 
 
+        set_search_key: debounce(async function (event) {
+            let value = event.target.value;
+            this.search_key = value;
+            this.page = 1;
 
+            this.only_latest_data = true;
+            await this.get_all();
+            this.only_latest_data = false;
+        }, 500),
 
 
 
@@ -592,6 +601,8 @@ export default {
             'sort_by_col',
             'start_date',
             'end_date',
+            'search_key',
+            'page',
         ]),
         isAllSelected() {
             return (

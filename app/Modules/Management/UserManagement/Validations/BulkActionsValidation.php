@@ -42,7 +42,7 @@ class BulkActionsValidation extends FormRequest
     public function rules(): array
     {
         return [
-            'action' => 'required|sometimes|in:active,inactive,delete',
+            'action' => 'required|sometimes|in:active,inactive,soft_delete,restore,destroy',
             'ids' => [
                 'array',
                 function ($attribute, $value, $fail) {

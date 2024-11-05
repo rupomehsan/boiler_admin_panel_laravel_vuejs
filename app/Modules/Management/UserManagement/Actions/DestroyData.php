@@ -10,13 +10,13 @@ class DestroyData
     {
         try {
 
-            if (!$data=self::$model::where('slug', $slug)->first()) {
-                return messageResponse('Data not found...',$data, 404, 'error');
+            if (!$data = self::$model::where('slug', $slug)->first()) {
+                return messageResponse('Data not found...', $data, 404, 'error');
             }
-            $data->delete();
-            return messageResponse('Item Successfully deleted',[], 200, 'success');
+            $data->forceDelete();
+            return messageResponse('Item Successfully deleted', [], 200, 'success');
         } catch (\Exception $e) {
-            return messageResponse($e->getMessage(),[], 500, 'server_error');
+            return messageResponse($e->getMessage(), [], 500, 'server_error');
         }
     }
 }

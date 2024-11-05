@@ -11,6 +11,7 @@ class Model extends EloquentModel
     use SoftDeletes;
     protected $table = "user_managements";
     protected $guarded = [];
+    
 
     protected static function booted()
     {
