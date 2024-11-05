@@ -3,8 +3,9 @@
 use Illuminate\Support\Str;
 
 if (!function_exists('GetAllData')) {
-    function GetAllData($moduleName)
+    function GetAllData($moduleName, $fields)
     {
+
 
         $formated_module = explode('/', $moduleName);
 
@@ -16,6 +17,17 @@ if (!function_exists('GetAllData')) {
         } else {
             $moduleName = Str::replace("/", "\\", $moduleName);
         }
+
+        $form_fields = [];
+
+        foreach ($fields as $field) {
+
+            $form_fields[] = $field[0];
+        }
+
+
+
+
 
         $content = <<<"EOD"
         <?php
@@ -29,6 +41,7 @@ if (!function_exists('GetAllData')) {
             public static function execute()
             {
                 try {
+
                     \$pageLimit = request()->input('limit') ?? 10;
                     \$orderByColumn = request()->input('sort_by_col') ?? 'id';
                     \$orderByType = request()->input('sort_type') ?? 'desc';
@@ -44,9 +57,25 @@ if (!function_exists('GetAllData')) {
                     if (request()->has('search') && request()->input('search')) {
                         \$searchKey = request()->input('search');
                         \$data = \$data->where(function (\$q) use (\$searchKey) {
-                            \$q->where('title', \$searchKey);
-                            \$q->orWhere('title', 'like', '%' . \$searchKey . '%');
-                            \$q->orWhere('description', 'like', '%' . \$searchKey . '%');
+        EOD;
+        $first = true;
+        foreach ($form_fields as $field) {
+            if ($first) {
+                $content .= <<<EOD
+
+                    \$q->where('$field', 'like', '%' . \$searchKey . '%');
+                EOD;
+                $first = false;
+            } else {
+                $content .= <<<EOD
+                    \n
+                    \$q->orWhere('$field', 'like', '%' . \$searchKey . '%');
+                EOD;
+            }
+        }
+
+        $content .= <<<EOD
+                      \n
                         });
                     }
 
@@ -59,6 +88,10 @@ if (!function_exists('GetAllData')) {
                         }
                     }
 
+                    if (\$status == 'trased') {
+                        \$data = \$data->trased();
+                    }
+
                     if (request()->has('get_all') && (int)request()->input('get_all') === 1) {
                         \$data = \$data
                             ->with(\$with)
@@ -68,6 +101,13 @@ if (!function_exists('GetAllData')) {
                             ->limit(\$pageLimit)
                             ->orderBy(\$orderByColumn, \$orderByType)
                             ->get();
+                    } else if (\$status == 'trased') {
+                        \$data = \$data
+                            ->with(\$with)
+                            ->select(\$fields)
+                            ->where(\$condition)
+                            ->orderBy(\$orderByColumn, \$orderByType)
+                            ->paginate(\$pageLimit);
                     } else {
                         \$data = \$data
                             ->with(\$with)
@@ -77,13 +117,16 @@ if (!function_exists('GetAllData')) {
                             ->orderBy(\$orderByColumn, \$orderByType)
                             ->paginate(\$pageLimit);
                     }
+
                     return entityResponse([
                         ...\$data->toArray(),
                         "active_data_count" => self::\$model::active()->count(),
                         "inactive_data_count" => self::\$model::inactive()->count(),
+                        "trased_data_count" => self::\$model::trased()->count(),
                     ]);
+
                 } catch (\Exception \$e) {
-                    return messageResponse(\$e->getMessage(),[], 500, 'server_error');
+                    return messageResponse(\$e->getMessage(), [], 500, 'server_error');
                 }
             }
         }

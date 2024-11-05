@@ -9,117 +9,113 @@ use Illuminate\Support\Str;
 */
 
 if (!function_exists('DetailsPage')) {
-    function DetailsPage($moduleName)
+    function DetailsPage()
     {
-
-        $moduleName = Str::singular((Str::snake($moduleName)));
         $content = <<<"EOD"
-                    <template>
-                    <div>
-                        <form @submit.prevent="submitHandler">
-                            <div class="card">
-                                <div class="card-header d-flex justify-content-between">
-                                    <h5 class="text-capitalize">{{ param_id ? 'Update' : 'Create' }} new {{ route_prefix }}</h5>
-                                    <div>
-                                        <router-link class="btn btn-outline-warning btn-sm" :to="{ name: `All\${route_prefix}` }">All {{
-                                            route_prefix }}</router-link>
-                                    </div>
-                                </div>
-                                <div class="card-body">
-                                    <div class="row">
-                                        <div class="col-md-12" v-for="(form_field, index) in form_fields" :key="index">
-                                            <common-input :label="form_field.label" :type="form_field.type" :name="form_field.name"
-                                                :multiple="form_field.multiple" :value="form_field.value"
-                                                :data_list="form_field.data_list" />
-                                        </div>
-                                    </div>
-                                    <div class="form-group">
-                                        <button type="submit" class="btn btn-light btn-square px-5"><i class="icon-lock"></i>
-                                            Submit</button>
-                                    </div>
+        <template>
+            <div>
+                <form @submit.prevent="submitHandler">
+                    <div class="card">
+                        <div class="card-header d-flex justify-content-between">
+                            <h5 class="text-capitalize">
+                                {{ setup.details_page_title }}
+                            </h5>
+                            <div>
+                                <router-link class="btn btn-outline-warning btn-sm" :to="{ name: `All\${setup . route_prefix}` }">
+                                    {{ setup.all_page_title }}
+                                </router-link>
+                            </div>
+                        </div>
+                        <div class="card-body card_body_fixed_height">
+                            <div class="row">
+                                <div class="col-lg-8">
+                                    <table class="table quick_modal_table table-bordered">
+                                        <tbody>
+                                            <tr>
+                                                <th>Name</th>
+                                                <th class="text-center">:</th>
+                                                <th>
+                                                    {{ item.name }}
+                                                </th>
+                                            </tr>
+                                            <tr>
+                                                <th>Email</th>
+                                                <th class="text-center">:</th>
+                                                <th>
+                                                    {{ item.email }}
+                                                </th>
+                                            </tr>
+                                            <tr>
+                                                <th>Phone</th>
+                                                <th class="text-center">:</th>
+                                                <th>
+                                                    {{ item.phone }}
+                                                </th>
+                                            </tr>
+
+                                        </tbody>
+                                    </table>
                                 </div>
                             </div>
+                        </div>
+                        <div class="card-footer">
+                            <router-link class="btn btn-outline-warning btn-sm" :to="{
+                                name: `Edit\${setup . route_prefix}`,
+                                params: { id: item.slug },
+                            }">
+                                {{ setup.edit_page_title }}
+                            </router-link>
 
-                        </form>
+                            <a href="" v-if="item.prev_slug" @click.prevent="get_data(item.prev_slug)"
+                                class="btn btn-secondary btn-sm ml-2">
+                                <i class="fa fa-angle-left"></i>
+                                Previous {{ setup.route_prefix }} ({{
+                                    item.prev_count
+                                }})
+                            </a>
 
+                            <a href="" v-if="item.next_slug" @click.prevent="get_data(item.next_slug)"
+                                class="btn btn-secondary btn-sm ml-2">
+                                Next {{ setup.route_prefix }} ({{ item.next_count }})
+                                <i class="fa fa-angle-right"></i>
+                            </a>
+                        </div>
                     </div>
-                </template>
+                </form>
+            </div>
+        </template>
 
-                <script>
-                import { mapActions, mapState } from 'pinia'
-                import { {$moduleName}_setup_store } from './setup/store';
-                import setup from "./setup";
-                import form_fields from "./setup/form_fields";
+        <script>
+        import { mapActions, mapState, mapWritableState } from "pinia";
+        import { store } from "../store";
+        import setup from "../setup";
 
-                export default {
-                    data: () => ({
-                        route_prefix: '',
-                        form_fields,
-                        param_id: null,
-                    }),
-                    created: async function () {
-                        let id = this.\$route.query.id;
-                        this.route_prefix = setup.route_prefix;
-                        await this.get_all_data()
-                        if (id) {
-                            this.param_id = id;
-                            await this.get_single_data(id);
-                            if (this.single_data) {
-                                this.form_fields.forEach((field, index) => {
-                                    Object.entries(this.single_data).forEach((value) => {
-                                        if (field.name == value[0]) {
-                                            this.form_fields[index].value = value[1];
-                                        }
+        export default {
+            data: () => ({
+                setup,
+            }),
+            created: async function () {
+                let id = (this.param_id = this.\$route.params.id);
+                await this.get_data(id);
+            },
+            methods: {
+                ...mapActions(store, {
+                    details: "details",
+                }),
+                get_data: async function (slug) {
+                    this.item = {};
+                    await this.details(slug);
+                },
+            },
+            computed: {
+                ...mapWritableState(store, {
+                    item: "item",
+                }),
+            },
+        };
+        </script>
 
-
-                                    });
-                                });
-                            }
-                        } else {
-                            this.form_fields.forEach((item) => {
-                                item.value = "";
-                            });
-                        }
-                    },
-                    methods: {
-                        ...mapActions({$moduleName}_setup_store, {
-                            get_all_data: 'all',
-                            get_single_data: 'get',
-                            store_data: 'store',
-                            update_data: 'update',
-                        }),
-
-                        submitHandler: async function (\$event) {
-                            if (this.param_id) {
-                                let response = await this.update_data(\$event.target, this.param_id);
-                                if (response.data.status === "success") {
-                                    window.s_alert(response.data.message);
-                                    this.\$router.push({ name: `All\${this . route_prefix}` });
-                                }
-                            } else {
-                                let response = await this.store_data(\$event.target);
-                                if (response.data.status === "success") {
-                                    window.s_alert(response.data.message);
-                                    this.\$router.push({ name: `All\${this . route_prefix}` });
-                                }
-                            }
-                        },
-
-
-                    },
-
-                    computed: {
-                        ...mapState({$moduleName}_setup_store, {
-                            single_data: "single_data",
-                            all_data: 'all_data',
-                        }),
-                    },
-
-
-                }
-                </script>
         EOD;
         return $content;
-
     }
 }

@@ -12,10 +12,7 @@ class GetSingleData
     {
         try {
             $with = [];
-            $fields = request()->input('fields') ?? [];
-            if (empty($fields)) {
-                $fields = ['*'];
-            }
+            $fields = request()->input('fields') ?? ['*'];
             if (!$data = self::$model::query()->with($with)->select($fields)->where('slug', $slug)->first()) {
                 return messageResponse('Data not found...',$data, 404, 'error');
             }

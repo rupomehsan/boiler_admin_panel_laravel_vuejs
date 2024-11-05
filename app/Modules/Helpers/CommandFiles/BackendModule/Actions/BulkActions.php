@@ -43,6 +43,13 @@ if (!function_exists('BulkActions')) {
                         }
                     }
 
+                    if (request()->input('action') == 'soft_delete') {
+                        if (request()->input('ids') && count(request()->input('ids'))) {
+                            \$ids = request()->input('ids');
+                            self::\$model::whereIn('id', \$ids)->delete();
+                            return messageResponse("Items are deleted Successfully ");
+                        }
+                    }
                     if (request()->input('action') == 'delete') {
                         if (request()->input('ids') && count(request()->input('ids'))) {
                             \$ids = request()->input('ids');
@@ -50,10 +57,22 @@ if (!function_exists('BulkActions')) {
                             return messageResponse("Items are deleted Successfully ");
                         }
                     }
-
-
+                    if (request()->input('action') == 'restore') {
+                        if (request()->input('ids') && count(request()->input('ids'))) {
+                            \$ids = request()->input('ids');
+                            self::\$model::whereIn('id', \$ids)->restore();
+                            return messageResponse("Items are deleted Successfully ");
+                        }
+                    }
+                    if (request()->input('action') == 'destroy') {
+                        if (request()->input('ids') && count(request()->input('ids'))) {
+                            \$ids = request()->input('ids');
+                            self::\$model::whereIn('id', \$ids)->forceDelete();
+                            return messageResponse("Items are deleted Successfully ");
+                        }
+                    }
                 } catch (\Exception \$e) {
-                    return messageResponse(\$e->getMessage(),[], 500, 'server_error');
+                    return messageResponse(\$e->getMessage(), [], 500, 'server_error');
                 }
             }
         }

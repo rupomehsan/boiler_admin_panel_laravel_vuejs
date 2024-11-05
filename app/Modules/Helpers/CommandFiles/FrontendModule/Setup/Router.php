@@ -7,28 +7,27 @@ use Illuminate\Support\Str;
 |--------------------------------------------------------------------------
 |
 */
+
 if (!function_exists('Router')) {
-    function Router($moduleName)
+    function Router()
     {
-
-
-        $moduleName = Str::singular((Str::kebab($moduleName)));
 
         $content = <<<"EOD"
         import setup from ".";
-        import All from "../All.vue";
-        import Form from "../Form.vue";
-        import Layout from "./Layout.vue";
+        import All from "../pages/All.vue";
+        import Form from "../pages/Form.vue";
+        import Details from "../pages/Details.vue";
+        import Layout from "../pages/Layout.vue";
 
         let route_prefix = setup.route_prefix;
+        let route_path = setup.route_path;
 
-        const routes =
-        {
-            path: '{$moduleName}',
+        const routes = {
+            path: route_path,
             component: Layout,
             children: [
                 {
-                    path: '',
+                    path: "all",
                     name: "All" + route_prefix,
                     component: All,
                 },
@@ -37,12 +36,21 @@ if (!function_exists('Router')) {
                     name: "Create" + route_prefix,
                     component: Form,
                 },
-
-            ]
+                {
+                    path: "details/:id",
+                    name: "Details" + route_prefix,
+                    component: Details,
+                },
+                {
+                    path: "edit/:id",
+                    name: "Edit" + route_prefix,
+                    component: Form,
+                },
+            ],
         };
 
-
         export default routes;
+
 
         EOD;
 

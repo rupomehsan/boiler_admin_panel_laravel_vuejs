@@ -31,6 +31,10 @@ class ImportData
                 $batch->add(new UserImportJob($chunk, $header));
             }
             
+            $filePath = storage_path('app/' . $path);
+            if (file_exists($filePath)) {
+                unlink($filePath);
+            }
             return messageResponse('Item Successfully updated', [], 200, 'success');
         } catch (\Exception $e) {
             return messageResponse($e->getMessage(), [], 500, 'server_error');

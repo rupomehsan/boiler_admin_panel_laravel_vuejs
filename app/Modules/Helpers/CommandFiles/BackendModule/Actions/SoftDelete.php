@@ -30,8 +30,8 @@ if (!function_exists('SoftDelete')) {
                         if (!\$data = self::\$model::where('slug', request()->slug)->first()) {
                             return messageResponse('Data not found...', \$data, 404, 'error');
                         }
-                        \$data->status = 'inactive';
-                        \$data->update();
+
+                        \$data->delete();
                         return messageResponse('Item Successfully soft deleted', [], 200, 'success');
                     } catch (\Exception \$e) {
                         return messageResponse(\$e->getMessage(),[], 500, 'server_error');

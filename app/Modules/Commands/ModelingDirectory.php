@@ -72,7 +72,7 @@ class ModelingDirectory extends Command
             File::makeDirectory($actionsDirectory);
         }
 
-        $migrationtable ='create_' . $table . '_table.php';
+        $migrationtable = 'create_' . $table . '_table.php';
 
         $actionFiles = [
 
@@ -97,6 +97,7 @@ class ModelingDirectory extends Command
 
             'Route.php',
             'Api.http',
+            'ImportJob.php',
             'Doc.txt',
 
         ];
@@ -147,7 +148,7 @@ class ModelingDirectory extends Command
 
         foreach ($actionFiles as $file) {
             if ($file == 'GetAllData.php') {
-                File::put($actionsDirectory . '/' . $file, GetAllData($module_name));
+                File::put($actionsDirectory . '/' . $file, GetAllData($module_name, $fields));
             }
 
             if ($file == 'StoreData.php') {
@@ -192,7 +193,7 @@ class ModelingDirectory extends Command
             if ($file == 'Model.php') {
                 File::put($ModelDirectory . '/' . $file, Model($module_name, $moduleName));
             }
-            if ($file == $migrationtable ) {
+            if ($file == $migrationtable) {
                 File::put($DatabaseDirectory . '/' . $file, Migration($module_name, $fields));
             }
 
@@ -203,14 +204,15 @@ class ModelingDirectory extends Command
             if ($file == 'Api.http') {
                 File::put($OthersDirectory . '/' . $file, ApiDocumentation($moduleName));
             }
-            if ($file == 'Doc.http') {
+            if ($file == 'Doc.txt') {
                 File::put($OthersDirectory . '/' . $file, Documentation());
+            }
+            if ($file == 'ImportJob.php') {
+                File::put($OthersDirectory . '/'  . $file, ImportJob($moduleName));
             }
             if ($file == 'Seeder.php') {
                 File::put($SeederDirectory . '/' . $file, Seeder($module_name, $moduleName, $fields));
             }
-
-
         }
 
 
@@ -218,7 +220,7 @@ class ModelingDirectory extends Command
         if ($withVue) {
 
             $role = 'SuperAdmin';
-            $vueDirectory = resource_path("js/backend/Views/{$role}/Pages/");
+            $vueDirectory = resource_path("js/backend/Views/{$role}/Management/");
             $vue_format_dir = explode('/', $ViewModuleName);
             $vue_module_dir = null;
 
@@ -239,33 +241,83 @@ class ModelingDirectory extends Command
             }
 
 
-            $ViewactionsDirectory = $vueDirectory . $ViewModuleName . '/setup';
-            if (!File::isDirectory($ViewactionsDirectory)) {
-                File::makeDirectory($ViewactionsDirectory);
+
+            $PagesDirectory = $vueDirectory . $ViewModuleName . '/pages';
+            if (!File::isDirectory($PagesDirectory)) {
+                File::makeDirectory($PagesDirectory);
+            }
+            $SetupDirectory = $vueDirectory . $ViewModuleName . '/setup';
+            if (!File::isDirectory($SetupDirectory)) {
+                File::makeDirectory($SetupDirectory);
+            }
+            $StoreDirectory = $vueDirectory . $ViewModuleName . '/store';
+            if (!File::isDirectory($StoreDirectory)) {
+                File::makeDirectory($StoreDirectory);
             }
 
             // dd($module_name);
 
-            File::put($vueDirectory  . $ViewModuleName . '/All.vue', viewAll($ViewModuleName, $fields));
-            File::put($vueDirectory  . $ViewModuleName . '/Form.vue', viewForm($ViewModuleName));
 
-            $setupActionFiles = ['form_fields.js',  'index.js', 'Layout.vue', 'routes.js', 'store.js'];
+
+            $setupActionFiles = ['form_fields.js',  'index.ts',  'routes.js', 'setup_type.ts'];
+            $PagesFiles = ['All.vue', "Form.vue", "Details.vue", "Layout.vue"];
+            $StoreFiles = ['index.ts',  'initial_state.ts'];
+
             foreach ($setupActionFiles as $file) {
                 if ($file == 'form_fields.js') {
-                    File::put($ViewactionsDirectory . '/' . $file, ViewFormField($ViewModuleName, $fields));
+                    File::put($SetupDirectory . '/' . $file, FormField($fields));
                 }
-                if ($file == 'index.js') {
-                    File::put($ViewactionsDirectory . '/' . $file, ViewIndex($ViewModuleName, $role));
-                }
-                if ($file == 'Layout.vue') {
-                    File::put($ViewactionsDirectory . '/' . $file, ViewLayout($ViewModuleName));
+                if ($file == 'index.ts') {
+                    File::put($SetupDirectory . '/' . $file, SetupIndex($ViewModuleName, $fields));
                 }
                 if ($file == 'routes.js') {
-                    File::put($ViewactionsDirectory . '/' . $file, ViewRoute($ViewModuleName));
+                    File::put($SetupDirectory . '/' . $file, Router());
                 }
-                if ($file == 'store.js') {
-                    File::put($ViewactionsDirectory . '/' . $file, ViewStore($ViewModuleName));
+                if ($file == 'setup_type.ts') {
+                    File::put($SetupDirectory . '/' . $file, SetupType());
                 }
+            }
+            foreach ($PagesFiles as $file) {
+                if ($file == 'All.vue') {
+                    File::put($PagesDirectory . '/' . $file, AllDataPage($fields));
+                }
+                if ($file == 'Form.vue') {
+                    File::put($PagesDirectory . '/' . $file, FormPage());
+                }
+                if ($file == 'Details.vue') {
+                    File::put($PagesDirectory . '/' . $file, DetailsPage());
+                }
+                if ($file == 'Layout.vue') {
+                    File::put($PagesDirectory . '/' . $file, LayoutPage());
+                }
+            }
+
+            $sourceDirectory = base_path('app/Modules/Helpers/CommandFiles/FrontendModule/Store/actions');
+            if (File::isDirectory($sourceDirectory)) {
+                File::copyDirectory($sourceDirectory, $StoreDirectory);
+            } else {
+                echo "Source directory does not exist.";
+            }
+
+            foreach ($StoreFiles as $file) {
+                if ($file == 'index.ts') {
+                    File::put($StoreDirectory . '/' . $file, StoreIndex());
+                }
+                if ($file == 'initial_state.ts') {
+                    File::put($StoreDirectory . '/' . $file, InitialState());
+                }
+            }
+
+            $HelpersDirectory = $vueDirectory . $ViewModuleName . '/helpers';
+            $sourceDirectory = base_path('app/Modules/Helpers/CommandFiles/FrontendModule/Helpers');
+
+            if (!File::isDirectory($HelpersDirectory)) {
+                File::makeDirectory($HelpersDirectory, 0755, true);
+            }
+            if (File::isDirectory($sourceDirectory)) {
+                File::copyDirectory($sourceDirectory, $HelpersDirectory);
+            } else {
+                echo "Source directory does not exist.";
             }
         }
     }

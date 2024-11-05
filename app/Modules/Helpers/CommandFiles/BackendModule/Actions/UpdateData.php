@@ -8,7 +8,6 @@ if (!function_exists('UpdateData')) {
         $formated_module = explode('/', $moduleName);
 
         if (count($formated_module) > 1) {
-
             $moduleName = implode('/', $formated_module);
             $moduleName = Str::replace("/", "\\", $moduleName);
         } else {

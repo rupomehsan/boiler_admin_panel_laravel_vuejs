@@ -9,7 +9,7 @@ use Illuminate\Support\Str;
 */
 
 if (!function_exists('FormField')) {
-    function FormField($moduleName, $fields)
+    function FormField($fields)
     {
 
         $content = <<<EOD

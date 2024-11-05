@@ -23,13 +23,10 @@
                     title: `Users`,
                 },
                 {
-                    route_name: `Alluser-managements`,
-                    title: `Users`,
+                    route_name: `Allblogs`,
+                    title: `Blogs`,
                 },
-                {
-                    route_name: `Alluser-managements`,
-                    title: `Users`,
-                },
+
                 // {
                 //     route_name: `AllBlog`,
                 //     title: `Blogs`,
