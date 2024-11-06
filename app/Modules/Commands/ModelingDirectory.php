@@ -4,12 +4,13 @@ namespace App\Modules\Commands;
 
 
 use Illuminate\Console\Command;
+use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Str;
 
 class ModelingDirectory extends Command
 {
-    protected $signature = 'make:module {module_name} {[field]?} {--vue}';
+    protected $signature = 'make:module {module_name} {[field]?} {--vue} {--m} {--seed}';
     protected $description = 'Create a folder and files in the app directory';
 
 
@@ -24,6 +25,8 @@ class ModelingDirectory extends Command
         $moduleName = $this->argument('module_name');
         $ViewModuleName = $this->argument('module_name');
         $withVue = $this->option('vue');
+        $migration = $this->option('m');
+        $seed = $this->option('seed');
         $fields = [];
 
 
@@ -215,6 +218,43 @@ class ModelingDirectory extends Command
             }
         }
 
+        if ($migration) {
+            $table_name = '';
+            $formated_module = explode('/', $moduleName);
+            if (count($formated_module) > 1) {
+                $moduleName = implode('/', $formated_module);
+                $moduleName = Str::replace("/", "\\", $moduleName);
+                $table_name = Str::plural((Str::snake($formated_module[count($formated_module) - 1])));
+            } else {
+                $table_name = Str::plural((Str::snake($moduleName)));
+                $moduleName = Str::replace("/", "\\", $moduleName);
+            }
+            $migrationPath = "\App\\Modules\\Management\\{$moduleName}\\Database\\create_{$table_name}_table.php";
+            Artisan::call('migrate', ['--path' => $migrationPath]);
+        }
+
+        if ($seed) {
+            $formated_module = explode('/', $moduleName);
+            if (count($formated_module) > 1) {
+                $moduleName = implode('/', $formated_module);
+                $moduleName = Str::replace("/", "\\", $moduleName);
+            } else {
+                $moduleName = Str::replace("/", "\\", $moduleName);
+            }
+
+            $seederPath = "\App\\Modules\\Management\\{$moduleName}\\Seeder\\Seeder";
+            Artisan::call('db:seed', ['--class' => $seederPath]);
+        }
+
+
+
+        $filePath = base_path("app/Modules/Routes/ApiRoutes.php");
+        $newRoute = "include_once base_path(\"app/Modules/Management/{$ViewModuleName}/Routes/Route.php\");\n";
+        if (strpos(file_get_contents($filePath), $newRoute) === false) {
+            file_put_contents($filePath, $newRoute, FILE_APPEND);
+        }
+
+
 
 
         if ($withVue) {
@@ -285,7 +325,7 @@ class ModelingDirectory extends Command
                     File::put($PagesDirectory . '/' . $file, FormPage());
                 }
                 if ($file == 'Details.vue') {
-                    File::put($PagesDirectory . '/' . $file, DetailsPage());
+                    File::put($PagesDirectory . '/' . $file, DetailsPage($fields));
                 }
                 if ($file == 'Layout.vue') {
                     File::put($PagesDirectory . '/' . $file, LayoutPage());

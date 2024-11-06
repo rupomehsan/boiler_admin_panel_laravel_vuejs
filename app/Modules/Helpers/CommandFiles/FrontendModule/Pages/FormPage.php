@@ -74,17 +74,10 @@ if (!function_exists('FormPage')) {
             }),
             created: async function () {
                 let id = (this.param_id = this.\$route.params.id);
-
-                console.log("aa",this.setup);
-
-
-
                 this.reset_fields();
-
                 if (id) {
                     this.set_fields(id);
                 }
-
             },
             methods: {
                 ...mapActions(store, {

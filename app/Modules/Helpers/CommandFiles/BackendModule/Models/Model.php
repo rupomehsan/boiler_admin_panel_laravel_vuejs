@@ -6,19 +6,14 @@ if (!function_exists('Model')) {
     function Model($moduleName, $class_name)
     {
 
-
         $formated_module = explode('/', $moduleName);
-
         if (count($formated_module) > 1) {
-
             $moduleName = implode('/', $formated_module);
             $moduleName = Str::replace("/", "\\", $moduleName);
         } else {
             $moduleName = Str::replace("/", "\\", $moduleName);
         }
-
         $table_name = Str::plural((Str::snake($class_name)));
-
 
 
         $content = <<<"EOD"

@@ -1,27 +1,32 @@
 <?php
 
 use Illuminate\Support\Str;
-/*
-|--------------------------------------------------------------------------
-|
-|--------------------------------------------------------------------------
-|
-*/
 
 if (!function_exists('DetailsPage')) {
-    function DetailsPage()
+    function DetailsPage($fields)
     {
+        $form_fields = array_column($fields, 0);
+
+        // Generate dynamic table rows
+        $tableRows = implode("\n", array_map(function ($field) {
+            return <<<EOD
+            <tr>
+                <th>{$field}</th>
+                <th class="text-center">:</th>
+                <th>{{ item.{$field} }}</th>
+            </tr>
+            EOD;
+        }, $form_fields));
+
         $content = <<<"EOD"
         <template>
             <div>
                 <form @submit.prevent="submitHandler">
                     <div class="card">
                         <div class="card-header d-flex justify-content-between">
-                            <h5 class="text-capitalize">
-                                {{ setup.details_page_title }}
-                            </h5>
+                            <h5 class="text-capitalize">{{ setup.details_page_title }}</h5>
                             <div>
-                                <router-link class="btn btn-outline-warning btn-sm" :to="{ name: `All\${setup . route_prefix}` }">
+                                <router-link class="btn btn-outline-warning btn-sm" :to="{ name: `All\${setup.route_prefix}` }">
                                     {{ setup.all_page_title }}
                                 </router-link>
                             </div>
@@ -31,28 +36,7 @@ if (!function_exists('DetailsPage')) {
                                 <div class="col-lg-8">
                                     <table class="table quick_modal_table table-bordered">
                                         <tbody>
-                                            <tr>
-                                                <th>Name</th>
-                                                <th class="text-center">:</th>
-                                                <th>
-                                                    {{ item.name }}
-                                                </th>
-                                            </tr>
-                                            <tr>
-                                                <th>Email</th>
-                                                <th class="text-center">:</th>
-                                                <th>
-                                                    {{ item.email }}
-                                                </th>
-                                            </tr>
-                                            <tr>
-                                                <th>Phone</th>
-                                                <th class="text-center">:</th>
-                                                <th>
-                                                    {{ item.phone }}
-                                                </th>
-                                            </tr>
-
+                                            {$tableRows}
                                         </tbody>
                                     </table>
                                 </div>
@@ -60,7 +44,7 @@ if (!function_exists('DetailsPage')) {
                         </div>
                         <div class="card-footer">
                             <router-link class="btn btn-outline-warning btn-sm" :to="{
-                                name: `Edit\${setup . route_prefix}`,
+                                name: `Edit\${setup.route_prefix}`,
                                 params: { id: item.slug },
                             }">
                                 {{ setup.edit_page_title }}
@@ -69,9 +53,7 @@ if (!function_exists('DetailsPage')) {
                             <a href="" v-if="item.prev_slug" @click.prevent="get_data(item.prev_slug)"
                                 class="btn btn-secondary btn-sm ml-2">
                                 <i class="fa fa-angle-left"></i>
-                                Previous {{ setup.route_prefix }} ({{
-                                    item.prev_count
-                                }})
+                                Previous {{ setup.route_prefix }} ({{ item.prev_count }})
                             </a>
 
                             <a href="" v-if="item.next_slug" @click.prevent="get_data(item.next_slug)"
@@ -95,7 +77,7 @@ if (!function_exists('DetailsPage')) {
                 setup,
             }),
             created: async function () {
-                let id = (this.param_id = this.\$route.params.id);
+                let id = this.param_id = this.\$route.params.id;
                 await this.get_data(id);
             },
             methods: {
@@ -116,6 +98,7 @@ if (!function_exists('DetailsPage')) {
         </script>
 
         EOD;
+
         return $content;
     }
 }

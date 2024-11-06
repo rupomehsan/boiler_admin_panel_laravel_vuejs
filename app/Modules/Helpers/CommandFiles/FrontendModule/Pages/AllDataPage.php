@@ -11,6 +11,18 @@ use Illuminate\Support\Str;
 if (!function_exists('AllDataPage')) {
     function AllDataPage($fields)
     {
+        $form_fields = array_column($fields, 0);
+        $tableHeaders = implode("\n", array_map(fn($field) => "<th>{$field}</th>", $form_fields));
+        $tableData = implode("\n", array_map(fn($field) => "<td>{{ item.{$field} }}</td>", $form_fields));
+        $tableRows = implode("\n", array_map(function ($field) {
+            return <<<EOD
+            <tr>
+                <th>{$field}</th>
+                <th class="text-center">:</th>
+                <th>{{ item.{$field} }}</th>
+            </tr>
+            EOD;
+        }, $form_fields));
 
 
         $content = <<<"EOD"
@@ -53,9 +65,7 @@ if (!function_exists('AllDataPage')) {
                                                         :checked="isAllSelected" />
                                                 </th>
                                                 <th class="w-10">ID</th>
-                                                <th>name</th>
-                                                <th>email</th>
-                                                <th>phone</th>
+                                                {$tableHeaders}
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -125,13 +135,7 @@ if (!function_exists('AllDataPage')) {
                                                         class="form-check-input ml-0" type="checkbox">
                                                 </td>
                                                 <td>{{ item.id }}</td>
-                                                <td>
-                                                    <div class="text-warning cursor-pointer">
-                                                        {{ item.name }}
-                                                    </div>
-                                                </td>
-                                                <td>{{ item.email }}</td>
-                                                <td>{{ item.phone }}</td>
+                                                {$tableData}
 
                                             </tr>
 
@@ -268,28 +272,7 @@ if (!function_exists('AllDataPage')) {
                         <div class="data_content">
                             <table class="table quick_modal_table">
                                 <tbody>
-                                    <tr>
-                                        <th></th>
-                                        <th></th>
-                                        <th>
-                                            <img src="/avatar.png" alt="" style="height: 30px" />
-                                        </th>
-                                    </tr>
-                                    <tr>
-                                        <th>Name</th>
-                                        <th>:</th>
-                                        <th></th>
-                                    </tr>
-                                    <tr>
-                                        <th>Email</th>
-                                        <th>:</th>
-                                        <th></th>
-                                    </tr>
-                                    <tr>
-                                        <th>Phone Number</th>
-                                        <th>:</th>
-                                        <th></th>
-                                    </tr>
+                                   {$tableRows}
                                 </tbody>
                             </table>
                         </div>

@@ -28,7 +28,7 @@ if (!function_exists('ImportJob')) {
         use Illuminate\Queue\SerializesModels;
         use Illuminate\Support\Facades\Artisan;
 
-        class UserImportJob implements ShouldQueue
+        class ImportJob implements ShouldQueue
         {
             use Batchable, Dispatchable, InteractsWithQueue, Queueable, SerializesModels;
 
