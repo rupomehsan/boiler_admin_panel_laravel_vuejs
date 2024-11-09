@@ -10,31 +10,23 @@
         </div>
 
         <ul class="metismenu" id="menu">
+            <!-- <li class="menu-label">Management</li> -->
             <li>
                 <router-link :to="{ name: `adminDashboard` }" class="border " href="javascript:void();">
                     <div class="parent-icon"><i class="zmdi zmdi-view-dashboard"></i></div>
                     <div class="menu-title">Dashboard</div>
                 </router-link>
             </li>
-            <!-- <li class="menu-label">Blog Management</li> -->
-            <side-bar-drop-down-menus :icon="`fa fa-plus`" :menu_title="`User Management`" :menus="[
-                {
-                    route_name: `Alluser-managements`,
-                    title: `Users`,
-                },
-                {
-                    route_name: `Allblogs`,
-                    title: `Blogs`,
-                },
+            <!-- Management start -->
 
-                // {
-                //     route_name: `AllBlog`,
-                //     title: `Blogs`,
-                // },
+
+            <side-bar-drop-down-menus :icon="`fa fa-plus`" :menu_title="`TestModuleOne`" :menus="[
+                {
+                    route_name: `AllTestModuleOne`,
+                    title: `TestModuleOne`,
+                },
             ]" />
-
-
-
+<!-- Management end -->
 
         </ul>
     </div>

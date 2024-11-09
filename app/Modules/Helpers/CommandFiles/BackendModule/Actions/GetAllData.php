@@ -80,9 +80,8 @@ if (!function_exists('GetAllData')) {
                     }
 
                     if (\$start_date && \$end_date) {
-                        if (\$end_date > \$start_date) {
-                            \$data->where('created_at', '>=', \$start_date);
-                            \$data->where('created_at', '<=', \$end_date);
+                         if (\$end_date > \$start_date) {
+                            \$data->whereBetween('created_at', [\$start_date . ' 00:00:00', \$end_date . ' 23:59:59']);
                         } elseif (\$end_date == \$start_date) {
                             \$data->whereDate('created_at', \$start_date);
                         }

@@ -72,7 +72,7 @@ if (!function_exists('Migration')) {
                     }
 
                     //enum value set end
-                    if ($type == 'string') {
+                    if ($type == in_array($type, ['string', 'stringfile'])) {
                         $type = 'string';
                     } elseif (in_array($type, ['longtext', 'text'])) {
                         $type = 'text';
@@ -115,6 +115,7 @@ if (!function_exists('Migration')) {
                     \$table->string('slug', 50)->nullable();
                     \$table->enum('status', ['active', 'inactive'])->default('active');
                     \$table->timestamps();
+                    \$table->softDeletes();
                 });
             }
 

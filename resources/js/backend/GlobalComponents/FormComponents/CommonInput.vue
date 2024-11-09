@@ -12,6 +12,8 @@
                     'email',
                     'date',
                     'month',
+                    'radio',
+                    'checkbox',
                 ].includes(type)
             "
             class="mt-1 mb-3"
@@ -19,15 +21,7 @@
             <template v-if="name == 'tags'">
                 <!-- <input type="text" class="form-control" :value="tags" :name="name" data-role="tagsinput"> -->
                 <div class="bootstrap-tagsinput" style="min-height: 40px">
-                    <template v-for="item in set_blog_tags" :key="item">
-                        <span class="tag badge badge-light"
-                            >{{ item
-                            }}<span
-                                data-role="remove"
-                                @click="removeTag(item)"
-                            ></span
-                        ></span>
-                    </template>
+                  
                     <input
                         type="text"
                         placeholder=""

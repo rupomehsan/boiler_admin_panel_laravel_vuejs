@@ -1,4 +1,5 @@
 <template>
+    {{ name }}
     <div>
         <div :id="name"></div>
     </div>
@@ -13,7 +14,9 @@ export default {
         },
     },
     created() {
-        this.initialiteSummerNote('description')
+
+        this.initialiteSummerNote(this.name)
+        this.initialiteSummerNote(this.name)
         this.summerNoteTooltip('Style', 'dropdown-style')
         this.summerNoteTooltip('Font Family', 'dropdown-fontname')
         this.summerNoteTooltip('More Color', 'note-color')

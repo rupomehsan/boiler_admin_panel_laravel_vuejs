@@ -50,7 +50,7 @@ if (!function_exists('ImportJob')) {
             public function handle(): void
             {
 
-                \$model = \App\Modules\Management\UserManagement\Models\Model::class;
+                \$model = \App\\Modules\\Management\\{$moduleName}\\Models\\Model::class;
                 foreach (\$this->data as \$item) {
                     \$StoreData = array_combine(\$this->header, \$item);
                     \$model::create(\$StoreData);

@@ -3,8 +3,8 @@ import Layout from "../Layouts/Layout.vue";
 //Dashboard
 import Dashboard from "../Management/Dashboard/Dashboard.vue";
 // routes
-import user_management_routes from "../Management/TestModule/setup/routes.js";
-import blog_routes from "../Management/Blog/setup/routes.js";
+import TestModuleOneRoutes from '../Management/TestModuleOne/setup/routes.js';
+
 
 const routes = {
     path: '',
@@ -15,9 +15,11 @@ const routes = {
             component: Dashboard,
             name: 'adminDashboard',
         },
-        user_management_routes,
-        blog_routes,
+
+
+        TestModuleOneRoutes,
     ],
 };
 
 export default routes;
+

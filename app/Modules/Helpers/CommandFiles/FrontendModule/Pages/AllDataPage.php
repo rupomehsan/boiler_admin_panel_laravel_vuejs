@@ -190,15 +190,19 @@ if (!function_exists('AllDataPage')) {
                             <div class="card-footer py-2">
                                 <div class="d-flex flex-wrap align-items-center">
                                     <div class="mr-2 mb-2">
-                                        <a href="http://127.0.0.1:8000/super-admin#/user-managements/create"
-                                            class="btn action_btn btn-sm btn-info d-flex align-items-center">
-                                            <i class="fa fa-edit mr-2"></i> Create
-                                        </a>
+                                       <router-link
+                                            :to="{name: `Create\${setup . route_prefix}`}"
+                                            class="btn action_btn mr-2 btn-sm btn-info d-flex align-content-center align-items-center">
+                                            <i class="fa fa-edit mr-2"></i>
+                                            Create
+                                        </router-link>
                                     </div>
                                     <div class="mr-2 mb-2">
-                                        <a href="" @click.prevent="() => export_all_csv()"
-                                            class="btn action_btn btn-sm btn-primary d-flex align-items-center">
-                                            <i class="fa fa-print mr-2"></i> Export All
+                                         <a href=""
+                                            @click.prevent="()=>export_all_csv()"
+                                            class="btn action_btn mr-2 btn-sm btn-primary d-flex align-content-center align-items-center">
+                                            <i class="fa fa-print mr-2"></i>
+                                            Export All
                                         </a>
                                     </div>
                                     <div class="mr-2 mb-2" v-if="this.selected?.length">
@@ -272,7 +276,7 @@ if (!function_exists('AllDataPage')) {
                         <div class="data_content">
                             <table class="table quick_modal_table">
                                 <tbody>
-                                   {$tableRows}
+                                   {\$tableRows}
                                 </tbody>
                             </table>
                         </div>

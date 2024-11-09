@@ -10,7 +10,8 @@ use Illuminate\Support\Str;
 
 class ModelingDirectory extends Command
 {
-    protected $signature = 'make:module {module_name} {[field]?} {--vue} {--m} {--seed}';
+    // protected $signature = 'make:module {module_name} {[field]?} {--vue} {--m} {--seed}';
+    protected $signature = 'make:module {module_name} {[field]?} {--vue}';
     protected $description = 'Create a folder and files in the app directory';
 
 
@@ -25,8 +26,8 @@ class ModelingDirectory extends Command
         $moduleName = $this->argument('module_name');
         $ViewModuleName = $this->argument('module_name');
         $withVue = $this->option('vue');
-        $migration = $this->option('m');
-        $seed = $this->option('seed');
+        // $migration = $this->option('m');
+        // $seed = $this->option('seed');
         $fields = [];
 
 
@@ -218,7 +219,7 @@ class ModelingDirectory extends Command
             }
         }
 
-        if ($migration) {
+        if (true) {
             $table_name = '';
             $formated_module = explode('/', $moduleName);
             if (count($formated_module) > 1) {
@@ -233,7 +234,7 @@ class ModelingDirectory extends Command
             Artisan::call('migrate', ['--path' => $migrationPath]);
         }
 
-        if ($seed) {
+        if (true) {
             $formated_module = explode('/', $moduleName);
             if (count($formated_module) > 1) {
                 $moduleName = implode('/', $formated_module);
@@ -253,6 +254,8 @@ class ModelingDirectory extends Command
         if (strpos(file_get_contents($filePath), $newRoute) === false) {
             file_put_contents($filePath, $newRoute, FILE_APPEND);
         }
+
+
 
 
 
@@ -359,6 +362,56 @@ class ModelingDirectory extends Command
             } else {
                 echo "Source directory does not exist.";
             }
+
+
+            //dynamic roter link making
+            //dynamic roter link making
+
+
+            $filePath = base_path("resources/js/backend/Views/{$role}/Routes/routes.js");
+            $routeImport = "import {$ViewModuleName}Routes from '../Management/{$ViewModuleName}/setup/routes.js';\n";
+            $newRouteChild = "        {$ViewModuleName}Routes,\n";
+            $fileContent = file_get_contents($filePath);
+
+            if (strpos($fileContent, $routeImport) === false) {
+                $routesCommentPosition = strpos($fileContent, "// routes");
+                $insertPosition = strpos($fileContent, "\n", $routesCommentPosition) + 1;
+                $fileContent = substr($fileContent, 0, $insertPosition) . $routeImport . substr($fileContent, $insertPosition);
+            }
+            if (strpos($fileContent, $newRouteChild) === false) {
+                $childrenPosition = strpos($fileContent, "children: [");
+                $insertPosition = strpos($fileContent, "    ],", $childrenPosition);
+                $fileContent = substr($fileContent, 0, $insertPosition) . $newRouteChild . substr($fileContent, $insertPosition);
+            }
+            file_put_contents($filePath, $fileContent);
+
+            //sidebar dynamic  making
+            //sidebar dynamic  making
+
+            $filePath = base_path("resources/js/backend/Views/{$role}/Layouts/Partials/Sidebar/Index.vue");
+            $routeImport = "import SideBarDropDownMenus from './SideBarDropDownMenus.vue';\n";
+            $sidebarMenuContent = "<side-bar-drop-down-menus :icon=\"`fa fa-plus`\" :menu_title=\"`{$ViewModuleName}`\" :menus=\"[
+                {
+                    route_name: `All{$ViewModuleName}`,
+                    title: `{$ViewModuleName}`,
+                },
+            ]\" />\n";
+
+
+            $fileContent = file_get_contents($filePath);
+
+
+            if (strpos($fileContent, $routeImport) === false) {
+                $routesCommentPosition = strpos($fileContent, "// routes");
+                $insertPosition = strpos($fileContent, "\n", $routesCommentPosition) + 1;
+                $fileContent = substr($fileContent, 0, $insertPosition) . $routeImport . substr($fileContent, $insertPosition);
+            }
+
+            if (strpos($fileContent, $sidebarMenuContent) === false) {
+                $managementEndPosition = strpos($fileContent, "<!-- Management end -->");
+                $fileContent = substr($fileContent, 0, $managementEndPosition) . $sidebarMenuContent . substr($fileContent, $managementEndPosition);
+            }
+            file_put_contents($filePath, $fileContent);
         }
     }
 }

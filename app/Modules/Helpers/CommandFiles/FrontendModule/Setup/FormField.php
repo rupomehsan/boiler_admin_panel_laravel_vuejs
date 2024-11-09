@@ -12,13 +12,14 @@ if (!function_exists('FormField')) {
     function FormField($fields)
     {
 
+
+
         $content = <<<EOD
         export default [
         EOD;
 
         if (count($fields)) {
             foreach ($fields as $fieldName) {
-                // dd($fieldName);
                 $label = Str::of($fieldName[0])->snake()->replace('_', ' ');
                 $content .= "\n\t{\n";
                 $content .= "\t\tname: \"$fieldName[0]\",\n";
@@ -33,29 +34,34 @@ if (!function_exists('FormField')) {
                         case 'date':
                             $content .= "\t\ttype: \"date\",\n";
                             break;
-                        case 'number':
+                        case 'datetime':
+                            $content .= "\t\ttype: \"datetime\",\n";
+                            break;
+                        case 'int':
                         case 'integer':
+                        case 'bigint':
                             $content .= "\t\ttype: \"number\",\n";
                             break;
-                        case 'file':
+                        case 'tinyint':
+                        case 'boolean':
+                            $content .= "\t\ttype: \"radio\",\n";
+                            break;
+                        case 'stringfile':
                             $content .= "\t\ttype: \"file\",\n";
                             $content .= "\t\tmultiple: \"false\",\n";
                             break;
-                        case 'select':
-                        case 'boolean':
-                        case 'tinyint':
+                        case strpos($type, 'enum-') === 0: // Handle enums dynamically
+                            $options = explode('.', str_replace('enum-', '', $type));
                             $content .= "\t\ttype: \"select\",\n";
-                            $content .= "\t\tlabel: \"Select default  $label\",\n";
+                            $content .= "\t\tlabel: \"Select $label\",\n";
                             $content .= "\t\tmultiple: false,\n";
                             $content .= "\t\tdata_list: [\n";
-                            $content .= "\t\t\t{\n";
-                            $content .= "\t\t\t\tlabel: \"Active\",\n";
-                            $content .= "\t\t\t\tvalue: \"active\",\n";
-                            $content .= "\t\t\t},\n";
-                            $content .= "\t\t\t{\n";
-                            $content .= "\t\t\t\tlabel: \"Inactive\",\n";
-                            $content .= "\t\t\t\tvalue: \"inactive\",\n";
-                            $content .= "\t\t\t},\n";
+                            foreach ($options as $option) {
+                                $content .= "\t\t\t{\n";
+                                $content .= "\t\t\t\tlabel: \"" . ucfirst($option) . "\",\n";
+                                $content .= "\t\t\t\tvalue: \"$option\",\n";
+                                $content .= "\t\t\t},\n";
+                            }
                             $content .= "\t\t],\n";
                             break;
                         case 'password':

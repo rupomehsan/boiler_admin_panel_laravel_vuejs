@@ -14,15 +14,6 @@ if (!function_exists('Seeder')) {
             $moduleName = Str::replace("/", "\\", $moduleName);
         }
 
-        $formatField = [];
-        if (count($fields)) {
-            foreach ($fields as $field) {
-                $formatField[] = [
-                    $field[0] => $field[0]
-                ];
-            }
-        }
-
 
 
 
@@ -33,37 +24,75 @@ if (!function_exists('Seeder')) {
         namespace App\\Modules\\Management\\{$moduleName}\\Seeder;
 
         use Illuminate\Database\Seeder as SeederClass;
+        use Faker\Factory as Faker;
 
         class Seeder extends SeederClass
         {
             /**
              * Run the database seeds.
-             php artisan db:seed --class="\App\\Modules\\Management\\{$moduleName}\\Seeder\\Seeder"
+             php artisan db:seed --class="\\App\\Modules\\Management\\{$moduleName}\\Seeder\\Seeder"
              */
             static \$model = \App\\Modules\\Management\\{$moduleName}\\Models\\Model::class;
+
             public function run(): void
             {
-
+                \$faker = Faker::create();
                 self::\$model::truncate();
-                for (\$i = 1; \$i < 100; \$i++) {
-                self::\$model::create([
 
+                for (\$i = 1; \$i < 100; \$i++) {
+                    self::\$model::create([
         EOD;
-        if (count($formatField)) {
-            foreach ($formatField as $fieldName => $rule) {
-                if (is_array($rule)) {
-                    foreach ($rule as $field => $value) {
-                        $content .= "            '$field' => facker()->name,\n";
-                    }
+
+        if (count($fields)) {
+            foreach ($fields as $field) {
+                [$fieldName, $fieldType] = $field;
+
+                switch ($fieldType) {
+                    case 'string':
+                        $content .= "                '$fieldName' => \$faker->sentence,\n";
+                        break;
+                    case 'text':
+                        $content .= "                '$fieldName' => \$faker->paragraph,\n";
+                        break;
+                    case 'int':
+                        $content .= "                '$fieldName' => \$faker->randomNumber,\n";
+                        break;
+                    case strpos($fieldType, 'enum-') === 0: // Handles cases like 'enum-male.female'
+                        $options = explode('.', str_replace('enum-', '', $fieldType));
+                        $content .= "                '$fieldName' => \$faker->randomElement(" . var_export($options, true) . "),\n";
+                        break;
+                    case 'json':
+                        $content .= "                '$fieldName' => json_encode([\$faker->word, \$faker->word]),\n";
+                        break;
+                    case 'float':
+                        $content .= "                '$fieldName' => \$faker->randomFloat(2, 0, 1000),\n";
+                        break;
+                    case 'tinyint':
+                        $content .= "                '$fieldName' => \$faker->boolean,\n";
+                        break;
+                    case 'longtext':
+                        $content .= "                '$fieldName' => \$faker->text,\n";
+                        break;
+                    case 'date':
+                        $content .= "                '$fieldName' => \$faker->date,\n";
+                        break;
+                    case 'datetime':
+                        $content .= "                '$fieldName' => \$faker->dateTime,\n";
+                        break;
+                    default:
+                        $content .= "                '$fieldName' => null,\n";
+                        break;
                 }
             }
         }
+
         $content .= <<<EOD
                     ]);
                 }
             }
         }
         EOD;
+
         return $content;
     }
 }

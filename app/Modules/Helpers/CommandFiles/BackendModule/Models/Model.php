@@ -23,9 +23,10 @@ if (!function_exists('Model')) {
 
             use Illuminate\Database\Eloquent\Model as EloquentModel;
             use Illuminate\Support\Str;
-
+            use Illuminate\Database\Eloquent\SoftDeletes;
             class Model extends EloquentModel
             {
+                use SoftDeletes;
                 protected \$table = "{$table_name}";
                 protected \$guarded = [];
 
@@ -35,8 +36,8 @@ if (!function_exists('Model')) {
                         \$random_no = random_int(100, 999) . \$data->id . random_int(100, 999);
                         \$slug = \$data->title . " " . \$random_no;
                         \$data->slug = Str::slug(\$slug); //use Illuminate\Support\Str;
-                        if (strlen(\$data->slug) > 150) {
-                            \$data->slug = substr(\$data->slug, strlen(\$data->slug) - 150, strlen(\$data->slug));
+                        if (strlen(\$data->slug) > 50) {
+                            \$data->slug = substr(\$data->slug, strlen(\$data->slug) - 50, strlen(\$data->slug));
                         }
                         if (auth()->check()) {
                             \$data->creator = auth()->user()->id;
@@ -53,6 +54,10 @@ if (!function_exists('Model')) {
                  public function scopeInactive(\$q)
                 {
                     return \$q->where('status', 'inactive');
+                }
+                 public function scopeTrased(\$q)
+                {
+                    return \$q->onlyTrashed();
                 }
             }
             EOD;
