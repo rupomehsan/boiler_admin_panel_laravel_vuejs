@@ -21,11 +21,11 @@ export default {
 <style>
 #authentication {
     background-color: #080710;
+    min-height: 600px;
 }
 
 #authentication .background {
     width: 430px;
-    height: calc(100vh - 200px);
     position: absolute;
     transform: translate(-50%, -50%);
     left: 50%;
@@ -66,7 +66,6 @@ export default {
     color: #ffffff;
     letter-spacing: 0.5px;
     outline: none;
-    border: none;
 }
 
 #authentication form span {
@@ -111,7 +110,7 @@ export default {
     color: #e5e5e5;
 }
 
-#authentication button {
+#authentication .btn-outline-success {
     width: 100%;
     color: #080710;
     padding: 15px 0;

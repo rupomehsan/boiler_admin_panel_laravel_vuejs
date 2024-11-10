@@ -19,14 +19,8 @@
             </li>
             <!-- Management start -->
 
-
-            <side-bar-drop-down-menus :icon="`fa fa-plus`" :menu_title="`TestModuleOne`" :menus="[
-                {
-                    route_name: `AllTestModuleOne`,
-                    title: `TestModuleOne`,
-                },
-            ]" />
-<!-- Management end -->
+            <side-bar-single-menu :icon="`fa fa-plus`" :menu_title="`User`" :route_name="`AllUser`" />
+            <!-- Management end -->
 
         </ul>
     </div>

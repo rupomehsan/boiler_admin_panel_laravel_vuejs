@@ -19,6 +19,7 @@
             </li>
             <!-- Management start -->
 
+            <side-bar-single-menu :icon="`fa fa-plus`" :menu_title="`User`" :route_name="`AllUser`" />
             <!-- Management end -->
 
         </ul>

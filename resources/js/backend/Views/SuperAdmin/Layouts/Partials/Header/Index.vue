@@ -212,7 +212,7 @@ export default {
             document.getElementById("wrapper").classList.toggle("toggled");
         },
         logout: function () {
-            localStorage.removeItem("token");
+            localStorage.removeItem("admin_token");
             window.location.href = "/";
         },
     },

@@ -2,28 +2,32 @@
     <Layout>
         <div class="row justify-content-center align-items-center py-5">
             <div class="col-md-6 ">
-                <form @submit.prevent="LoginSubmitHandler">
+                <form @submit.prevent="RegisterSubmitHandler">
                     <h3>Register Here</h3>
                     <div class="form-group">
                         <label for="name">Name</label>
-                        <input type="name" placeholder="Enter your name" name="name" onchange="errorReset(event)">
+                        <input class="form-control" type="name" placeholder="Enter your name" name="name"
+                            onchange="errorReset(event)">
                         <p class="alert-danger" id="name"></p>
                     </div>
                     <div class="form-group">
                         <label for="phone">Phone</label>
-                        <input type="phone" placeholder="Enter your phone" name="phone" onchange="errorReset(event)">
+                        <input class="form-control" type="phone" placeholder="Enter your phone" name="phone_number"
+                            onchange="errorReset(event)">
                         <p class="alert-danger" id="phone"></p>
                     </div>
                     <div class="form-group">
                         <label for="email">Email</label>
-                        <input type="email" placeholder="Enter your email" name="email" onchange="errorReset(event)">
+                        <input class="form-control" type="email" placeholder="Enter your email" name="email"
+                            onchange="errorReset(event)">
                         <p class="alert-danger" id="email"></p>
                     </div>
                     <div class="form-group">
                         <label for="password">Password</label>
                         <div class="password-icon">
-                            <input class="" :type="showPassword ? 'text' : 'password'" placeholder="Enter your password"
-                                name="password" value="@12345678" onchange="errorReset(event)">
+                            <input class="form-control" :type="showPassword ? 'text' : 'password'"
+                                placeholder="Enter your password" name="password" value="@12345678"
+                                onchange="errorReset(event)">
                             <i class="fa-solid fa-eye-slash" :class="{ 'fa-eye': showPassword }"
                                 @click="showPassword = !showPassword"></i>
                         </div>
@@ -32,10 +36,11 @@
                     </div>
 
                     <button class="my-4 btn btn-outline-success" type="submit" id="spiner">
-                        <span>Log In</span>
-                        <span class="spinner-border spinner-border-sm d-none mx-2" role="status"
-                            aria-hidden="true"></span>
-                        <span class="visually-hidden">Loading...</span>
+                        <span v-if="!loading">Register</span>
+                        <template v-if="loading">
+                            <span class="spinner-border spinner-border-sm mx-2" role="status" aria-hidden="true"></span>
+                            <span class="">Loading...</span>
+                        </template>
                     </button>
                     <span>Dont have an account ?</span>
                     <Link href="/login" class="font-size-12 text-primary"> Login</Link> <br>
@@ -68,10 +73,35 @@ export default {
 
     data() {
         return {
-            showPassword: false
+            showPassword: false,
+            loading: false,
         }
     },
+    methods: {
+
+        RegisterSubmitHandler: async function () {
+            try {
+                this.loading = true
+                let formData = new FormData(event.target);
+                let response = await axios.post('/register', formData);
+                console.log(response);
+
+                if (response.data?.status === 'success') {
+                    let data = response.data?.data;
+                    if (data.access_token) {
+                        localStorage.setItem('user_token', data.access_token);
+                        window.location.href = '/';
+                    }
+                }
+            } catch (error) {
+                console.error("Login error", error);
+            } finally {
+                this.loading = false
+            }
+        }
+
+
+    }
 
 }
 </script>
-

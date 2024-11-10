@@ -7,7 +7,7 @@ window.axios.defaults.headers.common["X-Requested-With"] = "XMLHttpRequest";
 axios.defaults.baseURL = location.origin + "/api/v1/";
 
 async function setToken(config = {}) {
-    config.headers.set('Authorization', `Bearer ${localStorage.getItem('token')}`);
+    config.headers.set('Authorization', `Bearer ${localStorage.getItem('admin_token')}`);
 }
 
 axios.interceptors.request.use(
@@ -95,7 +95,7 @@ window.axios.interceptors.response.use(
                 error?.response?.data ? error?.response?.data : error.response
             );
         } else {
-            console.log(error.response || error);
+            // console.log(error.response || error);
             if (error.response.data.status == "server_error") {
                 window.s_warning(error.response.data.message);
             }
@@ -107,7 +107,7 @@ window.axios.interceptors.response.use(
         // if(error.response.status == 401){
         //     window.clear_session();
         // }
-        console.log(error);
+        // console.log(error);
         // let status = error.response.status;
         // window.s_alert('error '+status+': '+error.response?.statusText,'error')
         throw error;
