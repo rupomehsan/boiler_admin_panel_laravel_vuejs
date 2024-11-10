@@ -72,7 +72,7 @@ if (!function_exists('BulkActionsValidation')) {
                 public function rules(): array
                 {
                     return [
-                        'action' => 'required|sometimes|in:active,inactive,soft_delete,delete',
+                        'action' => 'required|sometimes|in:active,inactive,soft_delete,restore,destroy',
                         'ids' => [
                             'array',
                             function (\$attribute, \$value, \$fail) {

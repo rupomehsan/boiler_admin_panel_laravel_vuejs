@@ -230,20 +230,22 @@ class ModelingDirectory extends Command
                 $table_name = Str::plural((Str::snake($moduleName)));
                 $moduleName = Str::replace("/", "\\", $moduleName);
             }
-            $migrationPath = "\App\\Modules\\Management\\{$moduleName}\\Database\\create_{$table_name}_table.php";
+
+            $migrationPath = "\App\\Modules\\Management\\{$ViewModuleName}\\Database\\create_{$table_name}_table.php";
             Artisan::call('migrate', ['--path' => $migrationPath]);
         }
 
         if (true) {
-            $formated_module = explode('/', $moduleName);
+            $SeederDirectory = $ViewModuleName;
+            $formated_module = explode('/', $SeederDirectory);
             if (count($formated_module) > 1) {
-                $moduleName = implode('/', $formated_module);
-                $moduleName = Str::replace("/", "\\", $moduleName);
+                $SeederDirectory = implode('/', $formated_module);
+                $SeederDirectory = Str::replace("/", "\\", $SeederDirectory);
             } else {
-                $moduleName = Str::replace("/", "\\", $moduleName);
+                $SeederDirectory = Str::replace("/", "\\", $SeederDirectory);
             }
 
-            $seederPath = "\App\\Modules\\Management\\{$moduleName}\\Seeder\\Seeder";
+            $seederPath = "\App\\Modules\\Management\\{$SeederDirectory}\\Seeder\\Seeder";
             Artisan::call('db:seed', ['--class' => $seederPath]);
         }
 
@@ -266,6 +268,8 @@ class ModelingDirectory extends Command
             $vueDirectory = resource_path("js/backend/Views/{$role}/Management/");
             $vue_format_dir = explode('/', $ViewModuleName);
             $vue_module_dir = null;
+            $vue_module_path_dir = $ViewModuleName;
+
 
             if (count($vue_format_dir) > 1) {
                 $ViewModuleName = end($vue_format_dir);
@@ -298,7 +302,7 @@ class ModelingDirectory extends Command
                 File::makeDirectory($StoreDirectory);
             }
 
-            // dd($module_name);
+
 
 
 
@@ -369,7 +373,7 @@ class ModelingDirectory extends Command
 
 
             $filePath = base_path("resources/js/backend/Views/{$role}/Routes/routes.js");
-            $routeImport = "import {$ViewModuleName}Routes from '../Management/{$ViewModuleName}/setup/routes.js';\n";
+            $routeImport = "import {$ViewModuleName}Routes from '../Management/{$vue_module_path_dir}/setup/routes.js';\n";
             $newRouteChild = "        {$ViewModuleName}Routes,\n";
             $fileContent = file_get_contents($filePath);
 
@@ -390,12 +394,7 @@ class ModelingDirectory extends Command
 
             $filePath = base_path("resources/js/backend/Views/{$role}/Layouts/Partials/Sidebar/Index.vue");
             $routeImport = "import SideBarDropDownMenus from './SideBarDropDownMenus.vue';\n";
-            $sidebarMenuContent = "<side-bar-drop-down-menus :icon=\"`fa fa-plus`\" :menu_title=\"`{$ViewModuleName}`\" :menus=\"[
-                {
-                    route_name: `All{$ViewModuleName}`,
-                    title: `{$ViewModuleName}`,
-                },
-            ]\" />\n";
+            $sidebarMenuContent = "<side-bar-single-menu :icon=\"`fa fa-plus`\" :menu_title=\"`{$ViewModuleName}`\"  :route_name=\"`All{$ViewModuleName}`\" />\n";
 
 
             $fileContent = file_get_contents($filePath);

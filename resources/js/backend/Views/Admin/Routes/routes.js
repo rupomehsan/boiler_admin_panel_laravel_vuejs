@@ -6,9 +6,6 @@ import Dashboard from "../Management/Dashboard/Dashboard.vue";
 
 
 
-
-
-
 const routes = {
     path: '',
     component: Layout,
@@ -18,6 +15,7 @@ const routes = {
             component: Dashboard,
             name: 'adminDashboard',
         },
+
 
 
     ],

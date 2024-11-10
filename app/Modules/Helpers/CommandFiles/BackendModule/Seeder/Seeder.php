@@ -48,8 +48,13 @@ if (!function_exists('Seeder')) {
                 [$fieldName, $fieldType] = $field;
 
                 switch ($fieldType) {
-                    case 'string':
-                        $content .= "                '$fieldName' => \$faker->sentence,\n";
+                    case str_starts_with($fieldType, 'string'):
+                        if (preg_match('/^string-(\d+)$/', $fieldType, $matches)) {
+                            $length = (int) $matches[1];
+                            $content .= "                '$fieldName' => \$faker->text($length),\n";
+                        } else {
+                            $content .= "                '$fieldName' => \$faker->sentence,\n";
+                        }
                         break;
                     case 'text':
                         $content .= "                '$fieldName' => \$faker->paragraph,\n";

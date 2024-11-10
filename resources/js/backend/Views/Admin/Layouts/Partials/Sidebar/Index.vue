@@ -19,7 +19,14 @@
             </li>
             <!-- Management start -->
 
-            <!-- Management end -->
+
+            <side-bar-drop-down-menus :icon="`fa fa-plus`" :menu_title="`TestModuleOne`" :menus="[
+                {
+                    route_name: `AllTestModuleOne`,
+                    title: `TestModuleOne`,
+                },
+            ]" />
+<!-- Management end -->
 
         </ul>
     </div>

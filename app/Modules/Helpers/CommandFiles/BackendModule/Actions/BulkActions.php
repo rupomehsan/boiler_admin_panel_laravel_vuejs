@@ -50,13 +50,7 @@ if (!function_exists('BulkActions')) {
                             return messageResponse("Items are deleted Successfully ");
                         }
                     }
-                    if (request()->input('action') == 'delete') {
-                        if (request()->input('ids') && count(request()->input('ids'))) {
-                            \$ids = request()->input('ids');
-                            self::\$model::whereIn('id', \$ids)->delete();
-                            return messageResponse("Items are deleted Successfully ");
-                        }
-                    }
+
                     if (request()->input('action') == 'restore') {
                         if (request()->input('ids') && count(request()->input('ids'))) {
                             \$ids = request()->input('ids');
