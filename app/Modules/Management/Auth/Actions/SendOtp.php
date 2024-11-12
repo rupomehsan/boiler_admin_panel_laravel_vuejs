@@ -2,9 +2,10 @@
 
 namespace App\Modules\Management\Auth\Actions;
 
-use App\Modules\Auth\Validations\LoginValidation;
+
+use App\Modules\Mail\OTPSendMail;
 use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Mail;
 
 class SendOtp
 {
@@ -35,6 +36,9 @@ class SendOtp
                 'created_at' => now(),
                 'updated_at' => now(),
             ]);
+
+
+            Mail::to($requestData['email'])->send(new OTPSendMail($otp));
 
             return messageResponse('OTP successfully send', [
                 'email' => $requestData['email'],

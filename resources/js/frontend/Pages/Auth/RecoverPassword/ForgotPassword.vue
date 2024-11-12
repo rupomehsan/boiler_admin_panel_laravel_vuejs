@@ -18,8 +18,8 @@
                             <span class="">Loading...</span>
                         </template>
                     </button>
-                    <Link href="/" class="text-primary">Go to home page</Link> <br>
-                    <Link href="/verify-code" class="text-info">Go to verify page</Link> <br>
+                    <!-- <Link href="/" class="text-primary">Go to home page</Link> <br>
+                    <Link href="/verify-code" class="text-info">Go to verify page</Link> <br> -->
                 </form>
             </div>
         </div>

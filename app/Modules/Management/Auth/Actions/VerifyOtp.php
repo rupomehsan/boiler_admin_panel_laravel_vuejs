@@ -13,17 +13,11 @@ class VerifyOtp
         try {
             $requestData = request()->all();
 
-            if (empty($requestData['code'])) {
+            if (in_array("", $requestData['code'], true) || in_array(null, $requestData['code'], true)) {
                 return messageResponse('Fields must not be empty', [], 400, 'error');
             }
 
             $OTP = implode('', array_map(fn($digit) => $digit ?? '0', array_pad($requestData['code'], 6, '0')));
-
-            if (strlen($OTP) < 6) {
-                return messageResponse('OTP must be 6 digits', [], 400, 'error');
-            }
-
-
             $otpRecordQuery = DB::table('otp_codes')
                 ->where('email', $requestData['email'])
                 ->where('otp', $OTP);

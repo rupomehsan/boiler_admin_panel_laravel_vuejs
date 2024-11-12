@@ -21,10 +21,11 @@ export default {
 <style>
 #authentication {
     background-color: #080710;
-    min-height: 600px;
+    min-height: 100vh;
 }
 
 #authentication .background {
+    display: none;
     width: 430px;
     position: absolute;
     transform: translate(-50%, -50%);
@@ -52,7 +53,6 @@ export default {
 }
 
 #authentication form {
-    width: 400px;
     background-color: rgba(255, 255, 255, 0.13);
     border-radius: 10px;
     backdrop-filter: blur(10px);
@@ -187,7 +187,6 @@ export default {
 }
 
 #authentication #userList {
-    height: 520px;
     overflow-y: auto;
     background-color: rgba(255, 255, 255, 0.13);
     backdrop-filter: blur(10px);

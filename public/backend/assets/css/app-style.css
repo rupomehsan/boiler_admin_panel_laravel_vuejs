@@ -1198,7 +1198,7 @@ body.bg-theme15 {
     border-radius: 50%;
     position: absolute;
     top: -42px;
-    left: 15%;
+    left: 50%;
     max-width: 75px;
     border: 3px solid rgba(255, 255, 255, 1);
     -webkit-transform: translate(-50%, 0%);

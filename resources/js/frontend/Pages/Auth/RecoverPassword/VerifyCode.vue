@@ -21,8 +21,8 @@
                     </template>
                 </button>
 
-                <Link href="/" class="text-primary">Go to home page</Link> <br />
-                <Link href="/reset-password" class="text-info">Reset password</Link> <br />
+                <!-- <Link href="/" class="text-primary">Go to home page</Link> <br />
+                <Link href="/reset-password" class="text-info">Reset password</Link> <br /> -->
             </form>
         </div>
     </div>

@@ -1,7 +1,7 @@
 <template>
     <Layout>
         <div class="row justify-content-center align-items-center gap-2 py-5">
-            <div class="col-md-6 ">
+            <div class="col-md-5 ">
                 <form @submit.prevent="LoginSubmitHandler">
                     <h3>Login Here</h3>
                     <div class="form-group">
