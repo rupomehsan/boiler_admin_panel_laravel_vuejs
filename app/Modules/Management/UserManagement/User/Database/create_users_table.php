@@ -19,6 +19,7 @@ return new class extends Migration
             $table->string('password', 100)->nullable();
             $table->string('phone_number', 15)->nullable();
             $table->string('image', 100)->nullable();
+            $table->string('address')->nullable();
             $table->string('remember_token')->nullable();
             $table->integer('role_id')->nullable();
 

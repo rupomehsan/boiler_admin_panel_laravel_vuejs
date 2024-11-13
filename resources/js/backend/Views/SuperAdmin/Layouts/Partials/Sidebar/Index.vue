@@ -14,6 +14,7 @@
             <img class="rounded-circle p-1" height="70" width="70" :src="`${auth_info.image ?? 'avatar.png'}`" alt="">
             <p class="mt-2">Mr. {{ auth_info.name }}</p>
         </div>
+        <hr>
 
         <ul class="metismenu" id="menu">
             <!-- <li class="menu-label">Management</li> -->

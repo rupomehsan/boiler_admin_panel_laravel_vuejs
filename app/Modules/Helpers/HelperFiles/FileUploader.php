@@ -13,7 +13,7 @@ use Illuminate\support\Str;
 |--------------------------------------------------------------------------
 */
 
-if (!function_exists('FileUploader')) {
+if (!function_exists('uploader')) {
     function uploader($source, $path, $width = null, $height = null, $file_name = null)
     {
         // dd($source->getClientMimeType(), $source->getClientOriginalExtension(), $source->getClientOriginalName());
@@ -53,12 +53,6 @@ if (!function_exists('FileUploader')) {
         }
         $full_name = $path . '/' . $file_name;
         $image->save(public_path($full_name));
-
-        try {
-            Storage::disk('public')->putFileAs($path, public_path($full_name), $file_name);
-        } catch (\Throwable $th) {
-        }
-
         return $full_name;
     }
 }

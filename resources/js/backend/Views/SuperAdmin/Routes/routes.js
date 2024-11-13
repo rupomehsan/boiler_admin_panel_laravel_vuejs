@@ -2,8 +2,8 @@
 import Layout from "../Layouts/Layout.vue";
 //Dashboard
 import Dashboard from "../Management/Dashboard/Dashboard.vue";
-//profile
-import Profile from "../Management/Profile/Index.vue";
+//SettingsRoutes
+import SettingsRoutes from "../Management/Settings/setup/routes.js";
 // routes
 import UserRoutes from '../Management/UserManagement/User/setup/routes.js';
 
@@ -19,12 +19,11 @@ const routes = {
             component: Dashboard,
             name: 'adminDashboard',
         },
-        {
-            path: 'profile',
-            component: Profile,
-            name: 'Profile',
-        },
+
         UserRoutes,
+
+        //settings
+        SettingsRoutes
     ],
 };
 

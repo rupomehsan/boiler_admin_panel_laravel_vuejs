@@ -8,7 +8,7 @@
         <!--End content-wrapper-->
 
         <!--start color switcher-->
-        <footer></footer>
+        <Footer></Footer>
         <!--end color switcher-->
     </div>
 

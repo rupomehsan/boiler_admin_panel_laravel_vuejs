@@ -184,7 +184,7 @@
 
                         <li class="dropdown-divider"></li>
                         <li class="dropdown-item">
-                            <router-link :to="{ name: 'Profile' }">
+                            <router-link :to="{ name: 'AdminProfileSettings' }">
                                 <i class="zmdi zmdi-settings mr-3"></i>Profile
                             </router-link>
                         </li>

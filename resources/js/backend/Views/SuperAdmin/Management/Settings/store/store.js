@@ -1,6 +1,6 @@
 import { defineStore } from "pinia";
 
-export const test_module_setup_store = defineStore("test_module_setup_store", {
+export const settings_store = defineStore("settings_store", {
     state: () => ({
         all_data: {},
         single_data: {},

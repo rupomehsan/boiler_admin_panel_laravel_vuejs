@@ -8,6 +8,7 @@
             </router-link>
             <div class="close-btn"><i class="zmdi zmdi-close" @click="toggle_menu"></i></div>
         </div>
+        <hr>
 
         <ul class="metismenu" id="menu">
             <!-- <li class="menu-label">Management</li> -->
