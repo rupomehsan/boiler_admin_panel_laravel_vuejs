@@ -15,7 +15,6 @@
             <p class="mt-2">Mr. {{ auth_info.name }}</p>
         </div>
         <hr>
-
         <ul class="metismenu" id="menu">
             <!-- <li class="menu-label">Management</li> -->
             <li>
@@ -26,6 +25,8 @@
             </li>
             <!-- Management start -->
             <side-bar-single-menu :icon="`fa fa-plus`" :menu_title="`User`" :route_name="`AllUser`" />
+
+
             <!-- Management end -->
         </ul>
 

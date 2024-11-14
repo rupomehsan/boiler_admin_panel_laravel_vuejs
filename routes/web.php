@@ -7,6 +7,8 @@
 |
 */
 
+use Illuminate\Support\Facades\Route;
+
 require_once __DIR__ . '/../App/Modules/Routes/FrontendRoutes.php';
 
 
@@ -35,4 +37,6 @@ require_once __DIR__ . '/test.php';
 |
 */
 
-
+Route::get('test', function () {
+    return view('test');
+});

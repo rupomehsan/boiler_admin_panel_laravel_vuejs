@@ -4,7 +4,10 @@ import Layout from "../Layouts/Layout.vue";
 import Dashboard from "../Management/Dashboard/Dashboard.vue";
 //SettingsRoutes
 import SettingsRoutes from "../Management/Settings/setup/routes.js";
-// routes
+//routes
+
+
+
 import UserRoutes from '../Management/UserManagement/User/setup/routes.js';
 
 
@@ -19,11 +22,13 @@ const routes = {
             component: Dashboard,
             name: 'adminDashboard',
         },
+        //management routes
+
+
 
         UserRoutes,
-
         //settings
-        SettingsRoutes
+        SettingsRoutes,
     ],
 };
 

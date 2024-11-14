@@ -17,6 +17,7 @@ class UserProfileUpdate
             }
 
             $requestData = $request->validated();
+            
             if ($request->hasFile('image')) {
                 $image = $request->file('image');
                 $requestData['image'] = uploader($image, 'uploads/users');

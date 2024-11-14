@@ -11,9 +11,11 @@ use App\Modules\Management\UserManagement\User\Actions\SoftDelete;
 use App\Modules\Management\UserManagement\User\Actions\RestoreData;
 use App\Modules\Management\UserManagement\User\Actions\ImportData;
 use App\Modules\Management\UserManagement\User\Actions\UserProfileUpdate;
+use App\Modules\Management\UserManagement\User\Actions\UserChangePassword;
 
 use App\Modules\Management\UserManagement\User\Validations\BulkActionsValidation;
 use App\Modules\Management\UserManagement\User\Validations\UserProfileUpdateValidation;
+use App\Modules\Management\UserManagement\User\Validations\UserChangePasswordValidation;
 use App\Modules\Management\UserManagement\User\Validations\DataStoreValidation;
 use App\Modules\Management\UserManagement\User\Actions\BulkActions;
 
@@ -51,6 +53,11 @@ class Controller extends ControllersController
     public function UserProfileUpdate(UserProfileUpdateValidation $request,)
     {
         $data = UserProfileUpdate::execute($request);
+        return $data;
+    }
+    public function UserChangePassword(UserChangePasswordValidation $request,)
+    {
+        $data = UserChangePassword::execute($request);
         return $data;
     }
 

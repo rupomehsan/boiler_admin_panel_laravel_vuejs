@@ -16,5 +16,8 @@ Route::prefix('v1')->group(function () {
         Route::post('bulk-action', [Controller::class, 'bulkAction']);
     });
     //
-    Route::post('user-profile-update', [Controller::class, 'UserProfileUpdate'])->middleware('auth:api');
+    Route::middleware('auth:api')->group(function () {
+        Route::post('user-profile-update', [Controller::class, 'UserProfileUpdate']);
+        Route::post('user-change-password', [Controller::class, 'UserChangePassword']);
+    });
 });

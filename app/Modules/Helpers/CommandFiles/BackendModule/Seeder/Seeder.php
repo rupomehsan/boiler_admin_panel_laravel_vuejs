@@ -39,7 +39,7 @@ if (!function_exists('Seeder')) {
                 \$faker = Faker::create();
                 self::\$model::truncate();
 
-                for (\$i = 1; \$i < 100; \$i++) {
+                for (\$i = 1; \$i <= 100; \$i++) {
                     self::\$model::create([
         EOD;
 

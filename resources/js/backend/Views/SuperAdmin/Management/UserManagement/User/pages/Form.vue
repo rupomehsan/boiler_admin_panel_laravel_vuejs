@@ -5,17 +5,17 @@
             <div class="card">
                 <div class="card-header d-flex justify-content-between">
                     <h5 class="text-capitalize">
-                        {{ param_id ? `${setup . edit_page_title}` : `${setup . create_page_title}` }}
+                        {{ param_id ? `${setup.edit_page_title}` : `${setup.create_page_title}` }}
 
                     </h5>
                     <div>
                         <router-link v-if="item.slug" class="btn btn-outline-info mr-2 btn-sm" :to="{
-                            name: `Details${setup . route_prefix}`,
+                            name: `Details${setup.route_prefix}`,
                             params: { id: item.slug },
                         }">
                             {{ setup.details_page_title }}
                         </router-link>
-                        <router-link class="btn btn-outline-warning btn-sm" :to="{ name: `All${setup . route_prefix}` }">
+                        <router-link class="btn btn-outline-warning btn-sm" :to="{ name: `All${setup.route_prefix}` }">
                             {{ setup.all_page_title }}
                         </router-link>
                     </div>
@@ -23,14 +23,9 @@
                 <div class="card-body card_body_fixed_height">
                     <div class="row">
                         <template v-for="(form_field, index) in form_fields" v-bind:key="index">
-                            <div :class="form_field.row_col_class
-                                ? form_field.row_col_class
-                                : `col-md-6`
-                                ">
-                                <common-input :label="form_field.label" :type="form_field.type" :name="form_field.name"
-                                    :multiple="form_field.multiple" :value="form_field.value"
-                                    :data_list="form_field.data_list" />
-                            </div>
+                            <common-input :label="form_field.label" :type="form_field.type" :name="form_field.name"
+                                :multiple="form_field.multiple" :value="form_field.value"
+                                :data_list="form_field.data_list" :is_visible="form_field.is_visible" :row_col_class="form_field.row_col_class" />
                         </template>
                     </div>
                 </div>
@@ -98,14 +93,14 @@ export default {
                 // await this.get_all();
                 if ([200, 201].includes(response.status)) {
                     window.s_alert("data updated");
-                    this.$router.push({ name: `Details${this . setup . route_prefix}` });
+                    this.$router.push({ name: `Details${this.setup.route_prefix}` });
                 }
             } else {
                 let response = await this.create($event);
                 // await this.get_all();
                 if ([200, 201].includes(response.status)) {
                     window.s_alert("data created");
-                    this.$router.push({ name: `All${this . setup . route_prefix}` });
+                    this.$router.push({ name: `All${this.setup.route_prefix}` });
                 }
             }
         },

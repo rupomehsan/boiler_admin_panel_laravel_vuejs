@@ -154,7 +154,7 @@
                 <li class="nav-item dropdown">
                     <a class="btn nav-link dropdown-toggle dropdown-toggle-nocaret position-relative">
                         <span class="user-profile">
-                            <img src="avatar.png" class="img-circle" alt="user avatar" />
+                            <img :src="`${auth_info.image ?? 'avatar.png'}`" class="img-circle" alt="user avatar" />
                         </span>
                     </a>
                     <ul class="dropdown-menu dropdown-menu-right">
@@ -185,7 +185,12 @@
                         <li class="dropdown-divider"></li>
                         <li class="dropdown-item">
                             <router-link :to="{ name: 'AdminProfileSettings' }">
-                                <i class="zmdi zmdi-settings mr-3"></i>Profile
+                                <i class="zmdi zmdi-accounts mr-3"></i>Profile
+                            </router-link>
+                        </li>
+                        <li class="dropdown-item">
+                            <router-link :to="{ name: 'AdminProfileSettings' }">
+                                <i class="zmdi zmdi-settings mr-3"></i>Settings
                             </router-link>
                         </li>
                         <li class="dropdown-divider"></li>

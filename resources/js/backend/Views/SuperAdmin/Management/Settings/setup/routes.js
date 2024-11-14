@@ -12,6 +12,11 @@ const routes = {
             name: "AdminProfileSettings",
             component: AdminProfileSettings,
         },
+        {
+            path: "site-settings",
+            name: "AdminProfileSettings",
+            component: AdminProfileSettings,
+        },
 
     ],
 };

@@ -38,14 +38,13 @@ if (!function_exists('FormPage')) {
                         <div class="card-body card_body_fixed_height">
                             <div class="row">
                                 <template v-for="(form_field, index) in form_fields" v-bind:key="index">
-                                    <div :class="form_field.row_col_class
-                                        ? form_field.row_col_class
-                                        : `col-md-6`
-                                        ">
+
                                         <common-input :label="form_field.label" :type="form_field.type" :name="form_field.name"
                                             :multiple="form_field.multiple" :value="form_field.value"
-                                            :data_list="form_field.data_list" />
-                                    </div>
+                                            :data_list="form_field.data_list"
+                                            :is_visible="form_field.is_visible" :row_col_class="form_field.row_col_class"
+                                            />
+                                   
                                 </template>
                             </div>
                         </div>

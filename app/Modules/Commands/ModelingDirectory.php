@@ -377,17 +377,27 @@ class ModelingDirectory extends Command
             $newRouteChild = "        {$ViewModuleName}Routes,\n";
             $fileContent = file_get_contents($filePath);
 
+            // Insert import statement if it doesn't already exist
             if (strpos($fileContent, $routeImport) === false) {
-                $routesCommentPosition = strpos($fileContent, "// routes");
-                $insertPosition = strpos($fileContent, "\n", $routesCommentPosition) + 1;
-                $fileContent = substr($fileContent, 0, $insertPosition) . $routeImport . substr($fileContent, $insertPosition);
+                $importPosition = strpos($fileContent, "//routes");
+                if ($importPosition !== false) {
+                    $insertPosition = $importPosition + strlen("//routes") + 1; // Position after "//routes" + newline
+                    $fileContent = substr_replace($fileContent, $routeImport, $insertPosition, 0);
+                }
             }
+
+            // Insert route child if it doesn't already exist
             if (strpos($fileContent, $newRouteChild) === false) {
-                $childrenPosition = strpos($fileContent, "children: [");
-                $insertPosition = strpos($fileContent, "    ],", $childrenPosition);
-                $fileContent = substr($fileContent, 0, $insertPosition) . $newRouteChild . substr($fileContent, $insertPosition);
+                $managementRoutesPosition = strpos($fileContent, "//management routes");
+                if ($managementRoutesPosition !== false) {
+                    $insertPosition = $managementRoutesPosition + strlen("//management routes") + 1; // Position after "//management routes" + newline
+                    $fileContent = substr_replace($fileContent, $newRouteChild, $insertPosition, 0);
+                }
             }
+
+            // Write the modified content back to the file
             file_put_contents($filePath, $fileContent);
+
 
             //sidebar dynamic  making
             //sidebar dynamic  making

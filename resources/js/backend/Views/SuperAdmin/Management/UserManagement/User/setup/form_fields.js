@@ -4,6 +4,7 @@ export default [
 		label: "Enter your name",
 		type: "text",
 		value: "",
+        is_visible:false
 	},
 
 	{
@@ -11,6 +12,7 @@ export default [
 		label: "Enter your email",
 		type: "text",
 		value: "",
+
 	},
 
 	{
@@ -24,7 +26,7 @@ export default [
 		name: "image",
 		label: "Enter your image",
 		type: "file",
-		multiple: "false",
+		multiple: false,
 		value: "",
 	},
 
