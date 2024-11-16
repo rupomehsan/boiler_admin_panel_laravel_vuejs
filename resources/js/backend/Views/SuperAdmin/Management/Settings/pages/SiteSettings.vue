@@ -2,159 +2,256 @@
     <div class="container-fluid">
         <div class="row pt-2 pb-2">
             <div class="col-sm-9">
-                <h4 class="page-title"> Profile Settings</h4>
+                <h4 class="page-title"> Site Settings</h4>
             </div>
         </div>
         <div class="row">
-            <div class="col-lg-4">
-                <div class="card profile-card-2">
 
-                    <div class="card-img-block">
-                        <img class="img-fluid bg-dark" src="avatar.png" alt="Card image cap">
-                    </div>
 
-                    <div class="card-body pt-5">
-                        <img :src="`${auth_info.image ?? 'avatar.png'}`" alt="profile-image" class="profile">
-                        <h5 class="card-title text-capitalize">Name : {{ auth_info.name }}</h5>
-                        <p class="card-text">Eamil : {{ auth_info.email }}</p>
-                        <p class="card-text">Phone : {{ auth_info.phone ?? 'N/A' }}</p>
-                        <p class="card-text">Address : {{ auth_info.address ?? 'N/A' }}</p>
-                    </div>
-
-                    <div class="card-body  border-light">
-                        <div class="media align-items-center">
-                            <div class="icon-block">
-                                <a href="javascript:void();"><i class="fa fa-facebook bg-facebook text-white"></i></a>
-                                <a href="javascript:void();"> <i class="fa fa-twitter bg-twitter text-white"></i></a>
-                                <a href="javascript:void();"> <i
-                                        class="fa fa-google-plus bg-google-plus text-white"></i></a>
-                            </div>
-                        </div>
-                    </div>
-
-                </div>
-
-            </div>
-
-            <div class="col-lg-8">
-                <div class="card">
+            <div class="col-lg-10">
+                <div class="card" id="site_settings">
                     <div class="card-body">
-                        <ul class="nav nav-tabs nav-tabs-primary top-icon nav-justified">
-                            <li class="nav-item" @click="tab = 'edit'">
-                                <a :class="tab == 'edit' ? ' active' : ''" href="javascript:void();" data-target="#edit"
-                                    data-toggle="pill" class="nav-link "><i class="icon-note"></i> <span
-                                        class="hidden-xs">Edit</span></a>
-                            </li>
-                            <li class="nav-item" @click="tab = 'change_password'">
-                                <a :class="tab == 'change_password' ? 'active' : ''" href="javascript:void();"
-                                    data-target="#profile" data-toggle="pill" class="nav-link "><i
-                                        class="icon-user"></i> <span class="hidden-xs">Change
-                                        password</span></a>
-                            </li>
-                            <li class="nav-item" @click="tab = 'message'">
-                                <a :class="tab == 'message' ? ' active' : ''" href="javascript:void();"
-                                    data-target="#messages" data-toggle="pill" class="nav-link"><i
-                                        class="icon-envelope-open"></i> <span class="hidden-xs">Messages</span></a>
-                            </li>
+                        <div class="d-flex">
+                            <ul class="flex-column nav nav-tabs nav-tabs-primary top-icon nav-justified card">
+                                <li class="nav-item" @click="tab = 'bassic_settings'">
+                                    <a :class="tab == 'bassic_settings' ? ' active' : ''" href="javascript:void();"
+                                        data-target="#bassic_settings" data-toggle="pill" class="nav-link "><i
+                                            class="icon-note"></i> <span class="hidden-xs">Basic Settings</span></a>
+                                    <hr>
+                                </li>
+                                <li class="nav-item" @click="tab = 'seo_settings'">
+                                    <a :class="tab == 'seo_settings' ? 'active' : ''" href="javascript:void();"
+                                        data-target="#seo_settings" data-toggle="pill" class="nav-link "><i
+                                            class="icon-note"></i> <span class="hidden-xs">SEO Settings</span></a>
+                                    <hr>
+                                </li>
+                                <li class="nav-item" @click="tab = 'contact_information'">
+                                    <a :class="tab == 'contact_information' ? ' active' : ''" href="javascript:void();"
+                                        data-target="#contact_information" data-toggle="pill" class="nav-link"><i
+                                            class="icon-note"></i> <span class="hidden-xs">contact
+                                            information</span></a>
+                                    <hr>
+                                </li>
+                                <li class="nav-item" @click="tab = 'social_link'">
+                                    <a :class="tab == 'social_link' ? ' active' : ''" href="javascript:void();"
+                                        data-target="#social_link" data-toggle="pill" class="nav-link"><i
+                                            class="icon-note"></i> <span class="hidden-xs">Social Links
+                                            information</span></a>
+                                    <hr>
+                                </li>
 
-                        </ul>
-                        <div class="tab-content p-3">
-                            <div v-if="tab == 'edit'" :class="tab == 'edit' ? ' active' : ''" class="tab-pane active"
-                                id="profile">
-                                <form @submit.prevent="UpdateProfileHandler" enctype="multipart/form-data">
-                                    <div class="form-group row">
-                                        <label class="col-lg-3 col-form-label form-control-label">Name</label>
-                                        <div class="col-lg-9">
-                                            <input v-model="auth_info.name" name="name" class="form-control" type="text"
-                                                value="">
+                            </ul>
+                            <div class=" ml-2 flex-grow-1 tab-content p-3 card">
+                                <div v-if="tab == 'bassic_settings'" :class="tab == 'bassic_settings' ? ' active' : ''"
+                                    class="tab-pane active" id="bassic_settings">
+                                    <form @submit.prevent="UpdateProfileHandler" enctype="multipart/form-data">
+                                        <div class="form-group row">
+                                            <label class="col-lg-3 col-form-label form-control-label">Site Name</label>
+                                            <div class="col-lg-9">
+                                                <input v-model="auth_info.name" name="name" class="form-control"
+                                                    type="text" value="">
+                                            </div>
                                         </div>
-                                    </div>
 
-                                    <div class="form-group row">
-                                        <label class="col-lg-3 col-form-label form-control-label">Email</label>
-                                        <div class="col-lg-9">
-                                            <input v-model="auth_info.email" name="email" class="form-control"
-                                                type="email" value="">
-                                        </div>
-                                    </div>
-                                    <div class="form-group row">
-                                        <label class="col-lg-3 col-form-label form-control-label">Phone</label>
-                                        <div class="col-lg-9">
-                                            <input v-model="auth_info.phone_number" name="phone_number"
-                                                class="form-control" type="number" value="">
-                                        </div>
-                                    </div>
 
-                                    <div class="form-group row">
-                                        <label class="col-lg-3 col-form-label form-control-label">Address</label>
-                                        <div class="col-lg-9">
-                                            <input v-model="auth_info.address" name="address" class="form-control"
-                                                type="text" value="" placeholder="Street">
-                                        </div>
-                                    </div>
 
-                                    <div class="form-group row">
-                                        <label class="col-lg-3 col-form-label form-control-label">Change image</label>
-                                        <div class="col-lg-9">
-                                            <input class="form-control" name="image" type="file">
-                                            <img v-if="auth_info.image" class="mt-2" :src="auth_info.image" height="100"
-                                                width="100" alt="">
+                                        <div class="form-group row">
+                                            <label class="col-lg-3 col-form-label form-control-label">Site Logo</label>
+                                            <div class="col-lg-9">
+                                                <input class="form-control" name="image" type="file">
+                                                <img v-if="auth_info.image" class="mt-2" :src="auth_info.image"
+                                                    height="100" width="100" alt="">
+                                            </div>
                                         </div>
-                                    </div>
 
-                                    <div class="form-group row">
-                                        <label class="col-lg-3 col-form-label form-control-label"></label>
-                                        <div class="col-lg-9">
-                                            <input type="submit" class="btn btn-primary" value="Save Changes">
+                                        <div class="form-group row">
+                                            <label class="col-lg-3 col-form-label form-control-label"></label>
+                                            <div class="col-lg-9">
+                                                <input type="submit" class="btn btn-primary" value="Save Changes">
+                                            </div>
                                         </div>
-                                    </div>
 
-                                </form>
+                                    </form>
 
-                            </div>
-                            <div v-if="tab == 'change_password'" :class="tab == 'change_password' ? ' active' : ''"
-                                class="tab-pane" id="change_password">
-                                <form @submit.prevent="ChangePasswordHandler">
-                                    <div class="form-group row">
-                                        <label class="col-lg-3 col-form-label form-control-label">Current
-                                            password</label>
-                                        <div class="col-lg-9">
-                                            <input class="form-control" name="current_password" type="password" value="">
+                                </div>
+
+                                <div v-if="tab == 'seo_settings'" :class="tab == 'seo_settings' ? ' active' : ''"
+                                    class="tab-pane" id="seo_settings">
+                                    <form @submit.prevent="saveSeoDetails">
+                                        <!-- Meta Title -->
+                                        <div class="form-group row">
+                                            <label class="col-lg-3 col-form-label form-control-label">Meta Title</label>
+                                            <div class="col-lg-9">
+                                                <input  name="meta_title"
+                                                    class="form-control" type="text" placeholder="Enter meta title">
+                                            </div>
                                         </div>
-                                    </div>
-                                    <div class="form-group row">
-                                        <label class="col-lg-3 col-form-label form-control-label">New password</label>
-                                        <div class="col-lg-9">
-                                            <input class="form-control" name="new_password" type="password" value="">
+
+                                        <!-- Meta Description -->
+                                        <div class="form-group row">
+                                            <label class="col-lg-3 col-form-label form-control-label">Meta
+                                                Description</label>
+                                            <div class="col-lg-9">
+                                                <textarea name="meta_description" class="form-control" rows="3"
+                                                    placeholder="Enter meta description"></textarea>
+                                            </div>
                                         </div>
-                                    </div>
-                                    <div class="form-group row">
-                                        <label class="col-lg-3 col-form-label form-control-label">Confirm New
-                                            password</label>
-                                        <div class="col-lg-9">
-                                            <input class="form-control" name="confirm_new_password" type="password" value="">
+
+                                        <!-- Meta Keywords -->
+                                        <div class="form-group row">
+                                            <label class="col-lg-3 col-form-label form-control-label">Meta
+                                                Keywords</label>
+                                            <div class="col-lg-9">
+                                                <input name="meta_keywords" class="form-control" type="text"
+                                                    placeholder="Enter meta keywords (comma-separated)">
+                                            </div>
                                         </div>
-                                    </div>
-                                    <div class="form-group row">
-                                        <label class="col-lg-3 col-form-label form-control-label"></label>
-                                        <div class="col-lg-9">
-                                            <input type="submit" class="btn btn-primary" value="Save Changes">
+
+                                        <!-- Canonical URL -->
+                                        <div class="form-group row">
+                                            <label class="col-lg-3 col-form-label form-control-label">Canonical
+                                                URL</label>
+                                            <div class="col-lg-9">
+                                                <input name="canonical_url" class="form-control" type="url"
+                                                    placeholder="Enter canonical URL">
+                                            </div>
                                         </div>
-                                    </div>
-                                </form>
-                            </div>
-                            <div v-if="tab == 'message'" :class="tab == 'message' ? ' active' : ''" class="tab-pane"
-                                id="message">
-                                <table class="table table-striped table-active table-bordered">
-                                    <tr v-for="i in 5" :key="i">
-                                        <td>1</td>
-                                        <td>1</td>
-                                        <td>1</td>
-                                        <td>1</td>
-                                        <td>1</td>
-                                        <td>1</td>
-                                    </tr>
-                                </table>
+
+                                        <!-- Submit Button -->
+                                        <div class="form-group row">
+                                            <label class="col-lg-3 col-form-label form-control-label"></label>
+                                            <div class="col-lg-9">
+                                                <input type="submit" class="btn btn-primary" value="Save Changes">
+                                            </div>
+                                        </div>
+                                    </form>
+
+                                </div>
+                                <div v-if="tab == 'contact_information'"
+                                    :class="tab == 'contact_information' ? ' active' : ''" class="tab-pane"
+                                    id="contact_information">
+                                    <form @submit.prevent="saveContactDetails">
+                                        <!-- Company Name -->
+                                        <div class="form-group row">
+                                            <label class="col-lg-3 col-form-label form-control-label">Company
+                                                Name</label>
+                                            <div class="col-lg-9">
+                                                <input name="company_name" class="form-control" type="text"
+                                                    placeholder="Enter company name">
+                                            </div>
+                                        </div>
+
+                                        <!-- Email -->
+                                        <div class="form-group row">
+                                            <label class="col-lg-3 col-form-label form-control-label">Email</label>
+                                            <div class="col-lg-9">
+                                                <input name="email" class="form-control" type="email"
+                                                    placeholder="Enter email address">
+                                            </div>
+                                        </div>
+
+                                        <!-- Phone Number -->
+                                        <div class="form-group row">
+                                            <label class="col-lg-3 col-form-label form-control-label">Phone
+                                                Number</label>
+                                            <div class="col-lg-9">
+                                                <input name="phone_number" class="form-control" type="text"
+                                                    placeholder="Enter phone number">
+                                            </div>
+                                        </div>
+
+                                        <!-- Address -->
+                                        <div class="form-group row">
+                                            <label class="col-lg-3 col-form-label form-control-label">Address</label>
+                                            <div class="col-lg-9">
+                                                <textarea name="address" class="form-control" rows="3"
+                                                    placeholder="Enter company address"></textarea>
+                                            </div>
+                                        </div>
+
+                                        <!-- Website -->
+                                        <div class="form-group row">
+                                            <label class="col-lg-3 col-form-label form-control-label">Website</label>
+                                            <div class="col-lg-9">
+                                                <input name="website" class="form-control" type="url"
+                                                    placeholder="Enter company website">
+                                            </div>
+                                        </div>
+
+                                        <!-- Fax Number (Optional) -->
+                                        <div class="form-group row">
+                                            <label class="col-lg-3 col-form-label form-control-label">Fax Number</label>
+                                            <div class="col-lg-9">
+                                                <input name="fax_number" class="form-control" type="text"
+                                                    placeholder="Enter fax number (optional)">
+                                            </div>
+                                        </div>
+
+                                        <!-- Save Button -->
+                                        <div class="form-group row">
+                                            <label class="col-lg-3 col-form-label form-control-label"></label>
+                                            <div class="col-lg-9">
+                                                <input type="submit" class="btn btn-primary"
+                                                    value="Save Contact Details">
+                                            </div>
+                                        </div>
+                                    </form>
+
+                                </div>
+                                <div v-if="tab == 'social_link'" :class="tab == 'social_link' ? ' active' : ''"
+                                    class="tab-pane" id="social_link">
+                                    <form @submit.prevent="saveSocialLinks">
+                                        <!-- Facebook -->
+                                        <div class="form-group row">
+                                            <label class="col-lg-3 col-form-label form-control-label">Facebook</label>
+                                            <div class="col-lg-9">
+                                                <input  name="facebook"
+                                                    class="form-control" type="url"
+                                                    placeholder="https://facebook.com/yourpage">
+                                            </div>
+                                        </div>
+                                        <!-- Twitter -->
+                                        <div class="form-group row">
+                                            <label class="col-lg-3 col-form-label form-control-label">Twitter</label>
+                                            <div class="col-lg-9">
+                                                <input name="twitter" class="form-control" type="url"
+                                                    placeholder="https://twitter.com/yourprofile">
+                                            </div>
+                                        </div>
+                                        <!-- Instagram -->
+                                        <div class="form-group row">
+                                            <label class="col-lg-3 col-form-label form-control-label">Instagram</label>
+                                            <div class="col-lg-9">
+                                                <input name="instagram" class="form-control" type="url"
+                                                    placeholder="https://instagram.com/yourprofile">
+                                            </div>
+                                        </div>
+                                        <!-- LinkedIn -->
+                                        <div class="form-group row">
+                                            <label class="col-lg-3 col-form-label form-control-label">LinkedIn</label>
+                                            <div class="col-lg-9">
+                                                <input name="linkedin" class="form-control" type="url"
+                                                    placeholder="https://linkedin.com/in/yourprofile">
+                                            </div>
+                                        </div>
+                                        <!-- YouTube -->
+                                        <div class="form-group row">
+                                            <label class="col-lg-3 col-form-label form-control-label">YouTube</label>
+                                            <div class="col-lg-9">
+                                                <input name="youtube" class="form-control" type="url"
+                                                    placeholder="https://youtube.com/yourchannel">
+                                            </div>
+                                        </div>
+                                        <!-- Save Button -->
+                                        <div class="form-group row">
+                                            <label class="col-lg-3 col-form-label form-control-label"></label>
+                                            <div class="col-lg-9">
+                                                <input type="submit" class="btn btn-primary" value="Save Changes">
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
+
                             </div>
                         </div>
                     </div>
@@ -172,7 +269,8 @@ import { settings_store } from "../store/store";
 import { mapState, mapActions } from 'pinia';
 export default {
     data: () => ({
-        tab: 'edit',
+        tab: 'bassic_settings',
+
     }),
     methods: {
         ...mapActions(auth_store, {

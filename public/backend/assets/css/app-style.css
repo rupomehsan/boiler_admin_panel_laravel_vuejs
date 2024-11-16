@@ -4303,6 +4303,11 @@ table.grid td {
     border-bottom: 1px solid #14abef;
 }
 
+#site_settings .nav-tabs {
+    border-right: 1px solid #14abef;
+    border-bottom: none;
+}
+
 .nav-tabs-primary .nav-link.active,
 .nav-tabs-primary .nav-item.show>.nav-link {
     color: #14abef;

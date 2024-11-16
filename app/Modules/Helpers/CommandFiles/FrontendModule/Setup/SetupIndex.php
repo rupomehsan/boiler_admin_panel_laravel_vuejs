@@ -5,20 +5,32 @@ use Illuminate\Support\Str;
 if (!function_exists('SetupIndex')) {
     function SetupIndex($moduleName, $fields)
     {
+
+        $formated_module = explode('/', $moduleName);
+        $relativePath = '../';
+        $lengthOfFormatedModule = 0;
+
+        if ($formated_module && count($formated_module) > 1) {
+            $lengthOfFormatedModule = count($formated_module) - 1;
+            $moduleName = end($formated_module);
+            $relativePath = $relativePath . str_repeat('../', $lengthOfFormatedModule);
+        }
+
         $prefix = Str::singular(ucfirst($moduleName));
         $Name = Str::singular(Str::kebab($moduleName));
         $apiName = Str::plural(Str::kebab($moduleName));
         $store = Str::singular(Str::snake($moduleName));
 
-        // Extract the first element from each field array in $fields
+
         $form_fields = array_column($fields, 0);
 
-        // Create select_fields and sort_by_cols as comma-separated strings
+
         $selectFields = implode(",\n            ", array_map(fn($field) => "\"$field\"", $form_fields));
         $sortByCols = implode(",\n            ", array_map(fn($field) => "\"$field\"", $form_fields));
 
         $content = <<<"EOD"
-        import app_config from "../../../../../Config/app_config";
+
+        import app_config from "../../../../{$relativePath}Config/app_config";
         import setup_type from "./setup_type";
 
         const prefix: string = "{$prefix}";

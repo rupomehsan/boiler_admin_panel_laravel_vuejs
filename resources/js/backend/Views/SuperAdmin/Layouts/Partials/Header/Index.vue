@@ -44,7 +44,7 @@
                                     <div class="media">
                                         <div class="avatar">
                                             <img class="align-self-start mr-3"
-                                                src="backend/assets/images/avatars/avatar-5.png" alt="user avatar" />
+                                                src="avatar.png" alt="user avatar" />
                                         </div>
                                         <div class="media-body">
                                             <h6 class="mt-0 msg-title">
@@ -58,63 +58,7 @@
                                     </div>
                                 </a>
                             </li>
-                            <li class="list-group-item">
-                                <a href="javaScript:void();">
-                                    <div class="media">
-                                        <div class="avatar">
-                                            <img class="align-self-start mr-3"
-                                                src="backend/assets/images/avatars/avatar-6.png" alt="user avatar" />
-                                        </div>
-                                        <div class="media-body">
-                                            <h6 class="mt-0 msg-title">
-                                                Sara Jen
-                                            </h6>
-                                            <p class="msg-info">
-                                                Lorem ipsum dolor sit amet...
-                                            </p>
-                                            <small>Yesterday, 8:30 AM</small>
-                                        </div>
-                                    </div>
-                                </a>
-                            </li>
-                            <li class="list-group-item">
-                                <a href="javaScript:void();">
-                                    <div class="media">
-                                        <div class="avatar">
-                                            <img class="align-self-start mr-3"
-                                                src="backend/assets/images/avatars/avatar-7.png" alt="user avatar" />
-                                        </div>
-                                        <div class="media-body">
-                                            <h6 class="mt-0 msg-title">
-                                                Dannish Josh
-                                            </h6>
-                                            <p class="msg-info">
-                                                Lorem ipsum dolor sit amet...
-                                            </p>
-                                            <small>5/11/2018, 2:50 PM</small>
-                                        </div>
-                                    </div>
-                                </a>
-                            </li>
-                            <li class="list-group-item">
-                                <a href="javaScript:void();">
-                                    <div class="media">
-                                        <div class="avatar">
-                                            <img class="align-self-start mr-3"
-                                                src="backend/assets/images/avatars/avatar-8.png" alt="user avatar" />
-                                        </div>
-                                        <div class="media-body">
-                                            <h6 class="mt-0 msg-title">
-                                                Katrina Mccoy
-                                            </h6>
-                                            <p class="msg-info">
-                                                Lorem ipsum dolor sit amet.
-                                            </p>
-                                            <small>1/11/2018, 2:50 PM</small>
-                                        </div>
-                                    </div>
-                                </a>
-                            </li>
+
                             <li class="list-group-item text-center">
                                 <a href="javaScript:void();">See All Messages</a>
                             </li>
@@ -189,7 +133,7 @@
                             </router-link>
                         </li>
                         <li class="dropdown-item">
-                            <router-link :to="{ name: 'AdminProfileSettings' }">
+                            <router-link :to="{ name: 'AdminSiteSettings' }">
                                 <i class="zmdi zmdi-settings mr-3"></i>Settings
                             </router-link>
                         </li>

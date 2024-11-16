@@ -271,6 +271,8 @@ class ModelingDirectory extends Command
             $vue_module_path_dir = $ViewModuleName;
 
 
+
+
             if (count($vue_format_dir) > 1) {
                 $ViewModuleName = end($vue_format_dir);
                 array_pop($vue_format_dir);
@@ -315,7 +317,7 @@ class ModelingDirectory extends Command
                     File::put($SetupDirectory . '/' . $file, FormField($fields));
                 }
                 if ($file == 'index.ts') {
-                    File::put($SetupDirectory . '/' . $file, SetupIndex($ViewModuleName, $fields));
+                    File::put($SetupDirectory . '/' . $file, SetupIndex($vue_module_path_dir, $fields));
                 }
                 if ($file == 'routes.js') {
                     File::put($SetupDirectory . '/' . $file, Router());

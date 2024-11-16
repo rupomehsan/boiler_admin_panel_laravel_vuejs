@@ -26,8 +26,8 @@
             <!-- Management start -->
             <side-bar-single-menu :icon="`fa fa-plus`" :menu_title="`User`" :route_name="`AllUser`" />
 
-
             <!-- Management end -->
+
         </ul>
 
     </div>
@@ -63,3 +63,11 @@ export default {
 </script>
 
 <style></style>
+<!-- <side-bar-drop-down-menus :icon="`fa fa-plus`" :icon_image="`https://files.etek.com.bd/images/icon_sales.png`"
+    :menu_title="`title Management`" :menus="[
+                {
+                    route_name: `AllUser`,
+                    title: `title`,
+                    icon: `zmdi zmdi-dot-circle-alt`,
+                },
+            ]" /> -->
