@@ -16,4 +16,3 @@ include_once base_path("app/Modules/Management/UserManagement/User/Routes/Route.
 
 
 include_once base_path("app/Modules/Management/SettingManagement/WebsiteSettings/Routes/Route.php");
-include_once base_path("app/Modules/Management/SettingManagement/EmailSettings/Routes/Route.php");

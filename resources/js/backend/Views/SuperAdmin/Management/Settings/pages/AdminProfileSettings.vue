@@ -8,11 +8,9 @@
         <div class="row">
             <div class="col-lg-4">
                 <div class="card profile-card-2">
-
                     <div class="card-img-block">
                         <img class="img-fluid bg-dark" src="avatar.png" alt="Card image cap">
                     </div>
-
                     <div class="card-body pt-5">
                         <img :src="`${auth_info.image ?? 'avatar.png'}`" alt="profile-image" class="profile">
                         <h5 class="card-title text-capitalize">Name : {{ auth_info.name }}</h5>
@@ -20,7 +18,6 @@
                         <p class="card-text">Phone : {{ auth_info.phone ?? 'N/A' }}</p>
                         <p class="card-text">Address : {{ auth_info.address ?? 'N/A' }}</p>
                     </div>
-
                     <div class="card-body  border-light">
                         <div class="media align-items-center">
                             <div class="icon-block">
@@ -31,9 +28,7 @@
                             </div>
                         </div>
                     </div>
-
                 </div>
-
             </div>
 
             <div class="col-lg-8">
@@ -51,12 +46,6 @@
                                         class="icon-user"></i> <span class="hidden-xs">Change
                                         password</span></a>
                             </li>
-                            <li class="nav-item" @click="tab = 'message'">
-                                <a :class="tab == 'message' ? ' active' : ''" href="javascript:void();"
-                                    data-target="#messages" data-toggle="pill" class="nav-link"><i
-                                        class="icon-envelope-open"></i> <span class="hidden-xs">Messages</span></a>
-                            </li>
-
                         </ul>
                         <div class="tab-content p-3">
                             <div v-if="tab == 'edit'" :class="tab == 'edit' ? ' active' : ''" class="tab-pane active"
@@ -119,7 +108,8 @@
                                         <label class="col-lg-3 col-form-label form-control-label">Current
                                             password</label>
                                         <div class="col-lg-9">
-                                            <input class="form-control" name="current_password" type="password" value="">
+                                            <input class="form-control" name="current_password" type="password"
+                                                value="">
                                         </div>
                                     </div>
                                     <div class="form-group row">
@@ -132,7 +122,8 @@
                                         <label class="col-lg-3 col-form-label form-control-label">Confirm New
                                             password</label>
                                         <div class="col-lg-9">
-                                            <input class="form-control" name="confirm_new_password" type="password" value="">
+                                            <input class="form-control" name="confirm_new_password" type="password"
+                                                value="">
                                         </div>
                                     </div>
                                     <div class="form-group row">

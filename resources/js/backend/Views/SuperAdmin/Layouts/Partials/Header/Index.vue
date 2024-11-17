@@ -4,7 +4,14 @@
         <nav class="navbar navbar-expand fixed-top">
             <div class="toggle-menu">
                 <i @click.prevent="toggle_menu" class="zmdi zmdi-menu"></i>
+
             </div>
+
+            <a href="/" target="_blank" class="d-flex align-items-center justify-content-center mx-2"
+                style="background: rgba(255, 255, 255, 0.12);    width: 30px; height: 30px; ">
+                <i  class="zmdi zmdi-globe mt-1"></i>
+            </a>
+
 
             <div class="search-bar flex-grow-1"></div>
 
@@ -43,8 +50,7 @@
                                 <a href="javaScript:void();">
                                     <div class="media">
                                         <div class="avatar">
-                                            <img class="align-self-start mr-3"
-                                                src="avatar.png" alt="user avatar" />
+                                            <img class="align-self-start mr-3" src="avatar.png" alt="user avatar" />
                                         </div>
                                         <div class="media-body">
                                             <h6 class="mt-0 msg-title">
