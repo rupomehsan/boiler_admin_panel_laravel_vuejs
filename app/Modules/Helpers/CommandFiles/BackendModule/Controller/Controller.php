@@ -24,6 +24,7 @@ if (!function_exists('Controller')) {
         use App\\Modules\\Management\\{$moduleName}\\Actions\GetSingleData;
         use App\\Modules\\Management\\{$moduleName}\\Actions\StoreData;
         use App\\Modules\\Management\\{$moduleName}\\Actions\UpdateData;
+        use App\\Modules\\Management\\{$moduleName}\\Actions\UpdateStatus;
         use App\\Modules\\Management\\{$moduleName}\\Actions\SoftDelete;
         use App\\Modules\\Management\\{$moduleName}\\Actions\RestoreData;
         use App\\Modules\\Management\\{$moduleName}\\Actions\ImportData;
@@ -57,6 +58,11 @@ if (!function_exists('Controller')) {
             public function update(DataStoreValidation \$request, \$slug)
             {
                 \$data = UpdateData::execute(\$request, \$slug);
+                return \$data;
+            }
+                 public function updateStatus()
+            {
+                \$data = UpdateStatus::execute();
                 return \$data;
             }
 

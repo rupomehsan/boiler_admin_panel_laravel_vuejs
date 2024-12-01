@@ -5,6 +5,7 @@ import Dashboard from "../Management/Dashboard/Dashboard.vue";
 //SettingsRoutes
 import SettingsRoutes from "../Management/Settings/setup/routes.js";
 //routes
+import TestModuleRoutes from '../Management/TestModule/setup/routes.js';
 
 
 
@@ -23,6 +24,7 @@ const routes = {
             name: 'adminDashboard',
         },
         //management routes
+        TestModuleRoutes,
 
 
 

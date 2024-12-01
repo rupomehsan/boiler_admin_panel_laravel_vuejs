@@ -17,6 +17,7 @@ include_once(__DIR__ . '/BackendModule/Actions/RestoreData.php');
 include_once(__DIR__ . '/BackendModule/Actions/SoftDelete.php');
 include_once(__DIR__ . '/BackendModule/Actions/StoreData.php');
 include_once(__DIR__ . '/BackendModule/Actions/UpdateData.php');
+include_once(__DIR__ . '/BackendModule/Actions/UpdateStatus.php');
 
 include_once(__DIR__ . '/BackendModule/Others/ApiDocumentation.php');
 include_once(__DIR__ . '/BackendModule/Others/ImportJob.php');

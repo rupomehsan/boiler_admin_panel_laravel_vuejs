@@ -12,19 +12,19 @@ class GetAllData
 
             $pageLimit = request()->input('limit') ?? 10;
             $orderByColumn = request()->input('sort_by_col') ?? 'id';
-            $orderByType = request()->input('sort_type') ?? 'desc';
+            $orderByType = request()->input('sort_type') ?? 'asc';
             $status = request()->input('status') ?? 'active';
             $fields = request()->input('fields') ?? '*';
             $start_date = request()->input('start_date');
             $end_date = request()->input('end_date');
-            $with = [];
+            $with = ['setting_values'];
             $condition = [];
 
             $data = self::$model::query();
 
             if (request()->has('search') && request()->input('search')) {
                 $searchKey = request()->input('search');
-                $data = $data->where(function ($q) use ($searchKey) {              
+                $data = $data->where(function ($q) use ($searchKey) {
 
                 });
             }

@@ -85,6 +85,7 @@ class ModelingDirectory extends Command
             'StoreData.php',
             'GetSingleData.php',
             'UpdateData.php',
+            'UpdateStatus.php',
             'DestroyData.php',
             'RestoreData.php',
             'SoftDelete.php',
@@ -163,6 +164,9 @@ class ModelingDirectory extends Command
             }
             if ($file == 'UpdateData.php') {
                 File::put($actionsDirectory . '/' . $file, UpdateData($module_name));
+            }
+            if ($file == 'UpdateStatus.php') {
+                File::put($actionsDirectory . '/' . $file, UpdateStatus($module_name));
             }
             if ($file == 'DestroyData.php') {
                 File::put($actionsDirectory . '/' . $file, DestroyData($module_name));
@@ -405,7 +409,6 @@ class ModelingDirectory extends Command
             //sidebar dynamic  making
 
             $filePath = base_path("resources/js/backend/Views/{$role}/Layouts/Partials/Sidebar/Index.vue");
-            $routeImport = "import SideBarDropDownMenus from './SideBarDropDownMenus.vue';\n";
             $sidebarMenuContent = "<side-bar-single-menu :icon=\"`fa fa-plus`\" :menu_title=\"`{$ViewModuleName}`\"  :route_name=\"`All{$ViewModuleName}`\" />\n";
 
 
@@ -413,9 +416,9 @@ class ModelingDirectory extends Command
 
 
             if (strpos($fileContent, $routeImport) === false) {
-                $routesCommentPosition = strpos($fileContent, "// routes");
+                $routesCommentPosition = strpos($fileContent, "<!-- Management start -->");
                 $insertPosition = strpos($fileContent, "\n", $routesCommentPosition) + 1;
-                $fileContent = substr($fileContent, 0, $insertPosition) . $routeImport . substr($fileContent, $insertPosition);
+                $fileContent = substr($fileContent, 0, $insertPosition)  . substr($fileContent, $insertPosition);
             }
 
             if (strpos($fileContent, $sidebarMenuContent) === false) {

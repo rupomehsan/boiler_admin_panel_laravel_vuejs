@@ -88,7 +88,7 @@ class Seeder extends SeederClass
                 "title" => "copy_right",
                 "values" => [
                     [
-                        "value" => "2019-24 Copy Right by ETEK.com.bd",
+                        "value" => "2019-24 Copy Right ",
                     ],
                 ]
             ],
@@ -105,10 +105,10 @@ class Seeder extends SeederClass
                 "title" => "phone_numbers",
                 "values" => [
                     [
-                        "value" => "+8801793-199803"
+                        "value" => "1234567789"
                     ],
                     [
-                        "value" => "123-456-7898",
+                        "value" => "123454566767",
                     ],
                 ],
 
@@ -118,7 +118,7 @@ class Seeder extends SeederClass
                 "title" => "whatsapp",
                 "values" => [
                     [
-                        "value" => "",
+                        "value" => "12342354345",
                     ],
                 ]
             ],
@@ -136,7 +136,7 @@ class Seeder extends SeederClass
                 "title" => "emails",
                 "values" => [
                     [
-                        "value" => "support@etek.com.bd",
+                        "value" => "support@gmail.com",
                     ],
                 ]
             ],
@@ -145,7 +145,7 @@ class Seeder extends SeederClass
                 "title" => "map_link",
                 "values" => [
                     [
-                        "value" => '<iframe src="https://www.google.com/maps/embed?pb=!1m10!1m8!1m3!1d6423.24786250228!2d25.459764!3d36.394097!3m2!1i1024!2i768!4f13.1!5e0!3m2!1sen!2sus!4v1722161641522!5m2!1sen!2sus" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>',
+                        "value" => '<iframe src="" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>',
                     ],
                 ]
             ],
@@ -155,7 +155,7 @@ class Seeder extends SeederClass
                 "title" => "address",
                 "values" => [
                     [
-                        "value" => "ETEK BD, Bangladesh-3654123",
+                        "value" => "Bangladesh-3654123",
                     ],
                 ]
             ],
@@ -169,7 +169,37 @@ class Seeder extends SeederClass
                 "title" => "facebook",
                 "values" => [
                     [
-                        "value" => "https://www.facebook.com/etekbd/",
+                        "value" => "https://www.facebook.com/bd/",
+
+                    ],
+                ]
+            ],
+            [
+                "group" => "social_media",
+                "title" => "instagram",
+                "values" => [
+                    [
+                        "value" => "https://www.instagram.com/bd/",
+
+                    ],
+                ]
+            ],
+            [
+                "group" => "social_media",
+                "title" => "twitter",
+                "values" => [
+                    [
+                        "value" => "https://www.twitter.com/bd/",
+
+                    ],
+                ]
+            ],
+            [
+                "group" => "social_media",
+                "title" => "linkedin",
+                "values" => [
+                    [
+                        "value" => "https://www.linkedin.com/bd/",
 
                     ],
                 ]
@@ -179,7 +209,7 @@ class Seeder extends SeederClass
                 "title" => "youtube",
                 "values" => [
                     [
-                        "value" => "https://www.youtube.com/@etekbd",
+                        "value" => "https://www.youtube.com/@bd",
 
                     ],
                 ]
@@ -189,24 +219,92 @@ class Seeder extends SeederClass
         ];
 
         $this->setting_save($social_media_settings);
+        $smtp_settings = [
+            [
+                "group" => "smtp",
+                "title" => "mail_host",
+                "values" => [
+                    [
+                        "value" => "smtp.mailserver.com", // Replace with your SMTP host
+                    ],
+                ]
+            ],
+            [
+                "group" => "smtp",
+                "title" => "mail_port",
+                "values" => [
+                    [
+                        "value" => "465", // Typical SMTP secure port
+                    ],
+                ]
+            ],
+            [
+                "group" => "smtp",
+                "title" => "mail_username",
+                "values" => [
+                    [
+                        "value" => "your-email@example.com", // Replace with your SMTP username
+                    ],
+                ]
+            ],
+            [
+                "group" => "smtp",
+                "title" => "mail_password",
+                "values" => [
+                    [
+                        "value" => "yourpassword", // Replace with your SMTP password
+                    ],
+                ]
+            ],
+            [
+                "group" => "smtp",
+                "title" => "mail_encryption",
+                "values" => [
+                    [
+                        "value" => "ssl", // SSL or TLS
+                    ],
+                ]
+            ],
+            [
+                "group" => "smtp",
+                "title" => "mail_from_address",
+                "values" => [
+                    [
+                        "value" => "no-reply@example.com", // Replace with your "from" email address
+                    ],
+                ]
+            ],
+            [
+                "group" => "smtp",
+                "title" => "mail_from_name",
+                "values" => [
+                    [
+                        "value" => "Your Application Name", // Replace with your "from" name
+                    ],
+                ]
+            ],
+        ];
+
+
+        $this->setting_save($smtp_settings);
 
         $seo_settings = [
             [
                 "group" => "seo",
-                "title" => "title",
+                "title" => "meta_title",
                 "values" => [
                     [
-                        "value" => "ETEK Enterprise: Your One-Stop Shop for Electronics, Gadgets, and Medicines",
+                        "value" => " Enterprise: Your One-Stop Shop for Electronics, Gadgets, and Medicines",
 
                     ],
                 ]
             ],
             [
                 "group" => "seo",
-                "title" => "description",
+                "title" => "meta_description",
                 "values" => [
                     [
-                        "value" => "Discover the best in electronics, cutting-edge gadgets, and essential medicines at ETEK Enterprise. Our wide range of high-quality products ensures you find exactly what you need, whether it's the latest tech innovations or reliable health solutions. Shop with confidence, enjoy great deals, and experience exceptional customer service. Stay connected with ETEK Enterprise - where technology meets healthcare.",
+                        "value" => "Discover the best in electronics, cutting-edge gadgets, and essential medicines at  Enterprise. Our wide range of high-quality products ensures you find exactly what you need, whether it's the latest tech innovations or reliable health solutions. Shop with confidence, enjoy great deals, and experience exceptional customer service. Stay connected with  Enterprise - where technology meets healthcare.",
 
                     ],
                 ]
@@ -216,36 +314,36 @@ class Seeder extends SeederClass
                 "title" => "image",
                 "values" => [
                     [
-                        "value" => "frontend/images/etek_logo.png",
+                        "value" => "logo.png",
                     ],
                 ]
             ],
             [
                 "group" => "seo",
-                "title" => "keywords",
+                "title" => "meta_keywords",
                 "values" => [
                     [
-                        "value" => "ETEK",
+                        "value" => "name,name,name",
 
                     ],
                 ]
             ],
             [
                 "group" => "seo",
-                "title" => "tag",
+                "title" => "meta_tag",
                 "values" => [
                     [
-                        "value" => "ETEK",
+                        "value" => "",
 
                     ],
                 ]
             ],
             [
                 "group" => "seo",
-                "title" => "schema_tag",
+                "title" => "meta_schema_tag",
                 "values" => [
                     [
-                        "value" => "ETEK",
+                        "value" => "",
 
                     ],
                 ]
@@ -331,12 +429,12 @@ class Seeder extends SeederClass
                 <div class="footer-title mobile-title"><h5>about</h5></div>
                 <div class="footer-contant">
                     <div class="footer-logo">
-                        <a href="/"><img src="/cache/frontend/images/etek_logo.png" class="img-fluid" alt="logo"></a>
+                        <a href="/"><img src="/cache/frontend/images/_logo.png" class="img-fluid" alt="logo"></a>
                     </div>
                     <div>
-                        <h2 class="mb-3" style="font-size:20px;">ETEK Enterprise: Your One-Stop Shop for Electronics, Gadgets, and Medicines</h2>
+                        <h2 class="mb-3" style="font-size:20px;"> Enterprise: Your One-Stop Shop for Electronics, Gadgets, and Medicines</h2>
                         <p style="text-align:justify;">
-                            Discover the best in electronics, cutting-edge gadgets, and essential medicines at ETEK Enterprise. Our wide range of high-quality products ensures you find exactly what you need, whether it's the latest tech innovations or reliable health solutions. Shop with confidence, enjoy great deals, and experience exceptional customer service. Stay connected with ETEK Enterprise - where technology meets healthcare.
+                            Discover the best in electronics, cutting-edge gadgets, and essential medicines at  Enterprise. Our wide range of high-quality products ensures you find exactly what you need, whether it's the latest tech innovations or reliable health solutions. Shop with confidence, enjoy great deals, and experience exceptional customer service. Stay connected with  Enterprise - where technology meets healthcare.
                         </p>
                     </div>
                     <ul class="sosiyal">
@@ -364,9 +462,9 @@ class Seeder extends SeederClass
                 <div class="footer-title"><h5>contact us</h5></div>
                 <div class="footer-contant">
                     <ul class="contact-list">
-                        <li><i class="fa fa-map-marker"></i>ETEK BD <br> bangladesh-<span>3654123</span></li>
+                        <li><i class="fa fa-map-marker"></i> BD <br> bangladesh-<span>3654123</span></li>
                         <li><i class="fa fa-phone"></i>call us: <span>123-456-7898</span></li>
-                        <li><i class="fa fa-envelope-o"></i>email us: support@etek.com.bd</li>
+                        <li><i class="fa fa-envelope-o"></i>email us: support@.com.bd</li>
                         <li><i class="fa fa-fax"></i>fax <span>123456</span></li>
                     </ul>
                 </div>
@@ -399,12 +497,12 @@ class Seeder extends SeederClass
 
     public function short_intro()
     {
-        return "ETEK Enterprise: Your One-Stop Shop for Electronics, Gadgets, and Medicines";
+        return " Enterprise: Your One-Stop Shop for Electronics, Gadgets, and Medicines";
     }
     public function home_page_long_intro()
     {
         return <<<HTML
-        <div class="product_info_content mb-2" id="product_info_content"><div class="product_d_inner"><h1>Best Computer, Laptop, Gaming PC, PC Components, Retail &amp; Wholesale Online Shop in Bangladesh </h1><h2>Best Desktop PC Shop in Bangladesh</h2><p> ETEK BD is the Best<a href="https://www.etek.com.bd/desktop-pc"> Desktop PC</a> Shop in Bangladesh, providing the best quality PCs at the most competitive prices. With 21 years of PC building experience, you can be sure that the PCs here are reliable, powerful, and cost-effective. Our knowledgeable executives are always on hand to offer expert advice and support, ensuring that you’re getting the best value for your money. Whether you’re a casual user or a professional in need of a powerhouse machine, ETEK BD is The Best Desktop PC Shop in Bangladesh is the perfect destination for all your PC needs. </p><h2>Best Gaming PC Shop in Bangladesh</h2><p> If you're looking for the best <a href="https://www.etek.com.bd/gaming-pc">gaming PC </a>shop in Bangladesh, then you've come to the right place! At our store, we offer a wide selection of gaming PCs that are perfect for any type of gaming experience. Our knowledgeable staff is always here to answer any questions you may have, and help you find the perfect gaming PC that fits both your budget and gaming needs. <a href="https://www.etek.com.bd/direction">Visit us today</a> and experience the best gaming PC shop in Bangladesh. </p><h2>Best Office PC Shop in Bangladesh</h2><p> If you're looking for the best<a href="https://www.etek.com.bd/binary-pc"> office PC </a>shop in Bangladesh, then you've come to the right place. At ETEK BD, we provide the best quality laptops, desktops, and accessories to get your office up and running with ease. We offer attractive prices, reliable service, and prompt delivery. Our friendly staff is always ready to answer any questions you have and provide you with helpful advice. So, come on down and see for yourself why ETEK BD is the best office PC shop in Bangladesh. </p><h2>Best Graphics PC Shop in Bangladesh</h2><p> Welcome to the best <a href="https://www.etek.com.bd/graphic-pc">graphics PC shop in Bangladesh</a> at ETEK BD! Here, we make your dreams come true by providing only the best high-end components and the latest technologies. Our PCs are designed with cutting-edge graphics and performance in mind, so you can experience maximum immersion and power for the latest graphics design. Plus, our expertise in PC building lets you <a href="https://www.etek.com.bd/tools/pc_builder"> customize your PC </a>to meet your exact needs. Get ready to take your graphics designing experience to the next level at ETEK BD. </p><h2>Best &nbsp;Video Editing PC Shop in Bangladesh</h2><p> ETEK BD specializes in helping customers build their ideal <a href="https://www.etek.com.bd/graphic-pc">video editing PC</a>. Our knowledgeable and experienced staff will provide you with personalized recommendations for each component to ensure your PC meets the specific needs of your video editing workflow. We’ll help you build a powerful, reliable system that is designed to allow you to produce professional-quality videos quickly and efficiently. With our Build Your Video Editing PC, we guarantee that you’ll get the best possible value for your money and be able to edit videos with ease. </p><h2>Best Server PC Shop in Bangladesh. Build Your Server PC at ETEK BD.</h2><p> ETEK BD is the premier shop for<a href="https://www.etek.com.bd/tools/pc_builder"> building your server PC in Bangladesh</a>. With top-of-the-line components from leading brands, custom PC building services, and knowledgeable, friendly staff, ETEK BD is the best choice for constructing your server PC. All of the components are top-notch and tested to ensure the highest quality performance for your server, and the staff can assist with any questions or concerns you may have. With the combination of quality hardware and superior customer service, ETEK BD is the premier shop for building your <a href="https://www.etek.com.bd/server">server PC</a>.<br> &nbsp; </p><h2>Best PC case shop at an affordable price&nbsp;in Bangladesh</h2><p> We are the best PC case shop in Bangladesh because we provide good quality products at an affordable price. Our products are made from durable materials and are designed to protect your computers from damage. We also offer a wide variety of styles and colors to choose from <a href="https://www.etek.com.bd/darkflash">darkflash </a>&amp; <a href="https://www.etek.com.bd/cooler-master">Cooler Master</a>, so you can find the perfect <a href="https://www.etek.com.bd/case">pc case </a>for your needs. </p><h2>Best Computer Motherboard shop at an affordable price in Bangladesh</h2><p> Need a new <a href="https://www.etek.com.bd/motherboard">computer motherboard</a> but don't want to spend a fortune? Check out our list of the best computer motherboards for an affordable price in Bangladesh. We've got options for every budget, so you can find the perfect motherboard for your needs. Whether you're looking for a high-end option for gaming or a budget-friendly option for work, we've got you covered.&nbsp; </p><p>No matter what your needs are, we're sure you'll <a href="https://www.etek.com.bd/motherboard">find</a> the perfect computer motherboard on our website.</p><h2>Best &nbsp;Graphics Card shop at an affordable price in Bangladesh&nbsp;</h2><p> If you're looking for the best graphics card shop at an affordable price in Bangladesh, then you've come to the right place. We offer a wide range of graphics cards from leading brands, all at great prices. Our selection includes cards for both desktops and laptops, so you're sure to find the perfect card for your needs. And if you're not sure which card is right for you, our friendly and knowledgeable staff will be happy to help you choose the perfect card for your budget and needs. </p><p>So come and visit us today, and see for yourself why we're the best place to buy <a href="https://www.etek.com.bd/graphics-card">graphics cards</a> in Bangladesh.</p><h2>Best POS Printer shop at an affordable price in Bangladesh</h2><p> Are you looking for a POS printer shop in Bangladesh? Look no further than Printer Point. We offer the best <a href="https://www.etek.com.bd/pos-printer">POS printers</a> at an affordable price. Our printers are known for their quality and durability. We have a wide range of printers to choose from, so you can find the perfect one for your needs. </p><h2>Best Barcode Printer &amp; Scanner shop at an affordable price in Bangladesh</h2><p> In this fast-paced world, a barcode printer &amp; scanner is a must-have for any business. At our shop, we offer the best barcode printer &amp; scanner at an affordable price in Bangladesh. We have a wide range of barcode printers &amp; scanners to choose from, so you can find the perfect one for your business. We also offer a wide range of accessories, so you can get everything you need to get started. </p><h2>Best Computer Monitor shop at an affordable price in Bangladesh</h2><p> We are the best <a href="https://www.etek.com.bd/monitor">computer monito</a>r shop at an affordable price in Bangladesh. With years of experience in the industry, we provide top-quality products and services to our customers. Our <strong>monitors</strong> are perfect for <a href="https://www.etek.com.bd/hp">gaming</a>, <a href="https://www.etek.com.bd/asus-monitor-price">video editing</a>, and graphic design. We also offer a wide variety of other<a href="https://www.etek.com.bd/peripheral"> computer accessories</a>. Shop now. </p></div></div>
+        <div class="product_info_content mb-2" id="product_info_content"><div class="product_d_inner"><h1>Best Computer, Laptop, Gaming PC, PC Components, Retail &amp; Wholesale Online Shop in Bangladesh </h1><h2>Best Desktop PC Shop in Bangladesh</h2><p>  BD is the Best<a href="https://www..com.bd/desktop-pc"> Desktop PC</a> Shop in Bangladesh, providing the best quality PCs at the most competitive prices. With 21 years of PC building experience, you can be sure that the PCs here are reliable, powerful, and cost-effective. Our knowledgeable executives are always on hand to offer expert advice and support, ensuring that you’re getting the best value for your money. Whether you’re a casual user or a professional in need of a powerhouse machine,  BD is The Best Desktop PC Shop in Bangladesh is the perfect destination for all your PC needs. </p><h2>Best Gaming PC Shop in Bangladesh</h2><p> If you're looking for the best <a href="https://www..com.bd/gaming-pc">gaming PC </a>shop in Bangladesh, then you've come to the right place! At our store, we offer a wide selection of gaming PCs that are perfect for any type of gaming experience. Our knowledgeable staff is always here to answer any questions you may have, and help you find the perfect gaming PC that fits both your budget and gaming needs. <a href="https://www..com.bd/direction">Visit us today</a> and experience the best gaming PC shop in Bangladesh. </p><h2>Best Office PC Shop in Bangladesh</h2><p> If you're looking for the best<a href="https://www..com.bd/binary-pc"> office PC </a>shop in Bangladesh, then you've come to the right place. At  BD, we provide the best quality laptops, desktops, and accessories to get your office up and running with ease. We offer attractive prices, reliable service, and prompt delivery. Our friendly staff is always ready to answer any questions you have and provide you with helpful advice. So, come on down and see for yourself why  BD is the best office PC shop in Bangladesh. </p><h2>Best Graphics PC Shop in Bangladesh</h2><p> Welcome to the best <a href="https://www..com.bd/graphic-pc">graphics PC shop in Bangladesh</a> at  BD! Here, we make your dreams come true by providing only the best high-end components and the latest technologies. Our PCs are designed with cutting-edge graphics and performance in mind, so you can experience maximum immersion and power for the latest graphics design. Plus, our expertise in PC building lets you <a href="https://www..com.bd/tools/pc_builder"> customize your PC </a>to meet your exact needs. Get ready to take your graphics designing experience to the next level at  BD. </p><h2>Best &nbsp;Video Editing PC Shop in Bangladesh</h2><p>  BD specializes in helping customers build their ideal <a href="https://www..com.bd/graphic-pc">video editing PC</a>. Our knowledgeable and experienced staff will provide you with personalized recommendations for each component to ensure your PC meets the specific needs of your video editing workflow. We’ll help you build a powerful, reliable system that is designed to allow you to produce professional-quality videos quickly and efficiently. With our Build Your Video Editing PC, we guarantee that you’ll get the best possible value for your money and be able to edit videos with ease. </p><h2>Best Server PC Shop in Bangladesh. Build Your Server PC at  BD.</h2><p>  BD is the premier shop for<a href="https://www..com.bd/tools/pc_builder"> building your server PC in Bangladesh</a>. With top-of-the-line components from leading brands, custom PC building services, and knowledgeable, friendly staff,  BD is the best choice for constructing your server PC. All of the components are top-notch and tested to ensure the highest quality performance for your server, and the staff can assist with any questions or concerns you may have. With the combination of quality hardware and superior customer service,  BD is the premier shop for building your <a href="https://www..com.bd/server">server PC</a>.<br> &nbsp; </p><h2>Best PC case shop at an affordable price&nbsp;in Bangladesh</h2><p> We are the best PC case shop in Bangladesh because we provide good quality products at an affordable price. Our products are made from durable materials and are designed to protect your computers from damage. We also offer a wide variety of styles and colors to choose from <a href="https://www..com.bd/darkflash">darkflash </a>&amp; <a href="https://www..com.bd/cooler-master">Cooler Master</a>, so you can find the perfect <a href="https://www..com.bd/case">pc case </a>for your needs. </p><h2>Best Computer Motherboard shop at an affordable price in Bangladesh</h2><p> Need a new <a href="https://www..com.bd/motherboard">computer motherboard</a> but don't want to spend a fortune? Check out our list of the best computer motherboards for an affordable price in Bangladesh. We've got options for every budget, so you can find the perfect motherboard for your needs. Whether you're looking for a high-end option for gaming or a budget-friendly option for work, we've got you covered.&nbsp; </p><p>No matter what your needs are, we're sure you'll <a href="https://www..com.bd/motherboard">find</a> the perfect computer motherboard on our website.</p><h2>Best &nbsp;Graphics Card shop at an affordable price in Bangladesh&nbsp;</h2><p> If you're looking for the best graphics card shop at an affordable price in Bangladesh, then you've come to the right place. We offer a wide range of graphics cards from leading brands, all at great prices. Our selection includes cards for both desktops and laptops, so you're sure to find the perfect card for your needs. And if you're not sure which card is right for you, our friendly and knowledgeable staff will be happy to help you choose the perfect card for your budget and needs. </p><p>So come and visit us today, and see for yourself why we're the best place to buy <a href="https://www..com.bd/graphics-card">graphics cards</a> in Bangladesh.</p><h2>Best POS Printer shop at an affordable price in Bangladesh</h2><p> Are you looking for a POS printer shop in Bangladesh? Look no further than Printer Point. We offer the best <a href="https://www..com.bd/pos-printer">POS printers</a> at an affordable price. Our printers are known for their quality and durability. We have a wide range of printers to choose from, so you can find the perfect one for your needs. </p><h2>Best Barcode Printer &amp; Scanner shop at an affordable price in Bangladesh</h2><p> In this fast-paced world, a barcode printer &amp; scanner is a must-have for any business. At our shop, we offer the best barcode printer &amp; scanner at an affordable price in Bangladesh. We have a wide range of barcode printers &amp; scanners to choose from, so you can find the perfect one for your business. We also offer a wide range of accessories, so you can get everything you need to get started. </p><h2>Best Computer Monitor shop at an affordable price in Bangladesh</h2><p> We are the best <a href="https://www..com.bd/monitor">computer monito</a>r shop at an affordable price in Bangladesh. With years of experience in the industry, we provide top-quality products and services to our customers. Our <strong>monitors</strong> are perfect for <a href="https://www..com.bd/hp">gaming</a>, <a href="https://www..com.bd/asus-monitor-price">video editing</a>, and graphic design. We also offer a wide variety of other<a href="https://www..com.bd/peripheral"> computer accessories</a>. Shop now. </p></div></div>
         HTML;
     }
     public function about_us()
@@ -417,7 +515,7 @@ class Seeder extends SeederClass
     public function terms_and_condition()
     {
         return <<<HTML
-        <div><p>These Terms and Conditions shall remain in full force and effect while you use the Site or Services or are otherwise a user of the Site, as applicable. You may terminate your use or participation at any time, for any reason, by following the instructions for terminating user accounts in your account settings, if available, or by contacting us at support@etek.com.bd.</p><p>Price, specifications and terms of offers are subject to change without any prior notice.</p><p>Etek is not responsible for typographical and/or photographically errors. Retail products are accompanied by the original manufacturer warranty. Etek does not offer any technical support or sales advice. All the images shown in our website are either digitally enhanced or taken from different websites. Products color, size and texture may differ from what it is shown in the website. Your order might have voided without informing you.</p><h2>Payment Terms</h2><p>It is highly recommended to make sure the stock availability before making any payment. Online payment will be received through SSLCOMMERZ digital payment gateway. Additional gateway charges will be applicable with online payment. If any payment needs to be refunded it may take 10-15 working days and it may even cost you additional charges, additional fees that is deducted during the payment will not be refunded in refund request. All payment terms and rights will be reserved by SSLCOMMERZ. Please read carefully the PAYMENT TERMS in detail before making any transaction. Also read EMI Terms, Refund &amp; Return Policy.</p><h2>Processing Time</h2><p>You can expect your order to be processed within approximately 48-72 hours, provided the items are in stock and there are no problems with payment verification. Although Etek does not guarantee same day-shipping we shall strive to do so wherever possible. Orders are not processed on weekends and holidays. Also read Delivery Terms.</p><h2>Product Listing</h2><p>Etek strives for accuracy in all item descriptions, photographs, compatibility references, detailed specifications, pricing, links and any other product-related information contained herein or referenced on our website. Due to human error and other determinate we cannot guarantee that all item descriptions, photographs, compatibility references, detailed specifications, pricing, links and any other product-related information listed is entirely accurate, complete or current, nor can we assume responsibility for these errors.</p><p>In the event a product listed on our website is labeled with an incorrect price due to some typographical, informational, technical or other error, Etek shall at its sole discretion have the right to refuse and/or cancel any order for said product and immediately amend, correct and/or remove the inaccurate information. Additionally, all hyperlinks to other websites from Etek are provided as resources to customers looking for additional information and/or professional opinion. Etek does not assume responsibility for the claims and/or representations made on these or any other websites.</p><h2>RMA Claim</h2><p>Customer needs to provide proof of purchase (invoice, money receipt) to claim warranty. Customer will pay return shipping charges for all warranty services. Etek reserves the right to refuse service to anyone. Etek cannot guarantee the compatibility of items. Please contact the manufacturer(s) directly if you have issues or concerns regarding compatibility. To know more about refund, return and dead on arrival go to Return &amp; Refund Policy.</p><h2>Physical Damage Policy</h2><p>Physical damage to any product purchased from Etek will effectively void warranty coverage. Improper Installation, physical damage, burn case, removed or tempered stickers, damage caused by liquid or mishandling any product will void the warranty. As a result, Etek will return any physically damaged Products back to the customer at the customer’s expense.</p><h2>Warranties: All Products Sold With Manufacturer Warranty Only</h2><p>Etek is a retailer only. Products sold by Etek are not manufactured by Etek. Products may, however, be covered by each manufacturer’s warranty, service, and support policy (if present). Etek assigns and passes through to the customer any warranty of the manufacturer, and customer acknowledges that it shall have recourse only under such warranties and only as against the manufacturer of the products. Etek makes no representation or express warranty with respect to the product except those stated in this document. Etek disclaims all other warranties, express or implied, as to any such product, including and without limitation, the implied warranties of merchant ability and fitness for a particular purpose, and any implied warranties arising from statute, trade usage, course of dealing, or course of performance.</p><p>All items sold through Etek are sold in an “as-is” is condition i.e, as per manufacturers packing etc. The quality and performance of the product is dependent on the manufacturer. Should any of these items prove defective, do not function or function improperly in any way following their purchase Etek shall get the product repaired/serviced by the manufacturer. The buyer shall bear the cost of shipping the product to Etek.</p><p>In order to resolve a complaint regarding the Services or to receive further information regarding use of the Services, you may email us at support@etek.com.bd or by post to:</p><address> Etek<br> Shop-2347-110, Level-113, Computer City Centre (Multiplan),<br> 69/71 New Elephant Road,<br> Dhaka-1205, Bangladesh </address></div>
+        <div><p>These Terms and Conditions shall remain in full force and effect while you use the Site or Services or are otherwise a user of the Site, as applicable. You may terminate your use or participation at any time, for any reason, by following the instructions for terminating user accounts in your account settings, if available, or by contacting us at support@.com.bd.</p><p>Price, specifications and terms of offers are subject to change without any prior notice.</p><p> is not responsible for typographical and/or photographically errors. Retail products are accompanied by the original manufacturer warranty.  does not offer any technical support or sales advice. All the images shown in our website are either digitally enhanced or taken from different websites. Products color, size and texture may differ from what it is shown in the website. Your order might have voided without informing you.</p><h2>Payment Terms</h2><p>It is highly recommended to make sure the stock availability before making any payment. Online payment will be received through SSLCOMMERZ digital payment gateway. Additional gateway charges will be applicable with online payment. If any payment needs to be refunded it may take 10-15 working days and it may even cost you additional charges, additional fees that is deducted during the payment will not be refunded in refund request. All payment terms and rights will be reserved by SSLCOMMERZ. Please read carefully the PAYMENT TERMS in detail before making any transaction. Also read EMI Terms, Refund &amp; Return Policy.</p><h2>Processing Time</h2><p>You can expect your order to be processed within approximately 48-72 hours, provided the items are in stock and there are no problems with payment verification. Although  does not guarantee same day-shipping we shall strive to do so wherever possible. Orders are not processed on weekends and holidays. Also read Delivery Terms.</p><h2>Product Listing</h2><p> strives for accuracy in all item descriptions, photographs, compatibility references, detailed specifications, pricing, links and any other product-related information contained herein or referenced on our website. Due to human error and other determinate we cannot guarantee that all item descriptions, photographs, compatibility references, detailed specifications, pricing, links and any other product-related information listed is entirely accurate, complete or current, nor can we assume responsibility for these errors.</p><p>In the event a product listed on our website is labeled with an incorrect price due to some typographical, informational, technical or other error,  shall at its sole discretion have the right to refuse and/or cancel any order for said product and immediately amend, correct and/or remove the inaccurate information. Additionally, all hyperlinks to other websites from  are provided as resources to customers looking for additional information and/or professional opinion.  does not assume responsibility for the claims and/or representations made on these or any other websites.</p><h2>RMA Claim</h2><p>Customer needs to provide proof of purchase (invoice, money receipt) to claim warranty. Customer will pay return shipping charges for all warranty services.  reserves the right to refuse service to anyone.  cannot guarantee the compatibility of items. Please contact the manufacturer(s) directly if you have issues or concerns regarding compatibility. To know more about refund, return and dead on arrival go to Return &amp; Refund Policy.</p><h2>Physical Damage Policy</h2><p>Physical damage to any product purchased from  will effectively void warranty coverage. Improper Installation, physical damage, burn case, removed or tempered stickers, damage caused by liquid or mishandling any product will void the warranty. As a result,  will return any physically damaged Products back to the customer at the customer’s expense.</p><h2>Warranties: All Products Sold With Manufacturer Warranty Only</h2><p> is a retailer only. Products sold by  are not manufactured by . Products may, however, be covered by each manufacturer’s warranty, service, and support policy (if present).  assigns and passes through to the customer any warranty of the manufacturer, and customer acknowledges that it shall have recourse only under such warranties and only as against the manufacturer of the products.  makes no representation or express warranty with respect to the product except those stated in this document.  disclaims all other warranties, express or implied, as to any such product, including and without limitation, the implied warranties of merchant ability and fitness for a particular purpose, and any implied warranties arising from statute, trade usage, course of dealing, or course of performance.</p><p>All items sold through  are sold in an “as-is” is condition i.e, as per manufacturers packing etc. The quality and performance of the product is dependent on the manufacturer. Should any of these items prove defective, do not function or function improperly in any way following their purchase  shall get the product repaired/serviced by the manufacturer. The buyer shall bear the cost of shipping the product to .</p><p>In order to resolve a complaint regarding the Services or to receive further information regarding use of the Services, you may email us at support@.com.bd or by post to:</p><address> <br> Shop-2347-110, Level-113, Computer City Centre (Multiplan),<br> 69/71 New Elephant Road,<br> Dhaka-1205, Bangladesh </address></div>
         HTML;
     }
 
@@ -429,13 +527,13 @@ class Seeder extends SeederClass
     public function shiping_and_delivery()
     {
         return <<<HTML
-        <div class="container"><h1 class="content_title">Shipping &amp; Delivery Policy</h1><h2>1. Shipping Methods:</h2><p>We offer nationwide shipping across Bangladesh using trusted courier services.</p><h2>2. Processing Time:</h2><p>Orders are processed within 48-72 hours after payment verification, provided the items are in stock. We do not process orders on weekends and public holidays.</p><h2>3. Shipping Rates:</h2><p>Shipping charges are calculated based on the weight and dimensions of your order. The rates will be displayed at checkout.</p><h2>4. Delivery Time:</h2><p class="m-0">Delivery times vary depending on your location:</p><ul><li><strong>Within Dhaka:</strong> 2-3 business days</li><li><strong>Outside Dhaka:</strong> 5-7 business days</li></ul><h2>5. Tracking Orders:</h2><p>Once your order has been shipped, you will receive a tracking number via email or SMS to track your package's progress.</p><h2>6. Shipping Restrictions:</h2><p>We currently do not ship internationally. For deliveries to remote areas, additional shipping charges may apply.</p><h2>7. Delivery Inspection:</h2><p>Upon delivery, please inspect your package for any damage or defects. If you notice any issues, please contact us within 24 hours of receiving your order.</p><h2>8. Missed Deliveries:</h2><p>If you miss your delivery, our courier partner will make multiple attempts to deliver your package. Please ensure someone is available to receive the package during the estimated delivery window.</p><h2>9. Delivery Address:</h2><p>Please provide a correct and complete delivery address. We will not be responsible for lost or undelivered packages due to incorrect address information provided by the customer.</p><h2>10. Contact Us:</h2><p>If you have any questions about our Shipping &amp; Delivery policy, please contact us at <a href="mailto:ctgcomputer.org@gmail.com">ctgcomputer.org@gmail.com</a> or visit our physical store at:</p><address> Etek<br> Shop-407-409, Level-04, Computer City Centre (Multiplan),<br> 69/71 New Elephant Road,<br> Dhaka-1205, Bangladesh </address></div>
+        <div class="container"><h1 class="content_title">Shipping &amp; Delivery Policy</h1><h2>1. Shipping Methods:</h2><p>We offer nationwide shipping across Bangladesh using trusted courier services.</p><h2>2. Processing Time:</h2><p>Orders are processed within 48-72 hours after payment verification, provided the items are in stock. We do not process orders on weekends and public holidays.</p><h2>3. Shipping Rates:</h2><p>Shipping charges are calculated based on the weight and dimensions of your order. The rates will be displayed at checkout.</p><h2>4. Delivery Time:</h2><p class="m-0">Delivery times vary depending on your location:</p><ul><li><strong>Within Dhaka:</strong> 2-3 business days</li><li><strong>Outside Dhaka:</strong> 5-7 business days</li></ul><h2>5. Tracking Orders:</h2><p>Once your order has been shipped, you will receive a tracking number via email or SMS to track your package's progress.</p><h2>6. Shipping Restrictions:</h2><p>We currently do not ship internationally. For deliveries to remote areas, additional shipping charges may apply.</p><h2>7. Delivery Inspection:</h2><p>Upon delivery, please inspect your package for any damage or defects. If you notice any issues, please contact us within 24 hours of receiving your order.</p><h2>8. Missed Deliveries:</h2><p>If you miss your delivery, our courier partner will make multiple attempts to deliver your package. Please ensure someone is available to receive the package during the estimated delivery window.</p><h2>9. Delivery Address:</h2><p>Please provide a correct and complete delivery address. We will not be responsible for lost or undelivered packages due to incorrect address information provided by the customer.</p><h2>10. Contact Us:</h2><p>If you have any questions about our Shipping &amp; Delivery policy, please contact us at <a href="mailto:ctgcomputer.org@gmail.com">ctgcomputer.org@gmail.com</a> or visit our physical store at:</p><address> <br> Shop-407-409, Level-04, Computer City Centre (Multiplan),<br> 69/71 New Elephant Road,<br> Dhaka-1205, Bangladesh </address></div>
         HTML;
     }
     public function coockies_policy()
     {
         return <<<HTML
-        <div class="product_info_content mb-2" id="product_info_content"><div class="product_d_inner"><h1>Best Computer, Laptop, Gaming PC, PC Components, Retail &amp; Wholesale Online Shop in Bangladesh </h1><h2>Best Desktop PC Shop in Bangladesh</h2><p> ETEK BD is the Best<a href="https://www.etek.com.bd/desktop-pc"> Desktop PC</a> Shop in Bangladesh, providing the best quality PCs at the most competitive prices. With 21 years of PC building experience, you can be sure that the PCs here are reliable, powerful, and cost-effective. Our knowledgeable executives are always on hand to offer expert advice and support, ensuring that you’re getting the best value for your money. Whether you’re a casual user or a professional in need of a powerhouse machine, ETEK BD is The Best Desktop PC Shop in Bangladesh is the perfect destination for all your PC needs. </p><h2>Best Gaming PC Shop in Bangladesh</h2><p> If you're looking for the best <a href="https://www.etek.com.bd/gaming-pc">gaming PC </a>shop in Bangladesh, then you've come to the right place! At our store, we offer a wide selection of gaming PCs that are perfect for any type of gaming experience. Our knowledgeable staff is always here to answer any questions you may have, and help you find the perfect gaming PC that fits both your budget and gaming needs. <a href="https://www.etek.com.bd/direction">Visit us today</a> and experience the best gaming PC shop in Bangladesh. </p><h2>Best Office PC Shop in Bangladesh</h2><p> If you're looking for the best<a href="https://www.etek.com.bd/binary-pc"> office PC </a>shop in Bangladesh, then you've come to the right place. At ETEK BD, we provide the best quality laptops, desktops, and accessories to get your office up and running with ease. We offer attractive prices, reliable service, and prompt delivery. Our friendly staff is always ready to answer any questions you have and provide you with helpful advice. So, come on down and see for yourself why ETEK BD is the best office PC shop in Bangladesh. </p><h2>Best Graphics PC Shop in Bangladesh</h2><p> Welcome to the best <a href="https://www.etek.com.bd/graphic-pc">graphics PC shop in Bangladesh</a> at ETEK BD! Here, we make your dreams come true by providing only the best high-end components and the latest technologies. Our PCs are designed with cutting-edge graphics and performance in mind, so you can experience maximum immersion and power for the latest graphics design. Plus, our expertise in PC building lets you <a href="https://www.etek.com.bd/tools/pc_builder"> customize your PC </a>to meet your exact needs. Get ready to take your graphics designing experience to the next level at ETEK BD. </p><h2>Best &nbsp;Video Editing PC Shop in Bangladesh</h2><p> ETEK BD specializes in helping customers build their ideal <a href="https://www.etek.com.bd/graphic-pc">video editing PC</a>. Our knowledgeable and experienced staff will provide you with personalized recommendations for each component to ensure your PC meets the specific needs of your video editing workflow. We’ll help you build a powerful, reliable system that is designed to allow you to produce professional-quality videos quickly and efficiently. With our Build Your Video Editing PC, we guarantee that you’ll get the best possible value for your money and be able to edit videos with ease. </p><h2>Best Server PC Shop in Bangladesh. Build Your Server PC at ETEK BD.</h2><p> ETEK BD is the premier shop for<a href="https://www.etek.com.bd/tools/pc_builder"> building your server PC in Bangladesh</a>. With top-of-the-line components from leading brands, custom PC building services, and knowledgeable, friendly staff, ETEK BD is the best choice for constructing your server PC. All of the components are top-notch and tested to ensure the highest quality performance for your server, and the staff can assist with any questions or concerns you may have. With the combination of quality hardware and superior customer service, ETEK BD is the premier shop for building your <a href="https://www.etek.com.bd/server">server PC</a>.<br> &nbsp; </p><h2>Best PC case shop at an affordable price&nbsp;in Bangladesh</h2><p> We are the best PC case shop in Bangladesh because we provide good quality products at an affordable price. Our products are made from durable materials and are designed to protect your computers from damage. We also offer a wide variety of styles and colors to choose from <a href="https://www.etek.com.bd/darkflash">darkflash </a>&amp; <a href="https://www.etek.com.bd/cooler-master">Cooler Master</a>, so you can find the perfect <a href="https://www.etek.com.bd/case">pc case </a>for your needs. </p><h2>Best Computer Motherboard shop at an affordable price in Bangladesh</h2><p> Need a new <a href="https://www.etek.com.bd/motherboard">computer motherboard</a> but don't want to spend a fortune? Check out our list of the best computer motherboards for an affordable price in Bangladesh. We've got options for every budget, so you can find the perfect motherboard for your needs. Whether you're looking for a high-end option for gaming or a budget-friendly option for work, we've got you covered.&nbsp; </p><p>No matter what your needs are, we're sure you'll <a href="https://www.etek.com.bd/motherboard">find</a> the perfect computer motherboard on our website.</p><h2>Best &nbsp;Graphics Card shop at an affordable price in Bangladesh&nbsp;</h2><p> If you're looking for the best graphics card shop at an affordable price in Bangladesh, then you've come to the right place. We offer a wide range of graphics cards from leading brands, all at great prices. Our selection includes cards for both desktops and laptops, so you're sure to find the perfect card for your needs. And if you're not sure which card is right for you, our friendly and knowledgeable staff will be happy to help you choose the perfect card for your budget and needs. </p><p>So come and visit us today, and see for yourself why we're the best place to buy <a href="https://www.etek.com.bd/graphics-card">graphics cards</a> in Bangladesh.</p><h2>Best POS Printer shop at an affordable price in Bangladesh</h2><p> Are you looking for a POS printer shop in Bangladesh? Look no further than Printer Point. We offer the best <a href="https://www.etek.com.bd/pos-printer">POS printers</a> at an affordable price. Our printers are known for their quality and durability. We have a wide range of printers to choose from, so you can find the perfect one for your needs. </p><h2>Best Barcode Printer &amp; Scanner shop at an affordable price in Bangladesh</h2><p> In this fast-paced world, a barcode printer &amp; scanner is a must-have for any business. At our shop, we offer the best barcode printer &amp; scanner at an affordable price in Bangladesh. We have a wide range of barcode printers &amp; scanners to choose from, so you can find the perfect one for your business. We also offer a wide range of accessories, so you can get everything you need to get started. </p><h2>Best Computer Monitor shop at an affordable price in Bangladesh</h2><p> We are the best <a href="https://www.etek.com.bd/monitor">computer monito</a>r shop at an affordable price in Bangladesh. With years of experience in the industry, we provide top-quality products and services to our customers. Our <strong>monitors</strong> are perfect for <a href="https://www.etek.com.bd/hp">gaming</a>, <a href="https://www.etek.com.bd/asus-monitor-price">video editing</a>, and graphic design. We also offer a wide variety of other<a href="https://www.etek.com.bd/peripheral"> computer accessories</a>. Shop now. </p></div></div>
+        <div class="product_info_content mb-2" id="product_info_content"><div class="product_d_inner"><h1>Best Computer, Laptop, Gaming PC, PC Components, Retail &amp; Wholesale Online Shop in Bangladesh </h1><h2>Best Desktop PC Shop in Bangladesh</h2><p>  BD is the Best<a href="https://www..com.bd/desktop-pc"> Desktop PC</a> Shop in Bangladesh, providing the best quality PCs at the most competitive prices. With 21 years of PC building experience, you can be sure that the PCs here are reliable, powerful, and cost-effective. Our knowledgeable executives are always on hand to offer expert advice and support, ensuring that you’re getting the best value for your money. Whether you’re a casual user or a professional in need of a powerhouse machine,  BD is The Best Desktop PC Shop in Bangladesh is the perfect destination for all your PC needs. </p><h2>Best Gaming PC Shop in Bangladesh</h2><p> If you're looking for the best <a href="https://www..com.bd/gaming-pc">gaming PC </a>shop in Bangladesh, then you've come to the right place! At our store, we offer a wide selection of gaming PCs that are perfect for any type of gaming experience. Our knowledgeable staff is always here to answer any questions you may have, and help you find the perfect gaming PC that fits both your budget and gaming needs. <a href="https://www..com.bd/direction">Visit us today</a> and experience the best gaming PC shop in Bangladesh. </p><h2>Best Office PC Shop in Bangladesh</h2><p> If you're looking for the best<a href="https://www..com.bd/binary-pc"> office PC </a>shop in Bangladesh, then you've come to the right place. At  BD, we provide the best quality laptops, desktops, and accessories to get your office up and running with ease. We offer attractive prices, reliable service, and prompt delivery. Our friendly staff is always ready to answer any questions you have and provide you with helpful advice. So, come on down and see for yourself why  BD is the best office PC shop in Bangladesh. </p><h2>Best Graphics PC Shop in Bangladesh</h2><p> Welcome to the best <a href="https://www..com.bd/graphic-pc">graphics PC shop in Bangladesh</a> at  BD! Here, we make your dreams come true by providing only the best high-end components and the latest technologies. Our PCs are designed with cutting-edge graphics and performance in mind, so you can experience maximum immersion and power for the latest graphics design. Plus, our expertise in PC building lets you <a href="https://www..com.bd/tools/pc_builder"> customize your PC </a>to meet your exact needs. Get ready to take your graphics designing experience to the next level at  BD. </p><h2>Best &nbsp;Video Editing PC Shop in Bangladesh</h2><p>  BD specializes in helping customers build their ideal <a href="https://www..com.bd/graphic-pc">video editing PC</a>. Our knowledgeable and experienced staff will provide you with personalized recommendations for each component to ensure your PC meets the specific needs of your video editing workflow. We’ll help you build a powerful, reliable system that is designed to allow you to produce professional-quality videos quickly and efficiently. With our Build Your Video Editing PC, we guarantee that you’ll get the best possible value for your money and be able to edit videos with ease. </p><h2>Best Server PC Shop in Bangladesh. Build Your Server PC at  BD.</h2><p>  BD is the premier shop for<a href="https://www..com.bd/tools/pc_builder"> building your server PC in Bangladesh</a>. With top-of-the-line components from leading brands, custom PC building services, and knowledgeable, friendly staff,  BD is the best choice for constructing your server PC. All of the components are top-notch and tested to ensure the highest quality performance for your server, and the staff can assist with any questions or concerns you may have. With the combination of quality hardware and superior customer service,  BD is the premier shop for building your <a href="https://www..com.bd/server">server PC</a>.<br> &nbsp; </p><h2>Best PC case shop at an affordable price&nbsp;in Bangladesh</h2><p> We are the best PC case shop in Bangladesh because we provide good quality products at an affordable price. Our products are made from durable materials and are designed to protect your computers from damage. We also offer a wide variety of styles and colors to choose from <a href="https://www..com.bd/darkflash">darkflash </a>&amp; <a href="https://www..com.bd/cooler-master">Cooler Master</a>, so you can find the perfect <a href="https://www..com.bd/case">pc case </a>for your needs. </p><h2>Best Computer Motherboard shop at an affordable price in Bangladesh</h2><p> Need a new <a href="https://www..com.bd/motherboard">computer motherboard</a> but don't want to spend a fortune? Check out our list of the best computer motherboards for an affordable price in Bangladesh. We've got options for every budget, so you can find the perfect motherboard for your needs. Whether you're looking for a high-end option for gaming or a budget-friendly option for work, we've got you covered.&nbsp; </p><p>No matter what your needs are, we're sure you'll <a href="https://www..com.bd/motherboard">find</a> the perfect computer motherboard on our website.</p><h2>Best &nbsp;Graphics Card shop at an affordable price in Bangladesh&nbsp;</h2><p> If you're looking for the best graphics card shop at an affordable price in Bangladesh, then you've come to the right place. We offer a wide range of graphics cards from leading brands, all at great prices. Our selection includes cards for both desktops and laptops, so you're sure to find the perfect card for your needs. And if you're not sure which card is right for you, our friendly and knowledgeable staff will be happy to help you choose the perfect card for your budget and needs. </p><p>So come and visit us today, and see for yourself why we're the best place to buy <a href="https://www..com.bd/graphics-card">graphics cards</a> in Bangladesh.</p><h2>Best POS Printer shop at an affordable price in Bangladesh</h2><p> Are you looking for a POS printer shop in Bangladesh? Look no further than Printer Point. We offer the best <a href="https://www..com.bd/pos-printer">POS printers</a> at an affordable price. Our printers are known for their quality and durability. We have a wide range of printers to choose from, so you can find the perfect one for your needs. </p><h2>Best Barcode Printer &amp; Scanner shop at an affordable price in Bangladesh</h2><p> In this fast-paced world, a barcode printer &amp; scanner is a must-have for any business. At our shop, we offer the best barcode printer &amp; scanner at an affordable price in Bangladesh. We have a wide range of barcode printers &amp; scanners to choose from, so you can find the perfect one for your business. We also offer a wide range of accessories, so you can get everything you need to get started. </p><h2>Best Computer Monitor shop at an affordable price in Bangladesh</h2><p> We are the best <a href="https://www..com.bd/monitor">computer monito</a>r shop at an affordable price in Bangladesh. With years of experience in the industry, we provide top-quality products and services to our customers. Our <strong>monitors</strong> are perfect for <a href="https://www..com.bd/hp">gaming</a>, <a href="https://www..com.bd/asus-monitor-price">video editing</a>, and graphic design. We also offer a wide variety of other<a href="https://www..com.bd/peripheral"> computer accessories</a>. Shop now. </p></div></div>
         HTML;
     }
 }

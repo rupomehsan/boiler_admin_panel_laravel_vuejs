@@ -1014,7 +1014,7 @@ body.bg-theme15 {
 
 .logo-text {
     color: #ffffff;
-    font-size: 15px;
+    font-size: 12px;
     text-transform: uppercase;
     font-weight: 400;
     margin: 0;
@@ -1027,7 +1027,10 @@ body.bg-theme15 {
 }
 
 .logo-icon {
-    width: 35px;
+    width: 76px;
+    border: 1px solid #80808015;
+    height: 54px;
+    object-fit: contain;
 }
 
 .close-btn {

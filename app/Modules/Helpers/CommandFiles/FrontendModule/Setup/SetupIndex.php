@@ -51,6 +51,7 @@ if (!function_exists('SetupIndex')) {
             select_fields: [
                 "id",
                 {$selectFields},
+                "status",
                 "slug",
                 "created_at",
             ],
@@ -58,6 +59,7 @@ if (!function_exists('SetupIndex')) {
             sort_by_cols: [
                 "id",
                 {$sortByCols},
+                "status",
                 "created_at",
             ],
 

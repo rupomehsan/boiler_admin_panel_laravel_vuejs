@@ -20,6 +20,7 @@ return new class extends Migration
             $table->string('slug', 50)->nullable();
             $table->enum('status', ['active', 'inactive'])->default('active');
             $table->timestamps();
+            $table->softDeletes();
         });
 
         Schema::create('con_setting_title_values', function (Blueprint $table) {
@@ -31,8 +32,9 @@ return new class extends Migration
             $table->string('slug', 50)->nullable();
             $table->enum('status', ['active', 'inactive'])->default('active');
             $table->timestamps();
+            $table->softDeletes();
         });
-        
+
     }
 
     /**
