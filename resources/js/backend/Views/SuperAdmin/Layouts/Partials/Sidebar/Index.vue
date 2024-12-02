@@ -49,8 +49,7 @@
                 :menu_title="`User`"
                 :route_name="`AllUser`"
             />
-
-            <side-bar-single-menu :icon="`fa fa-plus`" :menu_title="`TestModule`"  :route_name="`AllTestModule`" />
+            <side-bar-single-menu :icon="`fa fa-plus`" :menu_title="`TestOneModule`"  :route_name="`AllTestOneModule`" />
 <!-- Management end -->
         </ul>
     </div>

@@ -19,8 +19,6 @@ class Seeder extends SeederClass
 
         for ($i = 1; $i <= 100; $i++) {
             self::$model::create([                'name' => $faker->sentence,
-                'email' => $faker->sentence,
-                'address' => $faker->sentence,
             ]);
         }
     }

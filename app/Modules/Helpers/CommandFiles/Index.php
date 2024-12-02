@@ -43,17 +43,18 @@ include_once(__DIR__ . '/BackendModule/Validations/GetAllDataValidation.php');
 |--------------------------------------------------------------------------
 |
 */
+include_once(__DIR__ . '/FrontendModule/SetupIndex.php');
+include_once(__DIR__ . '/FrontendModule/FormField.php');
+// include_once(__DIR__ . '/FrontendModule/Pages/AllDataPage.php');
+// include_once(__DIR__ . '/FrontendModule/Pages/DetailsPage.php');
+// include_once(__DIR__ . '/FrontendModule/Pages/FormPage.php');
+// include_once(__DIR__ . '/FrontendModule/Pages/LayoutPage.php');
 
-include_once(__DIR__ . '/FrontendModule/Pages/AllDataPage.php');
-include_once(__DIR__ . '/FrontendModule/Pages/DetailsPage.php');
-include_once(__DIR__ . '/FrontendModule/Pages/FormPage.php');
-include_once(__DIR__ . '/FrontendModule/Pages/LayoutPage.php');
 
-include_once(__DIR__ . '/FrontendModule/Setup/FormField.php');
-include_once(__DIR__ . '/FrontendModule/Setup/Router.php');
-include_once(__DIR__ . '/FrontendModule/Setup/SetupIndex.php');
-include_once(__DIR__ . '/FrontendModule/Setup/SetupType.php');
+// include_once(__DIR__ . '/FrontendModule/Setup/Router.php');
 
-include_once(__DIR__ . '/FrontendModule/Store/Index.php');
-include_once(__DIR__ . '/FrontendModule/Store/InitialState.php');
+// include_once(__DIR__ . '/FrontendModule/Setup/SetupType.php');
+
+// include_once(__DIR__ . '/FrontendModule/Store/Index.php');
+// include_once(__DIR__ . '/FrontendModule/Store/InitialState.php');
 
